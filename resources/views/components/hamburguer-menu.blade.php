@@ -2,7 +2,7 @@
 
 <div x-data="{ open: false }" class="relative">
     <!-- Botão do Menu Hambúrguer -->
-    <div class="-me-2 flex items-center sm:hidden">
+    <div class="-me-2 mt-2">
         <button @click="open = true"
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
             <x-hamburger-icon />

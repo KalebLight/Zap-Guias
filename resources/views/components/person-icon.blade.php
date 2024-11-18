@@ -1,4 +1,4 @@
-<button class=" p-2  hover:bg-gray-100 h-full">
+<button class=" p-4 sm:mx-6 hover:bg-gray-100 h-full">
     <svg width ="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 18C6.96736 12.0327 15.1725 11.9348 21.1399 18.0001" stroke="black" />
         <path
