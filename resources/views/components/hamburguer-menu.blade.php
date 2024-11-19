@@ -25,12 +25,26 @@
             x-transition:leave-end="translate-x-full">
 
             <!-- Conteúdo da página em branco -->
-            <div class="h-full flex items-center justify-center">
-                <button @click="open = false"
-                    class="text-xl font-semibold text-gray-700 bg-gray-100 px-4 py-2 rounded hover:bg-gray-200 transition">
-                    Voltar
-                </button>
+            <div class="h-full">
+                <div class="flex items-center justify-center flex-col h-full">
+                    <p @click="open = false"
+                        class="text-xl font-semibold text-gray-700 px-4 py-2 rounded hover:bg-gray-200 transition underline">
+                        Ou VOLTE
+                    </p>
+
+                    <div class="flex flex-col right-0 items-end">
+                        <x-button-link text="Passeios" route="dashboard" />
+                        <x-button-link text="Hospedagem" route="dashboard" />
+                        <x-button-link text="Transporte" route="dashboard" />
+                        <x-button-link text="Entretenimento" route="dashboard" />
+                        <x-button-link text="Restaurantes" route="dashboard" />
+
+
+                    </div>
+                </div>
+                <h2>Teste</h2>
             </div>
+
         </div>
     </div>
 </div>
