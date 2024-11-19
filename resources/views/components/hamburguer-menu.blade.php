@@ -38,11 +38,8 @@
                         <x-button-link text="Transporte" route="dashboard" />
                         <x-button-link text="Entretenimento" route="dashboard" />
                         <x-button-link text="Restaurantes" route="dashboard" />
-
-
                     </div>
                 </div>
-                <h2>Teste</h2>
             </div>
 
         </div>
