@@ -5,7 +5,7 @@ use Livewire\Volt\Component;
 
 new class extends Component {}; ?>
 
-<div class="flex items-center rounded-full border border-primary px-2 py-2 shadow-custom h-11">
+<div class="flex items-center rounded-full border border-primary px-2 py-2 shadow-custom sm:h-11 h-13">
 
     <!-- Ícone de lupa -->
     <img class="w-8 h-8" src="{{ asset('images/search-icon.svg') }}" alt="Ícone de busca" />
