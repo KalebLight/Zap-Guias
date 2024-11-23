@@ -15,7 +15,7 @@ new class extends Component {
     }
 }; ?>
 
-<nav class="bg-white mb-12 px-4 sm:px-6">
+<nav class="bg-white px-4 sm:px-6 w-full">
     <div class="flex h-16 w-full items-center px-4 sm:px-6 ">
         <!-- Logo -->
         <a href="{{ route('dashboard') }}" wire:navigate class="shrink-0">
@@ -44,7 +44,7 @@ new class extends Component {
                                 <x-dropdown-link :href="route('profile')" wire:navigate>
                                     {{ __('Perfil') }}
                                 </x-dropdown-link>
-                                <button wire:click="logout" class="text-start">
+                                <button wire:click="logout" class='w-full'>
                                     <x-dropdown-link>
                                         {{ __('Sair') }}
                                     </x-dropdown-link>
