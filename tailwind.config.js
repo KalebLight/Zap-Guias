@@ -21,8 +21,10 @@ export default {
                 primary: "#192829", //Blue primary
                 primaryAnim: "#345254",
                 secondary: "#FF874F", //Orange secondary
+                buttonPrimary: "#F0E0D9",
                 success: "#2ecc71",
                 danger: "#e74c3c",
+                facebook: "#3B5998",
             },
         },
     },
