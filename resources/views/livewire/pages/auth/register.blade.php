@@ -11,6 +11,7 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component {
     public string $name = '';
     public string $email = '';
+    public string $confirm_email = '';
     public string $cpf = '';
     public string $phone = '';
     public string $password = '';
@@ -29,6 +30,13 @@ new #[Layout('layouts.guest')] class extends Component {
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        // Verifica se o email e o confirm_email são iguais
+        if ($this->email !== $this->confirm_email) {
+            $this->addError('confirm_email', 'O campo de confirmação do e-mail deve ser igual ao e-mail informado.');
+
+            return;
+        }
+
         $validated['password'] = Hash::make($validated['password']);
 
         event(new Registered(($user = User::create($validated))));
@@ -45,61 +53,80 @@ new #[Layout('layouts.guest')] class extends Component {
         <h2 class="text-secondary font-black text-5xl mb-5">COMUNIDADE</h2>
         <form wire:submit="register">
             <!-- Name -->
-            <div class="flex flex-row">
-                <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name"
-                    required autofocus autocomplete="name" placeholder='Nome Completo' />
+            <div class="flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name"
+                        required autofocus autocomplete="name" placeholder='Nome Completo' />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
             </div>
+
             <!-- CPF -->
-            <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text" name="cpf"
-                    required autofocus autocomplete="cpf" placeholder='CPF' maxlength='14' />
+            <div class="sm:mt-3 mt-1 flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text"
+                        name="cpf" required autofocus autocomplete="cpf" placeholder='CPF' maxlength='14' />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
+
                 <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
+
             </div>
+
             <!-- Phone -->
-            <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text" name="phone"
-                    required autofocus autocomplete="phone" placeholder='Número de Telefone' />
+            <div class="sm:mt-3 mt-1 flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text"
+                        name="phone" required autofocus autocomplete="phone" placeholder='Número de Telefone' />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
             </div>
+
             <!-- Email -->
-            <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="text" name="email"
-                    required autofocus autocomplete="email" placeholder='E-Mail' />
+            <div class="sm:mt-3 mt-1 flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="text"
+                        name="email" required autofocus autocomplete="email" placeholder='E-Mail' />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
             </div>
+
             <!-- Confirm Email -->
-            <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="confirm_email" id="confirm_email" class="block mt-1 w-full" type="email"
-                    name="confirm_email" required placeholder='Repita o E-Mail' />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
+            <div class="sm:mt-3 mt-1 flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="confirm_email" id="confirm_email" class="block mt-1 w-full" type="email"
+                        name="confirm_email" required placeholder='Repita o E-Mail' />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
+                <x-input-error :messages="$errors->get('confirm_email')" class="mt-2" />
             </div>
 
             <!-- Password -->
-            <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password"
-                    name="password" required autocomplete="new-password" placeholder="Senha" />
+            <div class="sm:mt-3 mt-1 flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password"
+                        name="password" required autocomplete="new-password" placeholder="Senha" />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
             </div>
 
             <!-- Confirm Password -->
-            <div class="mt-3 flex flex-row ">
-
-                <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                    type="password" name="password_confirmation" required autocomplete="new-password"
-                    placeholder="Repita a senha" />
-
+            <div class="sm:mt-3 mt-1 flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model="password_confirmation" id="password_confirmation"
+                        class="block mt-1 w-full" type="password" name="password_confirmation" required
+                        autocomplete="new-password" placeholder="Repita a senha" />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                <p class="text-secondary text-2xl ml-1">*</p>
             </div>
 
             <div class="flex flex-row">
+
                 <p class="text-secondary text-2xl mr-2">*</p>
                 <p class="text-primary text-sm mt-2 font-medium">Campos obrigatórios</p>
             </div>
