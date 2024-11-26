@@ -55,7 +55,7 @@
                 </form>
             </div>
         </div>
-        <p class="text-center sm:mt-16 mt-7">© Copyright Turismo 2024</p>
+        <p class="text-center sm:mt-16 mt-7 text-xs">© Copyright Turismo 2024</p>
     </footer>
 </body>
 
