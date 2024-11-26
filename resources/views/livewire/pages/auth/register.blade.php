@@ -11,6 +11,8 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component {
     public string $name = '';
     public string $email = '';
+    public string $cpf = '';
+    public string $phone = '';
     public string $password = '';
     public string $password_confirmation = '';
 
@@ -21,6 +23,8 @@ new #[Layout('layouts.guest')] class extends Component {
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'phone' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -47,42 +51,39 @@ new #[Layout('layouts.guest')] class extends Component {
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 <p class="text-secondary text-2xl ml-1">*</p>
             </div>
-
+            <!-- CPF -->
             <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name"
-                    required autofocus autocomplete="name" placeholder='CPF' />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-text-input wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text" name="cpf"
+                    required autofocus autocomplete="cpf" placeholder='CPF' maxlength='14' />
+                <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
                 <p class="text-secondary text-2xl ml-1">*</p>
             </div>
-
+            <!-- Phone -->
             <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name"
-                    required autofocus autocomplete="name" placeholder='Número de Telefone' />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text" name="phone"
+                    required autofocus autocomplete="phone" placeholder='Número de Telefone' />
+                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                 <p class="text-secondary text-2xl ml-1">*</p>
             </div>
-
+            <!-- Email -->
             <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="name" id="name" class="block mt-1 w-full" type="text" name="name"
-                    required autofocus autocomplete="name" placeholder='E-Mail' />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="text" name="email"
+                    required autofocus autocomplete="email" placeholder='E-Mail' />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 <p class="text-secondary text-2xl ml-1">*</p>
             </div>
-
+            <!-- Confirm Email -->
             <div class="mt-3 flex flex-row">
-                <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email"
-                    required autocomplete="username" placeholder='Repita o E-Mail' />
+                <x-text-input wire:model="confirm_email" id="confirm_email" class="block mt-1 w-full" type="email"
+                    name="confirm_email" required placeholder='Repita o E-Mail' />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 <p class="text-secondary text-2xl ml-1">*</p>
             </div>
 
             <!-- Password -->
             <div class="mt-3 flex flex-row">
-
-
                 <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password"
                     name="password" required autocomplete="new-password" placeholder="Senha" />
-
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 <p class="text-secondary text-2xl ml-1">*</p>
             </div>
