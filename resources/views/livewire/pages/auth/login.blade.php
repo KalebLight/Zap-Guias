@@ -30,7 +30,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
     <form wire:submit.prevent="login" class="flex flex-col">
         <!-- Botão Google -->
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-3">
             <button type="button"
                 class=" md:w-[500px] w-[300px] border border-black h-11 rounded-full hover:bg-gray-100">
                 <a href="/auth/google/redirect" class="flex items-center justify-center">
@@ -61,10 +61,10 @@ new #[Layout('layouts.guest')] class extends Component {
             - - - - - - - - - - - - - ou - - - - - - - - - - - - -
         </p>
 
-        <div class="flex flex-col gap-4">
-            <x-text-input wire:model="form.email" id="email" placeholder='E-mail' class="block mt-1 w-full"
+        <div class="flex flex-col gap-3">
+            <x-text-input wire:model="form.email" id="email" placeholder='E-mail' class="block  w-full"
                 type="email" name="email" required autofocus autocomplete="username" />
-            <x-text-input wire:model="form.password" placeholder="Senha" id="password" class="block mt-1 w-full"
+            <x-text-input wire:model="form.password" placeholder="Senha" id="password" class="block w-full"
                 type="password" name="password" required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
@@ -77,7 +77,10 @@ new #[Layout('layouts.guest')] class extends Component {
                 {{ __('Entrar') }}
             </x-primary-button>
         </div>
-
+        <br>
+        <div class="flex flex-row w-full justify-end">
+            <a href="/register" class="underline font-medium" wire:navigate>Ou CRIE SUA CONTA</a>
+        </div>
 
 
     </form>
