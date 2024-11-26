@@ -8,13 +8,13 @@
             class="h-12 w-12 transition-all hidden group-hover:block" />
 
         <!-- Texto do botão -->
-        <span class="font-normal text-primary -mt-1">{{ $text }}</span>
+        <span class="font-normal text-primary">{{ $text }}</span>
     </div>
 
     <!-- Container exibido ao passar o mouse -->
     <div x-show="isOpen" class="fixed left-1/2 transform -translate-x-1/2 bg-white h-32 rounded shadow-lg z-10"
         @mouseover="isOpen = true" @mouseout="isOpen = false"
-        style="background: white; width: 90vw; max-width: 90vw; top: 204px;">
+        style="background: white; width: 90vw; max-width: 90vw; top:134px;">
         <div class="p-4">
             <p class="text-gray-600">Conteúdo dentro do {{ $text }}.</p>
         </div>
