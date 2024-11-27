@@ -14,9 +14,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="min-h-screen flex flex-col">
     <header class="w-full">
         <livewire:layout.navigation />
 
@@ -25,15 +26,24 @@
         </div>
     </header>
 
-    <main class="flex-grow px-6 py-4 bg-white sm:rounded-lg">
-        {{ $slot }}
-    </main>
+    <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between min-h-[80vh]">
+
+        <!-- Imagem fixa com troca automática -->
+        <div class="w-full sm:w-1/2 flex justify-center items-center">
+            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image"
+                class="h-auto max-h-[500px] max-w-[400px] object-cover" />
+        </div>
+
+        <!-- Conteúdo principal -->
+        <main class="w-full sm:w-1/2 bg-white p-6 sm:rounded-lg">
+            {{ $slot }}
+        </main>
+    </div>
 
     <footer class="w-full p-4 flex flex-col justify-between text-primary">
         <div class="w-full flex justify-between flex-wrap">
-
             <div class="text-primary text-left w-fit">
-                <h3 class="text-xl underline ">Redes Sociais</h3>
+                <h3 class="text-xl underline">Redes Sociais</h3>
                 <p class='text-base mt-1'>Facebook | Instagram</p>
                 <p class='text-base mt-1'>Site desenvolvido por B20</p>
             </div>
@@ -48,7 +58,7 @@
             <div class="text-primary text-left w-full md:w-auto">
                 <h3 class="text-xl underline">Newsletter</h3>
                 <p class='text-base mt-1'>Inscreva-se e receba novidades</p>
-                <p class="-mt-1 text-base ">sobre turismo e o Turismo</p>
+                <p class='-mt-1 text-base '>sobre turismo e o Turismo</p>
                 <form class="flex justify-center items-center gap-2">
                     <input type="email" placeholder="E-mail" class="p-1 border border-gray-300 rounded-md">
                     <button class="py-1 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Enviar</button>
