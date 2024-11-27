@@ -23,19 +23,20 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 }; ?>
 
-<div class="w-full flex justify-center mt-10 flex-col items-center">
+<div class="w-full flex justify-start mt-10 flex-col items-center">
     <div class="md:w-[500px] w-[300px]">
-        <h1 class="text-4xl font-black text-primary mb-14">LOGIN</h1>
+        <h1 class="text-5xl font-black text-primary mb-10">LOGIN</h1>
     </div>
 
     <form wire:submit.prevent="login" class="flex flex-col">
         <!-- Botão Google -->
         <div class="flex flex-col gap-3">
             <button type="button"
-                class=" md:w-[500px] w-[300px] border border-black h-11 rounded-full hover:bg-gray-100">
+                class="xl:w-[570px] sm:w-[440px] w-[350px] lg:h-[50px] h-[36px] border border-black rounded-full hover:bg-gray-100">
                 <a href="/auth/google/redirect" class="flex items-center justify-center">
                     <div class="flex items-center justify-center h-full">
-                        <img src="{{ asset('images/google-icon.png') }}" alt="Logo do Google" class="h-9 w-9">
+                        <img src="{{ asset('images/google-icon.png') }}" alt="Logo do Google"
+                            class="lg:h-9 lg:w-9 h-7 w-7">
                     </div>
                     <span class="font-light ml-3">Entrar com Google</span>
                 </a>
@@ -44,41 +45,44 @@ new #[Layout('layouts.guest')] class extends Component {
             <!-- Botão Facebook -->
 
             <button type="button"
-                class=" md:w-[500px] w-[300px] bg-facebook text-white h-11 rounded-full justify-center hover:bg-blue-600 ">
+                class="xl:w-[570px] sm:w-[440px] w-[350px] lg:h-[50px] h-[36px]                 bg-facebook text-white rounded-full justify-center hover:bg-blue-600 ">
                 <a href="/auth/facebook/redirect" class="flex items-center justify-center">
                     <div class="flex items-center justify-center h-full">
-                        <img src="{{ asset('images/facebook-icon.png') }}" alt="Logo do Facebook" class="h-9 w-9">
+                        <img src="{{ asset('images/facebook-icon.png') }}" alt="Logo do Facebook"
+                            class="lg:h-9 lg:w-9 h-7 w-7">
                     </div>
                     <span class="font-light ml-3">Entrar com Facebook</span>
                 </a>
             </button>
         </div>
 
-        <p class="text-primary my-6 hidden md:block">
+        <p class="text-primary my-4 hidden md:block">
             - - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - - -
         </p>
-        <p class="text-primary my-6 block md:hidden">
+        <p class="text-primary my-4 block md:hidden">
             - - - - - - - - - - - - - ou - - - - - - - - - - - - -
         </p>
 
         <div class="flex flex-col gap-3">
-            <x-text-input wire:model="form.email" id="email" placeholder='E-mail' class="block  w-full"
-                type="email" name="email" required autofocus autocomplete="username" />
-            <x-text-input wire:model="form.password" placeholder="Senha" id="password" class="block w-full"
-                type="password" name="password" required autocomplete="current-password" />
+            <x-text-input wire:model="form.email" id="email" placeholder='E-mail'
+                class="block  xl:w-[570px] sm:w-[440px] w-[350px]" type="email" name="email" required autofocus
+                autocomplete="username" />
+            <x-text-input wire:model="form.password" placeholder="Senha" id="password"
+                class="block xl:w-[570px] sm:w-[440px] w-[350px]" type="password" name="password" required
+                autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
         </div>
         <a href="{{ route('password.request') }}" class="underline text-primary font-normal my-4" wire:navigate>Esqueci
             minha
             senha</a>
-        <div class="w-3/4">
+        <div class="xl:w-[570px] sm:w-[440px] w-[350px]">
             <x-primary-button>
                 {{ __('Entrar') }}
             </x-primary-button>
         </div>
         <br>
-        <div class="flex flex-row w-full justify-end">
+        <div class="flex flex-row max-w-[700px] justify-end">
             <a href="/register" class="underline font-medium" wire:navigate>Ou CRIE SUA CONTA</a>
         </div>
 

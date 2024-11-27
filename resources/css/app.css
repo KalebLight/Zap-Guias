@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 .custom-button {
-    height: 48px;
     @apply bg-buttonPrimary;
 }
 

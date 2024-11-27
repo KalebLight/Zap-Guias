@@ -26,16 +26,16 @@
         </div>
     </header>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center sm:justify-between min-h-[80vh]">
+    <div class="flex flex-col lg:flex-row items-center justify-center md:justify-between">
 
-        <!-- Imagem fixa com troca automática -->
-        <div class="w-full sm:w-1/2 flex justify-center items-center">
+        <!-- Images -->
+        <div class="w-full md:w-1/2 flex justify-center items-center">
             <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image"
-                class="h-auto max-h-[500px] max-w-[400px] object-cover" />
+                class="h-auto max-h-[550px] max-w-[450px] object-cover" />
         </div>
 
         <!-- Conteúdo principal -->
-        <main class="w-full sm:w-1/2 bg-white p-6 sm:rounded-lg">
+        <main class="w-full md:w-1/2 bg-white p-6 md:rounded-lg mb-20">
             {{ $slot }}
         </main>
     </div>
