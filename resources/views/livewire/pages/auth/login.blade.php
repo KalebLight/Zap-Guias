@@ -23,8 +23,8 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 }; ?>
 
-<div class="w-full flex justify-start mt-10 flex-col items-center">
-    <div class="md:w-[500px] w-[300px]">
+<div class="w-full flex justify-start mt-10 flex-col">
+    <div class="w-full">
         <h1 class="text-5xl font-black text-primary mb-10">LOGIN</h1>
     </div>
 
