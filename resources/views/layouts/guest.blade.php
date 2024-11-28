@@ -18,29 +18,33 @@
 </head>
 
 <body class="min-h-screen flex flex-col">
+    <!-- Header fixo no topo -->
     <header class="w-full">
         <livewire:layout.navigation />
 
-        <div class="hidden sm:block">
+        <div class="hidden sm:block mt-5">
             <x-nav-icons />
         </div>
     </header>
 
-    <div class="flex flex-col lg:flex-row items-center justify-center md:justify-between">
+    <!-- Conteúdo principal -->
+    <div
+        class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between md:py-20 py-10 md:px-[188px] lg:px-[100px] px:auto lg:items-start items-center">
 
-        <!-- Images -->
-        <div class="w-full md:w-1/2 flex justify-center items-center">
+        <!-- Imagens -->
+        <div class="lg:w-full lg:h-full w-[400px] h-[300px] flex">
             <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image"
-                class="h-auto max-h-[550px] max-w-[450px] object-cover" />
+                class="h-auto object-cover lg:min-w-[440px] mb-10" />
         </div>
 
-        <!-- Conteúdo principal -->
-        <main class="w-full md:w-1/2 bg-white p-6 md:rounded-lg mb-20">
+        <!-- Slot do conteúdo -->
+        <main class="w-full h-full  md:rounded-lg px-[60px] flex justify-center lg:justify-normal">
             {{ $slot }}
         </main>
     </div>
 
-    <footer class="w-full p-4 flex flex-col justify-between text-primary">
+    <!-- Footer fixo no fundo -->
+    <footer class="w-full p-4 flex flex-col justify-between text-primary md:px-[188px] lg:px-[100px] px:auto px-[60px]">
         <div class="w-full flex justify-between flex-wrap">
             <div class="text-primary text-left w-fit">
                 <h3 class="text-xl underline">Redes Sociais</h3>

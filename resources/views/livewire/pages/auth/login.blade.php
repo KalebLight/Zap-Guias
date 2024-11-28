@@ -23,12 +23,13 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 }; ?>
 
-<div class="w-full flex justify-start mt-10 flex-col">
-    <div class="w-full">
-        <h1 class="text-5xl font-black text-primary mb-10">LOGIN</h1>
-    </div>
+<div class="w-fit h-full flex justify-start flex-col items-start">
 
     <form wire:submit.prevent="login" class="flex flex-col">
+        <div class="xl:w-[570px] sm:w-[440px] w-[350px]">
+            <h1 class="text-5xl font-black text-primary mb-10 ">LOGIN</h1>
+        </div>
+
         <!-- Botão Google -->
         <div class="flex flex-col gap-3">
             <button type="button"
@@ -56,10 +57,10 @@ new #[Layout('layouts.guest')] class extends Component {
             </button>
         </div>
 
-        <p class="text-primary my-4 hidden md:block">
+        <p class="text-primary my-4 hidden lg:block text-nowrap">
             - - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - - -
         </p>
-        <p class="text-primary my-4 block md:hidden">
+        <p class="text-primary my-4 block lg:hidden text-nowrap">
             - - - - - - - - - - - - - ou - - - - - - - - - - - - -
         </p>
 
@@ -82,7 +83,7 @@ new #[Layout('layouts.guest')] class extends Component {
             </x-primary-button>
         </div>
         <br>
-        <div class="flex flex-row max-w-[700px] justify-end">
+        <div class="flex flex-row w-full justify-end">
             <a href="/register" class="underline font-medium" wire:navigate>Ou CRIE SUA CONTA</a>
         </div>
 
