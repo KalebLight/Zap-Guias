@@ -22,14 +22,17 @@
     <header class="w-full">
         <livewire:layout.navigation />
 
-        <div class="hidden sm:block mt-5">
+        <div class="hidden lg:block mt-5">
             <x-nav-icons />
         </div>
     </header>
 
     <!-- Conteúdo principal -->
     <div
-        class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between md:py-20 py-10 md:px-[188px] lg:px-[100px] px:auto lg:items-start items-center">
+        class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between md:py-20 py-10 lg:items-start items-center 
+        
+         sm:px-[60px] md:px-[100px] lg:px-[150px]  xl:px-[188px] 
+        ">
 
         <!-- Imagens -->
         <div class="lg:w-full lg:h-full w-[400px] h-[300px] flex">
@@ -38,13 +41,13 @@
         </div>
 
         <!-- Slot do conteúdo -->
-        <main class="w-full h-full  md:rounded-lg px-[60px] flex justify-center lg:justify-normal">
+        <main class="w-full h-full  md:rounded-lg xl:px-[60px] px-[30px] flex justify-center lg:justify-normal">
             {{ $slot }}
         </main>
     </div>
 
     <!-- Footer fixo no fundo -->
-    <footer class="w-full p-4 flex flex-col justify-between text-primary md:px-[188px] lg:px-[100px] px:auto px-[60px]">
+    <footer class="w-full p-4 flex flex-col justify-between text-primary sm:px-[60px] md:px-[100px] lg:px-[188px] ">
         <div class="w-full flex justify-between flex-wrap">
             <div class="text-primary text-left w-fit">
                 <h3 class="text-xl underline">Redes Sociais</h3>

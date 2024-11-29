@@ -26,8 +26,8 @@ new #[Layout('layouts.guest')] class extends Component {
 <div class="w-fit h-full flex justify-start flex-col items-start">
 
     <form wire:submit.prevent="login" class="flex flex-col">
-        <div class="xl:w-[570px] sm:w-[440px] w-[350px]">
-            <h1 class="text-5xl font-black text-primary mb-10 ">LOGIN</h1>
+        <div class="xl:w-[570px] sm:w-[440px] w-[350px] h-fit">
+            <h1 class="text-5xl font-black text-primary mb-10 leading-[0.5]">LOGIN</h1>
         </div>
 
         <!-- Botão Google -->
@@ -57,12 +57,14 @@ new #[Layout('layouts.guest')] class extends Component {
             </button>
         </div>
 
-        <p class="text-primary my-4 hidden lg:block text-nowrap">
-            - - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - - -
-        </p>
-        <p class="text-primary my-4 block lg:hidden text-nowrap">
-            - - - - - - - - - - - - - ou - - - - - - - - - - - - -
-        </p>
+        <div class="flex justify-center w-full">
+            <p class="text-primary my-4 hidden lg:block text-nowrap">
+                - - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - - -
+            </p>
+            <p class="text-primary my-4 block lg:hidden text-nowrap">
+                - - - - - - - - - - - - - ou - - - - - - - - - - - - -
+            </p>
+        </div>
 
         <div class="flex flex-col gap-3">
             <x-text-input wire:model="form.email" id="email" placeholder='E-mail'
