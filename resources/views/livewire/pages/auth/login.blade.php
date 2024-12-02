@@ -80,7 +80,7 @@ new #[Layout('layouts.guest')] class extends Component {
             minha
             senha</a>
         <div class="xl:w-[570px] sm:w-[440px] w-[350px]">
-            <x-primary-button>
+            <x-primary-button class='underline'>
                 {{ __('Entrar') }}
             </x-primary-button>
         </div>
@@ -88,11 +88,5 @@ new #[Layout('layouts.guest')] class extends Component {
         <div class="flex flex-row w-full justify-end">
             <a href="/register" class="underline font-medium" wire:navigate>Ou CRIE SUA CONTA</a>
         </div>
-
-
     </form>
-
-
-
-
 </div>
