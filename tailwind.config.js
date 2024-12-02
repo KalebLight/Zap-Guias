@@ -11,7 +11,7 @@ export default {
     theme: {
         extend: {
             boxShadow: {
-                custom: "6px 6px 0px rgba(25, 40, 41, 1)",
+                custom: "4px 4px 0px rgba(25, 40, 41, 1)",
             },
             fontFamily: {
                 sans: ["Montserrat", ...defaultTheme.fontFamily.sans],
