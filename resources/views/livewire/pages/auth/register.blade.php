@@ -17,9 +17,8 @@ new #[Layout('layouts.guest')] class extends Component {
     public string $password = '';
     public string $password_confirmation = '';
 
-    /**
-     * Handle an incoming registration request.
-     */
+    public string $registerType = 'default';
+
     public function register(): void
     {
         $validated = $this->validate([
@@ -30,7 +29,6 @@ new #[Layout('layouts.guest')] class extends Component {
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Verifica se o email e o confirm_email são iguais
         if ($this->email !== $this->confirm_email) {
             $this->addError('confirm_email', 'O campo de confirmação do e-mail deve ser igual ao e-mail informado.');
 
