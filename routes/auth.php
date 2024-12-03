@@ -9,12 +9,14 @@ Route::middleware('guest')->group(function () {
         ->name('register');
 
     Volt::route('register/{type}', 'pages.auth.register')
-        ->where('type', 'partner') // Restringe os valores permitidos
+        ->where('type', 'partner') 
         ->name('partner-register');
+
+        Volt::route('register/identity', 'pages.auth.confirm-identity')
+        ->name('partner-identity');
 });
 
 Route::middleware('guest')->group(function () {
-
 
     Volt::route('login', 'pages.auth.login')
         ->name('login');

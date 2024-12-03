@@ -24,7 +24,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $this->registerType = $type === 'partner' ? 'partner' : 'default';
     }
 
-    public function register(): void
+    public function register()
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -41,6 +41,11 @@ new #[Layout('layouts.guest')] class extends Component {
         }
 
         $validated['password'] = Hash::make($validated['password']);
+
+        if ($this->registerType == 'partner') {
+            session()->put('register_data', $validated);
+            return redirect()->route('partner-identity');
+        }
 
         event(new Registered(($user = User::create($validated))));
 
@@ -158,9 +163,10 @@ new #[Layout('layouts.guest')] class extends Component {
                 </div>
             </div>
 
-            <x-primary-button class="mt-10">
-                {{ __('Criar Conta') }}
+            <x-primary-button class="mt-10 underline">
+                {{ $registerType == 'default' ? __('Criar Conta') : __('Avançar') }}
             </x-primary-button>
+
 
         </form>
     </div>
