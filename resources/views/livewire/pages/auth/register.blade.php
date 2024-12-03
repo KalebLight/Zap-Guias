@@ -19,6 +19,11 @@ new #[Layout('layouts.guest')] class extends Component {
 
     public string $registerType = 'default';
 
+    public function mount(?string $type = null): void
+    {
+        $this->registerType = $type === 'partner' ? 'partner' : 'default';
+    }
+
     public function register(): void
     {
         $validated = $this->validate([
@@ -50,6 +55,7 @@ new #[Layout('layouts.guest')] class extends Component {
         <form wire:submit="register">
             <h2 class="text-primary font-black text-5xl">Junte-se à nossa</h2>
             <h2 class="text-secondary font-black text-5xl mb-5">COMUNIDADE</h2>
+
             <!-- Name -->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
