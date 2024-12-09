@@ -60,7 +60,7 @@ new class extends Component {
             </div>
 
             <!-- Menu Hamburguer -->
-            <div class="shrink-0 sm:ml-4 sm:hidden">
+            <div class="shrink-0 lg:ml-4 lg:hidden">
                 <x-hamburguer-menu />
             </div>
         </div>

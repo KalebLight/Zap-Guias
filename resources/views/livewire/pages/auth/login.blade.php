@@ -66,7 +66,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
             <div class="flex justify-center w-full">
                 <p class="text-primary my-4 hidden lg:block text-nowrap">
-                    - - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - - -
+                    - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - -
                 </p>
                 <p class="text-primary my-4 block lg:hidden text-nowrap">
                     - - - - - - - - - - - - - ou - - - - - - - - - - - - -

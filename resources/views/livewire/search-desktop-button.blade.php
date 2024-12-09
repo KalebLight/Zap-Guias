@@ -12,7 +12,7 @@
     </div>
 
     <!-- Container exibido ao passar o mouse -->
-    <div x-show="isOpen" class="fixed left-1/2 transform -translate-x-1/2 bg-white h-32 rounded shadow-lg z-10"
+    <div x-show="isOpen" class="fixed left-1/2 transform -translate-x-1/2 bg-white h-32 rounded shadow-lg z-10 mt-6"
         @mouseover="isOpen = true" @mouseout="isOpen = false"
         style="background: white; width: 90vw; max-width: 90vw; top:134px;">
         <div class="p-4">

@@ -1,4 +1,4 @@
-<div class="flex justify-between relative w-full  md:px-[100px] lg:px-[188px] sm:px-[60px]">
+<div class=" justify-between relative w-full  md:px-[100px] lg:px-[188px] sm:px-[60px] flex lg:flex hidden lg:block">
     @livewire('search-desktop-button', [
         'iconDefault' => 'images/passeios-off-icon.svg',
         'iconHover' => 'images/passeios-on-icon.svg',
