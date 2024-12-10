@@ -11,28 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parque_aquatico_e_empreendimento_de_lazer', function (Blueprint $table) {
+        Schema::create('casa_de_espetaculos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('natureza_juridica');
+
+            
+            $table->string('cnpj');
+            $table->date('nome_fantasia');
+            $table->string('endereco');
+            $table->string('tipo_de_estabelecimento');
+            $table->date('natureza_juridica');
             $table->string('uf');
             $table->string('municipio');
-            $table->string('tipo');
-            $table->string('tipo_de_estabelecimento');
-            $table->string('cnpj');
-            $table->string('nome_fantasia');
-            $table->string('nome_pessoa_juridica');
-            $table->string('endereco_completo');
-            $table->string('data_abertura');
+            $table->string('data_de_abertura');
             $table->string('telefone');
             $table->string('email');
             $table->string('website');
-            
             $table->string('numero_do_certificado');
             $table->string('validade_certificado');
-
             $table->json('idiomas');
-            $table->integer('area_total_construida');
+            $table->string(' tipo');
+            $table->text('capacidade_de_lugares');
+
+           
         });
     }
 
@@ -41,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parque_aquatico_e_empreendimento_de_lazer');
+        Schema::dropIfExists('casa_de_espetaculos');
     }
 };
