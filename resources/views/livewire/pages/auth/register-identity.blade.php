@@ -26,8 +26,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         $this->registerUserData['cnpj'] = $this->cnpj;
         session()->put('register_user_data', $this->registerUserData);
-        // dd($this->registerUserData);
-
+        
         return redirect()->route('register-company');
     }
 }; ?>
