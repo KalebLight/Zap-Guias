@@ -43,8 +43,8 @@ new #[Layout('layouts.guest')] class extends Component {
         $validated['password'] = Hash::make($validated['password']);
 
         if ($this->registerType == 'partner') {
-            session()->put('register_data', $validated);
-            return redirect()->route('partner-identity');
+            session()->put('register_user_data', $validated);
+            return redirect()->route('register-identity');
         }
 
         event(new Registered(($user = User::create($validated))));
