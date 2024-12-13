@@ -9,11 +9,18 @@ Route::middleware('guest')->group(function () {
         ->name('register');
 
     Volt::route('register/{type}', 'pages.auth.register')
-        ->where('type', 'partner') 
+        ->where('type', 'partner')
         ->name('partner-register');
 
-        Volt::route('register/identity', 'pages.auth.confirm-identity')
-        ->name('partner-identity');
+    Volt::route('register/identity', 'pages.auth.register-identity')
+        ->name('register-identity');
+
+    Volt::route('register/company', 'pages.auth.register-company')
+        ->name('register-company');
+
+    Volt::route('register/plan-selection', 'pages.auth.register-plan-selection')
+        ->name('register-plan-selection');
+
 });
 
 Route::middleware('guest')->group(function () {
