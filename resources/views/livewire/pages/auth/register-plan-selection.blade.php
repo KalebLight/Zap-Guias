@@ -5,81 +5,67 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use App\Services\CompanyRegistrationService;
 
 new #[Layout('layouts.guest')] class extends Component {
     public array $registerUserData = [];
-    public string $selectedPlan = ''; // Variável para armazenar o plano selecionado
-    public string $tipoDeAtividade = '';
-    public string $atividadeEspecialidade = '';
-    public string $numeroDeCertificado = '';
-    public string $municipio = '';
-    public string $uf = '';
-    public string $emailComercial = '';
-    public string $categoria = '';
-
-    public array $atividadesEspecialidade = [];
+    public array $registerCompanyData = [];
+    public ?string $selectedPlan = 'gratis';
 
     public function mount()
     {
         $this->registerUserData = session()->get('register_user_data', []);
-
-        if (empty($this->registerUserData)) {
+        $this->registerCompanyData = session()->get('register_company_data', []);
+        
+        if ((empty($this->registerUserData)) || (empty($this->registerCompanyData)) ) {
             return redirect()->route('register');
         }
     }
 
     public function selectPlan(string $plan)
     {
-        $this->selectedPlan = $plan; // Atualiza o plano selecionado
+        $this->selectedPlan = $plan; 
+    }
+
+    public function verifyPlan(){
+        
+        if ($this->selectedPlan == null || empty($this->selectedPlan)){
+            return;
+        }
+        else if ($this->selectedPlan == 'gratis'){
+            $this->registerUserAndCompany();
+        }
+        else{
+            //FAZER FLUXO DE COMPRA DE CONTA PREMIUM            
+        }
     }
 
     public function registerUserAndCompany()
-    {
-        event(new Registered(($user = User::create($this->registerUserData))));
-
-        Auth::login($user);
-
+    {    
+        $service = new CompanyRegistrationService();
+        
+    try {
+        $service->registerCompany($this->registerUserData, $this->registerCompanyData);
+        Auth::loginUsingId(User::latest()->first()->id);
         $this->redirect(route('dashboard', absolute: false), navigate: true);
-
-        session()->forget([
-            'register_user_data',
-            'register_company_data',
-            'tipoDeAtividade',
-            'atividadeEspecialidade',
-            'numeroDeCertificado',
-            'municipio',
-            'uf',
-            'emailComercial',
-            'categoria',
-        ]);
+        session()->forget(['register_user_data', 'register_company_data']);
+    } catch (\Exception $e) {
+        $this->addError('general', $e->getMessage());
     }
-
-    public function registrationNextStep()
-    {
-        $company_data = [
-            'tipoDeAtividade' => $this->tipoDeAtividade,
-            'atividadeEspecialidade' => $this->atividadeEspecialidade,
-            'numeroDeCertificado' => $this->numeroDeCertificado,
-            'municipio' => $this->municipio,
-            'uf' => $this->uf,
-            'emailComercial' => $this->emailComercial,
-            'selectedPlan' => $this->selectedPlan, // Salvar o plano selecionado
-        ];
-
-        session()->put('register_company_data', $company_data);
-
-        return redirect()->route('register-plan-selection');
     }
 }; ?>
 
 <div class="w-fit h-full flex justify-start items-start">
     <div>
 
-        <form wire:submit.prevent="registrationNextStep">
+        <form wire:submit.prevent="verifyPlan">
             <h2 class="text-primary font-black text-5xl">ESCOLHA SEU</h2>
             <h2 class="text-secondary font-black text-5xl mb-5">PLANO</h2>
             <div class="flex flex-row justify-between">
-            <div class="@if($selectedPlan === 'gratis') bg-secondary @endif flex flex-col border border-primary rounded-3xl py-[12px] px-[20px] w-52 h-44 items-center cursor-pointer hover:bg-gray-100" wire:click="selectPlan('gratis')">
+
+                <div class="@if($selectedPlan === 'gratis') bg-gray-200 @endif flex flex-col border border-primary rounded-3xl py-[12px] px-[20px] w-52 h-44 items-center cursor-pointer 
+                @if($selectedPlan !== 'gratis') hover:bg-gray-100 @endif" 
+                wire:click="selectPlan('gratis')">
 
                     <h3 class="underline text-lg font-medium">Grátis</h3>
                     <div class="flex flex-row items-baseline h-fit -mt-4">
@@ -93,7 +79,7 @@ new #[Layout('layouts.guest')] class extends Component {
                 </div>
 
                 <div
-                    class="@if($selectedPlan === 'premium') bg-secondary @endif flex flex-col border border-primary rounded-3xl py-[12px] px-[20px] w-52 h-44 items-center cursor-pointer hover:bg-gray-100" wire:click="selectPlan('premium')" >
+                    class="@if($selectedPlan === 'premium') bg-gray-200 @endif flex flex-col border border-primary rounded-3xl py-[12px] px-[20px] w-52 h-44 items-center cursor-pointer @if($selectedPlan !== 'premium') hover:bg-gray-100 @endif" wire:click="selectPlan('premium')" >
                     <h3 class="underline text-lg font-medium text-center">Premium</h3>
                     <div class="flex flex-col items-start h-fit -mt-4">
                         <div class="flex flex-row items-baseline">

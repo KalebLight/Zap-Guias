@@ -9,9 +9,13 @@ use Livewire\Volt\Component;
 new #[Layout('layouts.guest')] class extends Component {
     public array $registerUserData = [];
     public string $tipoDeAtividade = '';
-    public string $atividadeEspecialidade = '';
-    public string $numeroDeCertificado = '';
+    public string $especialidade = '';
+    public string $numero_do_certificado = '';
+    public string $municipio = '';
     public string $uf = '';
+    public string $email_comercial = '';
+    public string $nome_fantasia = '';
+    public string $categoria = '';
 
     public array $tiposDeAtividade = [
         'Guia de Turismo', 
@@ -34,7 +38,7 @@ new #[Layout('layouts.guest')] class extends Component {
        'Guia de Turismo' => ['Atrativo Cultural', 'Excursão Internacional', 'Excursão Nacional - Brasil / América do Sul', 'Guia Regional', 'Guia Especializado em Atrativo Turístico'],
         'Agência de Turismo' => ['Turismo Cultural', 'Turismo de Negócios e Eventos', 'Turismo de Sol e Praia', 'Turismo de Aventura', 'Ecoturismo', 'Turismo de Saúde','Turismo de Esporte','Turismo de Estudo e Intercâmbio','Turismo de Pesca', 'Turismo Náutico', 'Turismo Rural', 'Turismo Social', 'Turismo Religioso'],
         'Transportadora Turística' => [ 'Pacote de viagem', 'Passeio local', 'Traslado', 'Especial'],
-        'Restaurante, Cafeteria, Bar e etc.' => ['Árabe', 'Italiana', 'Brasileira', 'Francesa', 'Cozinha regional', 'Americana', 'Alemã', 'Tailandesa', 'Japonesa', 'Portuguesa', 'Chinesa', 'Asiática', 'Espanhola', 'Mexicana', 'Argentina', 'Grega', 'Indiana', 'Marroquina', 'Portguesa'],
+        'Restaurante, Cafeteria, Bar e etc.' => ['Árabe', 'Italiana', 'Brasileira', 'Francesa', 'Cozinha regional', 'Americana', 'Alemã', 'Tailandesa', 'Japonesa', 'Portuguesa', 'Chinesa', 'Asiática', 'Espanhola', 'Mexicana', 'Argentina', 'Grega', 'Indiana', 'Marroquina', 'Portuguesa'],
         'Parque Aquático e Empreendimento de Lazer' => ['Parque Aquático', 'Empreendimento de Lazer'],
         'Parque Temático' => ['Água', 'Entretenimento', 'Histórico', 'Cultural', 'Ficção', 'Tecno-científico'],
         'Meio de Hospedagem' => ['Hotel', 'Flat', 'Pousada', 'Outros', 'Hotel Fazenda', 'Resort', 'Albergue', 'Cama e Café', 'Hotel Histórico', 'Alojamento de Floresta', 'Hostel', 'Apart-Hotel'],
@@ -52,33 +56,63 @@ new #[Layout('layouts.guest')] class extends Component {
 
     public function mount()
     {
+        
+        $this->tipoDeAtividade = session('tipoDeAtividade', '');
+        $this->especialidade = session('especialidade', '');
+        $this->numero_do_certificado = session('numero_do_certificado', '');
+        $this->municipio = session('municipio', '');
+        $this->uf = session('uf', '');
+        $this->email_comercial = session('email_comercial', '');
+        $this->nome_fantasia = session('nome_fantasia', '');
+        $this->categoria = session('categoria', '');
+        
+        if ($this->tipoDeAtividade) {
+            $this->atividadesEspecialidade = $this->atividades[$this->tipoDeAtividade] ?? [];
+        }
+
         $this->registerUserData = session()->get('register_user_data', []);
 
         if (empty($this->registerUserData)) {
             return redirect()->route('register');
         }
+
     }
+
+    public function updated($propertyName)
+{
+    session([$propertyName => $this->$propertyName]);
+}
 
     public function updatedTipoDeAtividade(string $value): void
     {
         $this->atividadesEspecialidade = $this->atividades[$value] ?? [];
-        $this->atividadeEspecialidade = '';
+        $this->especialidade = '';
     }
 
-    public function registerUserAndCompany()
+    public function registrationNextStep()
     {
-        event(new Registered(($user = User::create($this->registerUserData))));
 
-        Auth::login($user);
-
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $company_data =[
+        'tipoDeAtividade' => $this->tipoDeAtividade,
+        'especialidade' => $this->especialidade,
+        'numero_do_certificado' => $this->numero_do_certificado,
+        'municipio' => $this->municipio,
+        'uf' => $this->uf,
+        'email_comercial' => $this->email_comercial,
+        'nome_fantasia' => $this->nome_fantasia,
+        'cnpj' => $this->registerUserData['cnpj']
+        ];
+        
+        session()->put('register_company_data', $company_data);
+        
+        return redirect()->route('register-plan-selection');
     }
 }; ?>
 
 <div class="w-fit h-full flex justify-start items-start">
     <div>
 
-        <form wire:submit="registerUserAndCompany">
+        <form wire:submit="registrationNextStep">
             <h2 class="text-primary font-black text-5xl">Sobre sua</h2>
             <h2 class="text-secondary font-black text-5xl mb-5">EMPRESA</h2>
 
@@ -92,34 +126,44 @@ new #[Layout('layouts.guest')] class extends Component {
                 <x-input-error :messages="$errors->get('tipoDeAtividade')" class="mt-2" />
             </div>
 
-
             <!-- atividade/especialidade -->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
                
-                <x-input-select wireModel="atividadeEspecialidade" id="atividadeEspecialidade" firtOption='Selecione a Atividade/Especialidade'
+                <x-input-select wireModel="especialidade" id="especialidade" firtOption='Selecione a Atividade/Especialidade'
                 :options="$atividadesEspecialidade" />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('atividadeEspecialidade')" class="mt-2" />
+                <x-input-error :messages="$errors->get('especialidade')" class="mt-2" />
+            </div>
+
+            <!-- nome_fantasia -->
+             <div class="flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model.change="nome_fantasia" id="nome_fantasia" class="block mt-1 w-full"
+                        type="text" name="nome_fantasia" required autofocus autocomplete="nome_fantasia"
+                        placeholder='Nome Fantasia' />
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
+                <x-input-error :messages="$errors->get('nome_fantasia')" class="mt-2" />
             </div>
 
 
             <!-- numero de certificado -->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="numeroDeCertificado" id="numeroDeCertificado" class="block mt-1 w-full"
-                        type="text" name="numeroDeCertificado" required autofocus autocomplete="numeroDeCertificado"
+                    <x-text-input wire:model.change="numero_do_certificado" id="numero_do_certificado" class="block mt-1 w-full"
+                        type="text" name="numero_do_certificado" required autofocus autocomplete="numero_do_certificado"
                         placeholder='Número de Certificado' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('numeroDeCertificado')" class="mt-2" />
+                <x-input-error :messages="$errors->get('numero_do_certificado')" class="mt-2" />
             </div>
 
             <!-- municipio -->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="municipio" id="municipio" class="block mt-1 w-full" type="text"
+                    <x-text-input wire:model.change="municipio" id="municipio" class="block mt-1 w-full" type="text"
                         name="municipio" required autofocus autocomplete="municipio" placeholder='Município' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
@@ -137,22 +181,21 @@ new #[Layout('layouts.guest')] class extends Component {
                 <x-input-error :messages="$errors->get('tipoDeAtividade')" class="mt-2" />
             </div>
 
-
             <!-- email comercial-->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="emailComercial" id="emailComercial" class="block mt-1 w-full"
-                        type="text" name="emailComercial" required autofocus autocomplete="emailComercial"
+                    <x-text-input wire:model.change="email_comercial" id="email_comercial" class="block mt-1 w-full"
+                        type="text" name="email_comercial" required autofocus autocomplete="email_comercial"
                         placeholder='E-Mail Comercial' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('emailComercial')" class="mt-2" />
+                <x-input-error :messages="$errors->get('email_comercial')" class="mt-2" />
             </div>
 
             <!-- categoria -->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="categoria" id="categoria" class="block mt-1 w-full" type="text"
+                    <x-text-input wire:model.change="categoria" id="categoria" class="block mt-1 w-full" type="text"
                         name="categoria" required autofocus autocomplete="categoria" placeholder='Categoria' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>

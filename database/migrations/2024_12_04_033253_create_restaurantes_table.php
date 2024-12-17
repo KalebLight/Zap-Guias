@@ -11,12 +11,12 @@ class CreateRestaurantesTable extends Migration
         Schema::create('restaurantes', function (Blueprint $table) {
             $table->timestamps();
             $table->id();
-            $table->string('tipo_de_estabelecimento');
-            $table->string('natureza_juridica');
+            $table->string('tipo_de_estabelecimento')->nullable();
+            $table->string('natureza_juridica')->nullable();
             $table->string('uf')->nullable();
             $table->string('municipio')->nullable();
             $table->json('idiomas')->nullable();
-            $table->string('tipo');
+            $table->string('tipo')->nullable();
             $table->string('especialidade')->nullable();
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
@@ -25,9 +25,9 @@ class CreateRestaurantesTable extends Migration
             $table->string('telefone')->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
-            $table->string('numero_do_certificado'); 
-            $table->string('validade_certificado');
-            
+            $table->string('numero_do_certificado');
+            $table->string('validade_certificado')->nullable();
+
         });
     }
 
@@ -35,4 +35,5 @@ class CreateRestaurantesTable extends Migration
     {
         Schema::dropIfExists('restaurantes');
     }
-};
+}
+;
