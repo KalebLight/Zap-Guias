@@ -23,7 +23,7 @@ class CreateRestaurantesTable extends Migration
             $table->string('endereco_completo')->nullable();
             $table->string('data_de_abertura')->nullable();
             $table->string('telefone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email_comercial')->nullable();
             $table->string('website')->nullable();
             $table->string('numero_do_certificado');
             $table->string('validade_certificado')->nullable();
