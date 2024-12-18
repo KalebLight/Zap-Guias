@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\AgenciasDeTurismo;
 use App\Models\CentroDeConvencoes;
 use App\Models\MeioDeHospedagem;
 use App\Models\Restaurante;
@@ -73,7 +74,19 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = CentroDeConvencoes::create($centroDeConvencaoValidated))));
+      } else if ($activityType == 'Agência de Turismo') {
+        $agenciaDeTurismoValidated = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = AgenciasDeTurismo::create($agenciaDeTurismoValidated))));
       }
+
 
 
 
