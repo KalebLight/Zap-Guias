@@ -1,12 +1,12 @@
 <?php
 
+use Livewire\Volt\Component;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
-use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component {
     public string $cnpj = '';
@@ -15,7 +15,7 @@ new #[Layout('layouts.guest')] class extends Component {
     public function mount()
     {
         $this->registerUserData = session()->get('register_user_data', []);
-
+        
         if (empty($this->registerUserData)) {
             return redirect()->route('register');
         }
@@ -23,7 +23,6 @@ new #[Layout('layouts.guest')] class extends Component {
 
     public function registrationNextStep()
     {
-
         $this->registerUserData['cnpj'] = $this->cnpj;
         session()->put('register_user_data', $this->registerUserData);
         
@@ -56,7 +55,7 @@ new #[Layout('layouts.guest')] class extends Component {
             </div>
 
             <x-primary-button class="mt-10 underline">
-                {{ __('Avançar') }}
+               Avançar
             </x-primary-button>
 
         </form>

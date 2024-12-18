@@ -19,20 +19,13 @@ class CompanyRegistrationService
 
   public function registerCompany(array $userData, array $companyData)
   {
-    $userValidated = Validator::make($userData, [
-      'name' => ['required', 'string', 'max:255'],
-      'cpf' => ['required', 'string', 'max:255', 'unique:' . User::class],
-      'phone' => ['required', 'string'],
-      'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-
-    ])->validate();
 
     $activityType = $companyData['tipoDeAtividade'];
 
     try {
 
       // dd($companyData);
-      event(new Registered(($user = User::create($userValidated))));
+      event(new Registered(($user = User::create($userData))));
 
       if ($activityType == 'Restaurante, Cafeteria, Bar e etc.') {
         $restauranteValidated = Validator::make($companyData, [

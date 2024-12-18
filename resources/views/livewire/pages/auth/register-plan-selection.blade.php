@@ -10,7 +10,7 @@ use App\Services\CompanyRegistrationService;
 new #[Layout('layouts.guest')] class extends Component {
     public array $registerUserData = [];
     public array $registerCompanyData = [];
-    public ?string $selectedPlan = 'gratis';
+    public ?string $selectedPlan = '';
 
     public function mount()
     {
@@ -28,8 +28,8 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 
     public function verifyPlan(){
-        
         if ($this->selectedPlan == null || empty($this->selectedPlan)){
+            
             return;
         }
         else if ($this->selectedPlan == 'gratis'){
