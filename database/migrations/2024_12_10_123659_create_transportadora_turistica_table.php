@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('transportadora_turistica', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('modalidades')->nullable();
+            $table->string('especialidade')->required();
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
             $table->string('tipo_de_estabelecimento')->nullable();

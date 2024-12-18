@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\MeioDeHospedagem;
 use App\Models\Restaurante;
 use App\Models\Transportadora;
 use Illuminate\Support\Facades\DB;
@@ -44,17 +45,31 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = Restaurante::create($restauranteValidated))));
+
       } else if ($activityType == 'Transportadora Turística') {
         $transportadoraValidated = Validator::make($companyData, [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
           'municipio' => ['required', 'string', 'max:255'],
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = Transportadora::create($transportadoraValidated))));
+      } else if ($activityType == 'Meio de Hospedagem') {
+        $meioDeHospedagemValidated = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = MeioDeHospedagem::create($meioDeHospedagemValidated))));
       }
+
 
 
       return $user;

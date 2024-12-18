@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Transportadora extends Model
+class MeioDeHospedagem extends Model
 {
     use HasFactory;
     /**
@@ -13,7 +13,7 @@ class Transportadora extends Model
      *
      * @var string
      */
-    protected $table = 'transportadora_turistica';
+    protected $table = 'meio_de_hospedagem';
 
     /**
      * Atributos preenchíveis via massa
@@ -21,24 +21,25 @@ class Transportadora extends Model
      * @var array
      */
     protected $fillable = [
-        'especialidade',
         'cnpj',
         'nome_fantasia',
-        'tipo_de_estabelecimento',
+        'especialidade',
         'natureza_juridica',
+        'endereco_completo',
         'uf',
         'municipio',
-        'endereco_completo_receita_federal',
         'data_de_abertura',
         'telefone',
         'email_comercial',
         'website',
         'numero_do_certificado',
         'validade_certificado',
-        'quantidade_de_veiculos',
-        'quantidade_de_embarcacoes',
-        'quantidade_de_cruzeiro_maritmo',
-        'quantidade_de_cruzeiro_fluvial'
+        'idiomas',
+        'tipo_de_hospedagem',
+        'unidades_habitacionais',
+        'leitos',
+        'uhs_acessiveis',
+        'leitos_acessiveis'
     ];
 
     /**
