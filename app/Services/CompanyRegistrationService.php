@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CentroDeConvencoes;
 use App\Models\MeioDeHospedagem;
 use App\Models\Restaurante;
 use App\Models\Transportadora;
@@ -61,13 +62,24 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = MeioDeHospedagem::create($meioDeHospedagemValidated))));
+      } else if ($activityType == 'Centro de Convenções') {
+        $centroDeConvencaoValidated = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = CentroDeConvencoes::create($centroDeConvencaoValidated))));
       }
 
 
 
       return $user;
     } catch (Exception $e) {
-      dd($e);
+      dd($e, $companyData);
       throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
     }
   }

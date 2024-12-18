@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Restaurante extends Model
+class CentroDeConvencoes extends Model
 {
     use HasFactory;
-
     /**
      * Tabela correspondente
      *
      * @var string
      */
-    protected $table = 'restaurantes';
+    protected $table = 'centro_de_convencoes';
 
     /**
      * Atributos preenchíveis via massa
@@ -22,22 +21,23 @@ class Restaurante extends Model
      * @var array
      */
     protected $fillable = [
-        'tipo_de_estabelecimento',
+        'tipo_estabelecimento',
         'natureza_juridica',
         'uf',
         'municipio',
-        'idiomas',
-        'tipo',
         'especialidade',
         'cnpj',
         'nome_fantasia',
-        'endereco_completo',
-        'data_de_abertura',
+        'endereco_completo_receita_federal',
+        'data_abertura',
         'telefone',
         'email_comercial',
         'website',
         'numero_do_certificado',
-        'validade_certificado'
+        'validade_do_certificado',
+        'idiomas',
+        'area_total_construida',
+        'area_locavel',
     ];
 
     /**
@@ -52,7 +52,4 @@ class Restaurante extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'idiomas' => 'array'
-    ];
 }
