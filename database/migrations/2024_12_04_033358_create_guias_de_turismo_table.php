@@ -10,18 +10,18 @@ class CreateGuiasDeTurismoTable extends Migration
     {
         Schema::create('guias_de_turismo', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_do_certificado')->required(); 
-            $table->string('UF');
-            $table->string('municipio');
-            $table->string('telefone');
-            $table->string('email')->nullable();
+            $table->string('numero_do_certificado')->required();
+            $table->string('uf')->required();
+            $table->string('municipio')->required();
+            $table->string('telefone')->nullable();
+            $table->string('email_comercial')->required();
             $table->string('website')->nullable();
-            $table->string('validade_certificado');
-            $table->string('categoria')->nullable();
-            $table->string('segumento')->nullable();
+            $table->string('validade_certificado')->nullable();
+            $table->string('especialidade')->nullable();
+            $table->string('seguimento')->nullable();
             $table->string('municipio_de_atuacao')->nullable();
             $table->string('guia_motorista')->nullable();
-            $table->string('nome');
+            $table->string('nome')->required();
             $table->json('idiomas')->nullable();
             $table->text('descricao')->nullable();
             $table->timestamps();
@@ -32,4 +32,5 @@ class CreateGuiasDeTurismoTable extends Migration
     {
         Schema::dropIfExists('guias_de_turismo');
     }
-}'';
+}
+'';

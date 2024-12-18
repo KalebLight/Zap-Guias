@@ -4,7 +4,9 @@ namespace App\Services;
 
 use App\Models\AgenciasDeTurismo;
 use App\Models\CentroDeConvencoes;
+use App\Models\GuiaDeTurismo;
 use App\Models\MeioDeHospedagem;
+use App\Models\ParqueAquaticoEEmpreendimentoDeLazer;
 use App\Models\Restaurante;
 use App\Models\Transportadora;
 use Illuminate\Support\Facades\DB;
@@ -85,14 +87,41 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = AgenciasDeTurismo::create($agenciaDeTurismoValidated))));
+      } else if ($activityType == 'Guia de Turismo') {
+        $companyData['nome'] = $userData['name'];
+        $companyData['municipio_de_atuacao'] = $companyData['uf'];
+
+        $guiadeTurismoValidated = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+          'nome' => ['required'],
+        ])->validate();
+        event(new Registered(($user = GuiaDeTurismo::create($guiadeTurismoValidated))));
+      } else if ($activityType == 'Parque Aquático e Empreendimento de Lazer') {
+        $parqueAquaticoEEmpreendimentoDeLazer = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = ParqueAquaticoEEmpreendimentoDeLazer::create($parqueAquaticoEEmpreendimentoDeLazer))));
       }
+
 
 
 
 
       return $user;
     } catch (Exception $e) {
-      dd($e, $companyData);
+      dd($e);
       throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
     }
   }
