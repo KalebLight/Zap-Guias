@@ -4,10 +4,12 @@ namespace App\Services;
 
 use App\Models\AcampamentoTuristico;
 use App\Models\AgenciasDeTurismo;
+use App\Models\CasaDeEspetaculos;
 use App\Models\CentroDeConvencoes;
 use App\Models\GuiaDeTurismo;
 use App\Models\LocadoraDeVeiculosParaTuristas;
 use App\Models\MeioDeHospedagem;
+use App\Models\OrganizadoraDeEventos;
 use App\Models\ParqueAquaticoEEmpreendimentoDeLazer;
 use App\Models\ParqueTematico;
 use App\Models\Restaurante;
@@ -147,7 +149,30 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = AcampamentoTuristico::create($acampamentoTuristico))));
+      } else if ($activityType == 'Casa de Espetáculos') {
+        $casaDeEspetaculos = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = CasaDeEspetaculos::create($casaDeEspetaculos))));
+      } else if ($activityType == 'Organizadora de Eventos') {
+        // dd($companyData);
+        $organizadoraDeEventos = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = OrganizadoraDeEventos::create($organizadoraDeEventos))));
       }
+
 
 
 

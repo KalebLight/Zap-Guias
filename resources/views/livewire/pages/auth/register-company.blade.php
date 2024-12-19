@@ -42,7 +42,6 @@ new #[Layout('layouts.guest')] class extends Component {
         'Parque Aquático e Empreendimento de Lazer' => ['Parque Aquático', 'Empreendimento de Lazer'],
         'Parque Temático' => ['Água', 'Entretenimento', 'Histórico', 'Cultural', 'Ficção', 'Tecno-científico'],
         'Meio de Hospedagem' => ['Hotel', 'Flat', 'Pousada', 'Outros', 'Hotel Fazenda', 'Resort', 'Albergue', 'Cama e Café', 'Hotel Histórico', 'Alojamento de Floresta', 'Hostel', 'Apart-Hotel'],
-        'Casa de Espetáculos' => ['Casa de Espetáculos'],
         'Turismo Náutico' => ['Marina só vagas molhadas', 'Marina só vagas secas', 'Passagem (escala temporária)', 'Marina de encalhe', 'Serviços/Reparos/Estaleiro', 'Urbana'],
         'Organizadora de Eventos' => ['Organizadora de congressos, convenções e congêneres', 'Organizadora de feiras de negócios, exposições e congêneres'],
         'Centro de Convenções' => ['Centro de Convenções e Feiras', 'Pavilhão de Feiras, Centro de Eventos, Arena Multiuso e Espaço para Eventos', 'Centro de Exposições'],
