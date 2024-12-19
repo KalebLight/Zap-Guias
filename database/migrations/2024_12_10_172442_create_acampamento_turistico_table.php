@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,25 +13,24 @@ return new class extends Migration
         Schema::create('acampamento_turistico', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('situacao_tramite');
-            $table->string('tipo_de_estabelecimento');
-            $table->string('estrutura_basica');
-            $table->string('natureza_juridica');
-            $table->string('uf');
-            $table->string('municipio');
-            $table->string('nome_fantasia');
-            $table->string('cnpj');
-            $table->string('endereco_completo');
-            $table->string('data_de_abertura');
-            $table->string('telefone');
-            $table->string('email');
-            $table->string('website');
-
-            $table->string('numero_do_certificado');
-            $table->string('validade_certificado');
-            $table->integer('area_montagem');
-            $table->string('capacidade');
-            $table->json('idiomas');
+            $table->string('situacao_tramite')->nullable();
+            $table->string('tipo_de_estabelecimento')->nullable();
+            $table->string('estrutura_basica')->nullable();
+            $table->string('natureza_juridica')->nullable();
+            $table->string('uf')->required();
+            $table->string('municipio')->required();
+            $table->string('nome_fantasia')->required();
+            $table->string('cnpj')->required();
+            $table->string('endereco_completo')->nullable();
+            $table->string('data_de_abertura')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('email_comercial')->required();
+            $table->string('website')->nullable();
+            $table->string('numero_do_certificado')->required();
+            $table->string('validade_certificado')->nullable();
+            $table->integer('area_montagem')->nullable();
+            $table->string('capacidade')->nullable();
+            $table->json('idiomas')->nullable();
 
 
 

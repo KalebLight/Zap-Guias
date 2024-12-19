@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,22 +13,22 @@ return new class extends Migration
         Schema::create('parque_tematico', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('tipo_de_estabelecimento');
-            $table->string('natureza_do_estabelecimento');
-            $table->string('uf');
-            $table->string('municipio');
+            $table->string('tipo_de_estabelecimento')->nullable();
+            $table->string('natureza_do_estabelecimento')->nullable();
+            $table->string('uf')->required();
+            $table->string('municipio')->required();
+            $table->string('especialidade')->required();
+            $table->json('idiomas')->nullable();
             $table->string('cnpj')->required();
-            $table->string('nome_pessoa_juridica');
             $table->string('nome_fantasia')->required();
-            $table->string('data_de_abertura');
-            $table->string('endereco_completo');
-            $table->string('telefone');
-            $table->string('email');
-            $table->string('website');
-            $table->string('numero_do_certificado');
-            $table->string('validade_certificado');
-            
-            $table->integer('area_total_do_empreendimento');
+            $table->string('endereco_completo')->nullable();
+            $table->string('data_de_abertura')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('email_comercial')->required();
+            $table->string('website')->nullable();
+            $table->string('numero_do_certificado')->required();
+            $table->string('validade_certificado')->nullable();
+            $table->integer('area_total_do_empreendimento')->nullable();
         });
     }
 

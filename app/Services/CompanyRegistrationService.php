@@ -2,11 +2,14 @@
 
 namespace App\Services;
 
+use App\Models\AcampamentoTuristico;
 use App\Models\AgenciasDeTurismo;
 use App\Models\CentroDeConvencoes;
 use App\Models\GuiaDeTurismo;
+use App\Models\LocadoraDeVeiculosParaTuristas;
 use App\Models\MeioDeHospedagem;
 use App\Models\ParqueAquaticoEEmpreendimentoDeLazer;
+use App\Models\ParqueTematico;
 use App\Models\Restaurante;
 use App\Models\Transportadora;
 use Illuminate\Support\Facades\DB;
@@ -113,7 +116,40 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = ParqueAquaticoEEmpreendimentoDeLazer::create($parqueAquaticoEEmpreendimentoDeLazer))));
+      } else if ($activityType == 'Parque Temático') {
+        $parqueTematico = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = ParqueTematico::create($parqueTematico))));
+      } else if ($activityType == 'Locadora de Veículos para Turistas') {
+        $locadoraVeiculos = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = LocadoraDeVeiculosParaTuristas::create($locadoraVeiculos))));
+      } else if ($activityType == 'Acampamento Turístico') {
+        $acampamentoTuristico = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = AcampamentoTuristico::create($acampamentoTuristico))));
       }
+
+
 
 
 
