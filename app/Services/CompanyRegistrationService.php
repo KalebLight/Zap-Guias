@@ -14,6 +14,7 @@ use App\Models\ParqueAquaticoEEmpreendimentoDeLazer;
 use App\Models\ParqueTematico;
 use App\Models\Restaurante;
 use App\Models\Transportadora;
+use App\Models\TurismoNautico;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
@@ -32,8 +33,6 @@ class CompanyRegistrationService
     $activityType = $companyData['tipoDeAtividade'];
 
     try {
-
-      // dd($companyData);
       event(new Registered(($user = User::create($userData))));
 
       if ($activityType == 'Restaurante, Cafeteria, Bar e etc.') {
@@ -160,7 +159,7 @@ class CompanyRegistrationService
         ])->validate();
         event(new Registered(($user = CasaDeEspetaculos::create($casaDeEspetaculos))));
       } else if ($activityType == 'Organizadora de Eventos') {
-        // dd($companyData);
+
         $organizadoraDeEventos = Validator::make($companyData, [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
@@ -171,6 +170,17 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ])->validate();
         event(new Registered(($user = OrganizadoraDeEventos::create($organizadoraDeEventos))));
+      } else if ($activityType == 'Turismo Náutico') {
+        $turismoNautico = Validator::make($companyData, [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ])->validate();
+        event(new Registered(($user = TurismoNautico::create($turismoNautico))));
       }
 
 
