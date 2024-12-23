@@ -16,6 +16,8 @@ new #[Layout('layouts.guest')] class extends Component {
     public string $phone = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public bool $terms = false; 
+    public bool $news = false; 
 
     public string $registerType = 'default';
 
@@ -32,6 +34,7 @@ new #[Layout('layouts.guest')] class extends Component {
             'phone' => ['required', 'string'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'terms' => ['accepted'],
         ]);
 
         if ($this->email !== $this->confirm_email) {
@@ -60,7 +63,6 @@ new #[Layout('layouts.guest')] class extends Component {
         <form wire:submit="register">
             <h2 class="text-primary font-black text-5xl">Junte-se à nossa</h2>
             <h2 class="text-secondary font-black text-5xl mb-5">COMUNIDADE</h2>
-
             <!-- Name -->
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
@@ -143,7 +145,7 @@ new #[Layout('layouts.guest')] class extends Component {
             <div class="space-y-4 mt-10">
                 <!-- Checkbox para termos de serviço e política de privacidade -->
                 <div class="flex items-center">
-                    <input type="checkbox" id="terms"
+                    <input type="checkbox" id="terms" name="terms" wire:model.change="terms"
                         class="w-4 h-4 text-secondary border-primary rounded focus:ring-secondary focus:ring-2 checked:bg-secondary checked:border-transparent">
                     <label for="terms" class="ml-3 text-primary text-sm leading-none">
                         Eu concordo com nossos
@@ -152,16 +154,20 @@ new #[Layout('layouts.guest')] class extends Component {
                         <a href="#" class="text-secondary underline font-normal">Política de Privacidade</a>.
                     </label>
                 </div>
+                @error('terms')
+                    <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                @enderror
 
                 <!-- Checkbox para receber notícias -->
                 <div class="flex items-center">
-                    <input type="checkbox" id="news"
+                    <input type="checkbox" id="news" name="news" wire:model="news"
                         class="w-4 h-4 text-secondary border-primary rounded focus:ring-secondary focus:ring-2 checked:bg-secondary checked:border-transparent">
                     <label for="news" class="ml-3 text-primary text-sm leading-none">
                         Gostaria de receber notícias sobre viagens e o Turismo.
                     </label>
                 </div>
             </div>
+
 
             <x-primary-button class="mt-10 underline">
                 {{ $registerType == 'default' ? __('Criar Conta') : __('Avançar') }}
