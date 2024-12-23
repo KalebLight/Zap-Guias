@@ -28,16 +28,11 @@
     </header>
 
     <!-- Conteúdo principal -->
-    <div
-        class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between md:py-20 py-10 lg:items-start items-center 
-        
-         sm:px-[60px] md:px-[100px] lg:px-[150px]  xl:px-[188px] 
-        ">
+    <div class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between md:py-20 py-10 lg:items-start items-center sm:px-[60px] md:px-[100px] lg:px-[150px]  xl:px-[188px]">
 
         <!-- Imagens -->
         <div class="lg:w-full lg:h-full w-[400px] h-[300px] flex">
-            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image"
-                class="h-auto object-cover lg:min-w-[440px] mb-10" />
+            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="h-auto object-cover lg:min-w-[440px] mb-10" />
         </div>
 
         <!-- Slot do conteúdo -->
@@ -74,6 +69,7 @@
         </div>
         <p class="text-center sm:mt-16 mt-7 text-xs">© Copyright Turismo 2024</p>
     </footer>
+
 </body>
 
 </html>

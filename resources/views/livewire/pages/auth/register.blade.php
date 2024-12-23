@@ -60,7 +60,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
 <div class="w-fit h-full flex justify-start flex-col items-start">
     <div>
-        <form wire:submit="register">
+        <form wire:submit.prevent="register">
             <h2 class="text-primary font-black text-5xl">Junte-se à nossa</h2>
             <h2 class="text-secondary font-black text-5xl mb-5">COMUNIDADE</h2>
             <!-- Name -->
@@ -137,7 +137,6 @@ new #[Layout('layouts.guest')] class extends Component {
             </div>
 
             <div class="flex flex-row">
-
                 <p class="text-secondary text-2xl mr-2">*</p>
                 <p class="text-primary text-sm mt-2 font-medium">Campos obrigatórios</p>
             </div>
@@ -153,10 +152,9 @@ new #[Layout('layouts.guest')] class extends Component {
                         e
                         <a href="#" class="text-secondary underline font-normal">Política de Privacidade</a>.
                     </label>
-                </div>
-                @error('terms')
-                    <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
-                @enderror
+                </div> 
+                <x-input-error :messages="$errors->get('terms')" class="mt-2" />
+               
 
                 <!-- Checkbox para receber notícias -->
                 <div class="flex items-center">
