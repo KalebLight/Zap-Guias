@@ -18,12 +18,21 @@ new #[Layout('layouts.guest')] class extends Component {
     public string $password_confirmation = '';
     public bool $terms = false; 
     public bool $news = false; 
+    public array $registerUserData = [];
 
     public string $registerType = 'default';
 
     public function mount(?string $type = null): void
     {
         $this->registerType = $type === 'partner' ? 'partner' : 'default';
+        $this->registerUserData = session()->get('register_user_data', []);
+        if(($this->registerUserData)) {
+            $this->name = $this->registerUserData['name'];
+            $this->email = $this->registerUserData['email'];
+            $this->cpf = $this->registerUserData['cpf'];
+            $this->phone = $this->registerUserData['phone'];
+
+        }
     }
 
     public function register()
@@ -31,7 +40,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'cpf' => ['required', 'string', 'max:255', 'unique:' . User::class],
-            'phone' => ['required', 'string'],
+            'phone' => ['required', 'string', 'min:15'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
             'terms' => ['accepted'],
@@ -70,29 +79,26 @@ new #[Layout('layouts.guest')] class extends Component {
                         required autofocus autocomplete="name" placeholder='Nome Completo' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-error :messages="$errors->get('name')"  />
             </div>
 
             <!-- CPF -->
             <div class="sm:mt-3 mt-1 flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text"
+                    <x-text-input wire:ignore wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text"
                         name="cpf" required autofocus autocomplete="cpf" placeholder='CPF' maxlength='14' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-
-                <x-input-error :messages="$errors->get('cpf')" class="mt-2" />
-
+                <x-input-error :messages="$errors->get('cpf')"  />
             </div>
 
             <!-- Phone -->
             <div class="sm:mt-3 mt-1 flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text"
-                        name="phone" required autofocus autocomplete="phone" placeholder='Número de Telefone' />
+                    <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text" name="phone" required autofocus autocomplete="phone" placeholder='Número de Telefone' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                <x-input-error :messages="$errors->get('phone')"  />
             </div>
 
             <!-- Email -->
@@ -102,7 +108,7 @@ new #[Layout('layouts.guest')] class extends Component {
                         name="email" required autofocus autocomplete="email" placeholder='E-Mail' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <x-input-error :messages="$errors->get('email')"  />
             </div>
 
             <!-- Confirm Email -->
@@ -112,7 +118,7 @@ new #[Layout('layouts.guest')] class extends Component {
                         name="confirm_email" required placeholder='Repita o E-Mail' />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('confirm_email')" class="mt-2" />
+                <x-input-error :messages="$errors->get('confirm_email')"  />
             </div>
 
             <!-- Password -->
@@ -122,7 +128,7 @@ new #[Layout('layouts.guest')] class extends Component {
                         name="password" required autocomplete="new-password" placeholder="Senha" />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <x-input-error :messages="$errors->get('password')"  />
             </div>
 
             <!-- Confirm Password -->
@@ -133,7 +139,7 @@ new #[Layout('layouts.guest')] class extends Component {
                         autocomplete="new-password" placeholder="Repita a senha" />
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                <x-input-error :messages="$errors->get('password_confirmation')"  />
             </div>
 
             <div class="flex flex-row">
@@ -168,7 +174,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
 
             <x-primary-button class="mt-10 underline">
-                {{ $registerType == 'default' ? __('Criar Conta') : __('Avançar') }}
+                {{ $registerType == 'default' ? 'Criar Conta' :'Avançar' }}
             </x-primary-button>
 
 

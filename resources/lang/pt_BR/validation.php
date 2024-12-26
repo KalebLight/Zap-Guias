@@ -109,8 +109,9 @@ return [
     'email' => 'e-mail',
     'name' => 'nome',
     'first_name' => 'nome',
-    'last_name' => 'obrenome',
+    'last_name' => 'sobrenome',
     'username' => 'nome de usuário',
-    'terms' => 'Termos de Serviço e Política de Privacidade'
+    'terms' => 'Termos de Serviço e Política de Privacidade',
+    'phone' => 'Telefone'
   ],
 ];
