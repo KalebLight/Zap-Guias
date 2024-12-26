@@ -5,11 +5,13 @@ namespace App\Livewire;
 use Livewire\Component;
 
 class SearchDesktopButton extends Component
-{   
-     public string $iconDefault;
+{
+    public string $iconDefault;
     public string $iconHover;
     public string $text;
     public bool $isOpen = false;
+
+    public $items = [];
 
     public function toggleContainer(bool $state)
     {
