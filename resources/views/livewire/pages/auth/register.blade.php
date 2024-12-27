@@ -159,8 +159,7 @@ new #[Layout('layouts.guest')] class extends Component {
                         <a href="#" class="text-secondary underline font-normal">Política de Privacidade</a>.
                     </label>
                 </div> 
-                <x-input-error :messages="$errors->get('terms')" class="mt-2" />
-               
+                <x-input-error :messages="$errors->get('terms')" class="mt-2" />               
 
                 <!-- Checkbox para receber notícias -->
                 <div class="flex items-center">
@@ -173,10 +172,11 @@ new #[Layout('layouts.guest')] class extends Component {
             </div>
 
 
-            <x-primary-button class="mt-10 underline">
-                {{ $registerType == 'default' ? 'Criar Conta' :'Avançar' }}
-            </x-primary-button>
-
+            <div class="w-full flex justify-center">
+                <x-primary-button class="mt-10 underline">
+                    {{ $registerType == 'default' ? 'Criar Conta' : 'Avançar' }}
+                </x-primary-button>
+            </div>
 
         </form>
     </div>
