@@ -28,7 +28,7 @@
     </header>
 
     <!-- Conteúdo principal -->
-    <div class="flex-grow flex flex-col lg:flex-row justify-center md:justify-start md:py-20 py-10 lg:items-start items-center ">
+    <div class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between md:py-20 py-10 lg:items-start items-center ">
 
         <!-- Imagens -->
         <div class="lg:w-full lg:h-full w-[400px] h-[300px] flex justify-center mx-4">
