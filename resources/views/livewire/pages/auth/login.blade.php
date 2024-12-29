@@ -74,13 +74,15 @@ new #[Layout('layouts.guest')] class extends Component {
             </div>
 
             <div class="flex flex-col gap-3">
+                <!-- Form Email -->
                 <x-text-input wire:model="form.email" id="email" placeholder='E-mail'
                     class="block  xl:w-[570px] sm:w-[440px] w-[350px]" type="email" name="email" required autofocus
                     autocomplete="username" />
+                <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
+                <!-- Form Password -->
                 <x-text-input wire:model="form.password" placeholder="Senha" id="password"
                     class="block xl:w-[570px] sm:w-[440px] w-[350px]" type="password" name="password" required
                     autocomplete="current-password" />
-
                 <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
             </div>
             <a href="{{ route('password.request') }}" class="underline text-primary font-normal my-4"
