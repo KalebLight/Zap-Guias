@@ -11,7 +11,7 @@ new class extends Component {
     {
         $logout();
 
-        $this->redirect('/login', navigate: true);
+        redirect()->route('login');
     }
 }; ?>
 

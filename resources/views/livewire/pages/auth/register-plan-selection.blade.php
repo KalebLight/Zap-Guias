@@ -47,8 +47,8 @@ new #[Layout('layouts.guest')] class extends Component {
     try {
         $service->registerCompany($this->registerUserData, $this->registerCompanyData);
         Auth::loginUsingId(User::latest()->first()->id);
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
         session()->forget(['register_user_data', 'register_company_data']);
+        redirect()->route('dashboard');
     } catch (\Exception $e) {
         $this->addError('general', $e->getMessage());
     }

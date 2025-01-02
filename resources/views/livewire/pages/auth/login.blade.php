@@ -15,13 +15,19 @@ new #[Layout('layouts.guest')] class extends Component {
      */
     public function login(): void
     {
-        $this->validate();
+        try {
+            $this->validate();
+            $this->form->authenticate();
+            Session::regenerate();
+            
+            redirect()->route('dashboard');
 
-        $this->form->authenticate();
-
-        Session::regenerate();
-
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        } catch (\Exception $e) {
+            
+            
+            dd($e); 
+        }
+        
     }
 
     public function swapView(string $view): void
