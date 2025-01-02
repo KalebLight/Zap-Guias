@@ -21,17 +21,9 @@
     <livewire:layout.navigation />
 
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6">
-                {{ $header }}
-            </div>
-        </header>
-    @endif
 
     <!-- Page Content -->
-    <main>
+    <main class="pt-16 md:pt-20">
         {{ $slot }}
     </main>
 

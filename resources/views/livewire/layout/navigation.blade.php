@@ -15,8 +15,8 @@ new class extends Component {
     }
 }; ?>
 
-<nav class="bg-white w-full  md:px-[100px] lg:px-[188px] px-[60px]">
-    <div class="flex h-16 w-full items-center ">
+<nav class="bg-white fixed top-0 z-50 w-full md:px-[100px] lg:px-[188px] px-[30px] pb-3">
+    <div class="flex md:h-16 h-10 w-full items-center">
         <!-- Logo -->
         <a href="{{ route('dashboard') }}" wire:navigate class="shrink-0">
             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
@@ -66,7 +66,7 @@ new class extends Component {
         </div>
     </div>
 
-
+    <div class="hidden lg:block mt-5">
+        <x-nav-icons />
     </div>
-
 </nav>

@@ -14,10 +14,10 @@
         </div>
 
         <!-- SideMenu -->
-        <div class="w-3/4 bg-white overflow-y-auto max-h-screen" x-show="open" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+        <div class="w-3/4 bg-white overflow-y-auto" x-show="open" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
 
             <!-- Sidemenu content -->
-            <div class="h-fit pt-7 px-4">
+            <div class="pt-7 px-4 pb-4">
                 <p @click="open = false" class="text-lg font-medium text-gray-700 px-4 py-2 rounded hover:bg-gray-200 transition underline">
                     Ou VOLTE
                 </p>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="w-full flex flex-row justify-center">
-                    <x-search-input id="search" placeholder='Pesquisar' class="block w-[250px] shadow-custom placeholder-secondary" type="email" name="search" required autofocus />
+                    <x-search-input id="search" placeholder='Pesquisar' class="block w-max shadow-custom placeholder-secondary" type="email" name="search" required autofocus />
                 </div>
             </div>
 

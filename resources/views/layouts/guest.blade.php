@@ -28,9 +28,7 @@
     <header class="w-full">
         <livewire:layout.navigation />
 
-        <div class="hidden lg:block mt-5">
-            <x-nav-icons />
-        </div>
+
     </header>
 
     <!-- Conteúdo principal -->
@@ -42,7 +40,7 @@
         </div>
 
         <!-- Slot do conteúdo -->
-        <main class="w-full h-full  md:rounded-lg xl:px-[60px] px-[30px] flex justify-center lg:justify-normal">
+        <main class="w-full h-full  md:rounded-lg xl:px-[60px] px-[30px] flex justify-center lg:justify-normal pt-24 md:pt-24">
             {{ $slot }}
         </main>
     </div>
