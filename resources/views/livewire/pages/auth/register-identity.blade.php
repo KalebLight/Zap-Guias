@@ -41,7 +41,7 @@ new #[Layout('layouts.guest')] class extends Component {
             <div class="flex flex-col items-center">
                 <div class="flex flex-row w-full">
                     <x-text-input wire:model="cnpj" id="cnpj" class="block mt-1 w-full" type="text" name="cnpj"
-                        required autofocus autocomplete="cnpj" placeholder='CNPJ' />
+                        required autofocus autocomplete="cnpj" placeholder='CNPJ' x-mask="99.999.999/9999-99"/>
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
                 <x-input-error :messages="$errors->get('cnpj')" class="mt-2" />

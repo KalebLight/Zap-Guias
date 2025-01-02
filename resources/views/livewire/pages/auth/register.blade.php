@@ -37,6 +37,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
     public function register()
     {
+        
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'cpf' => ['required', 'string', 'max:255', 'unique:' . User::class],
@@ -63,7 +64,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        redirect()->route('dashboard');
     }
 }; ?>
 
@@ -86,7 +87,7 @@ new #[Layout('layouts.guest')] class extends Component {
             <div class="sm:mt-3 mt-1 flex flex-col items-center">
                 <div class="flex flex-row w-full">
                     <x-text-input wire:ignore wire:model="cpf" id="cpf" class="block mt-1 w-full" type="text"
-                        name="cpf" required autofocus autocomplete="cpf" placeholder='CPF' maxlength='14' />
+                        name="cpf" required autofocus autocomplete="cpf" placeholder='CPF' maxlength='14' x-mask="999.999.999-99"/>
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
                 <x-input-error :messages="$errors->get('cpf')"  />
@@ -95,7 +96,7 @@ new #[Layout('layouts.guest')] class extends Component {
             <!-- Phone -->
             <div class="sm:mt-3 mt-1 flex flex-col items-center">
                 <div class="flex flex-row w-full">
-                    <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text" name="phone" required autofocus autocomplete="phone" placeholder='Número de Telefone' />
+                    <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text" name="phone" required autofocus autocomplete="phone" placeholder='Número de Telefone' x-mask="(99) 99999-9999"/>
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
                 <x-input-error :messages="$errors->get('phone')"  />
