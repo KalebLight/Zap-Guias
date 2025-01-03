@@ -40,6 +40,11 @@ class CentroDeConvencoes extends Model
         'area_locavel',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

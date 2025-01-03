@@ -39,6 +39,11 @@ class TurismoNautico extends Model
         'idiomas',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

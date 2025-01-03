@@ -39,6 +39,11 @@ class ParqueTematico extends Model
         'area_total_do_empreendimento',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

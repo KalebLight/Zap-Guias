@@ -37,6 +37,11 @@ class GuiaDeTurismo extends Model
         'descricao',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

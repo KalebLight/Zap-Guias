@@ -39,6 +39,11 @@ class CasaDeEspetaculos extends Model
         'capacidade_de_lugares',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

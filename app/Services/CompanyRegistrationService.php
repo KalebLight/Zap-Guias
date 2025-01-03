@@ -18,37 +18,48 @@ use App\Models\TurismoNautico;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
-use Livewire\Volt\Component;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Validation\Rules;
-use Illuminate\Validation\Rules\Password;
+
 use Exception;
 
 class CompanyRegistrationService
 {
-
   public function registerCompany(array $userData, array $companyData)
   {
-
     $activityType = $companyData['tipoDeAtividade'];
 
     try {
-      event(new Registered(($user = User::create($userData))));
+      DB::beginTransaction();
+      $user = User::create($userData);
+      $company = $this->createCompany($activityType, $companyData);
+      $user->company()->associate($company);
+      $user->save();
+      DB::commit();
+      return $user;
 
-      if ($activityType == 'Restaurante, Cafeteria, Bar e etc.') {
-        $restauranteValidated = Validator::make($companyData, [
-          'cnpj' => ['required', 'string'],
-          'especialidade' => ['required'],
-          'nome_fantasia' => ['required', 'string', 'max:50'],
-          'municipio' => ['required', 'string', 'max:255'],
-          'uf' => ['required', 'string', 'size:2'],
-          'email_comercial' => ['required', 'string'],
-          'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = Restaurante::create($restauranteValidated))));
+    } catch (\Exception $e) {
+      DB::rollBack();
+      throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
+    }
+  }
 
-      } else if ($activityType == 'Transportadora Turística') {
-        $transportadoraValidated = Validator::make($companyData, [
+  private function createCompany(string $activityType, array $companyData)
+  {
+    $validators = [
+      'Restaurante, Cafeteria, Bar e etc.' => [
+        'model' => Restaurante::class,
+        'rules' => [
+          'cnpj' => ['required', 'string'],
+          'especialidade' => ['required'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ],
+      ],
+      'Transportadora Turística' => [
+        'model' => Transportadora::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -56,10 +67,11 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = Transportadora::create($transportadoraValidated))));
-      } else if ($activityType == 'Meio de Hospedagem') {
-        $meioDeHospedagemValidated = Validator::make($companyData, [
+        ],
+      ],
+      'Meio de Hospedagem Turística' => [
+        'model' => MeioDeHospedagem::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -67,10 +79,11 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = MeioDeHospedagem::create($meioDeHospedagemValidated))));
-      } else if ($activityType == 'Centro de Convenções') {
-        $centroDeConvencaoValidated = Validator::make($companyData, [
+        ],
+      ],
+      'Centro de Convenções' => [
+        'model' => CentroDeConvencoes::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -78,10 +91,11 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = CentroDeConvencoes::create($centroDeConvencaoValidated))));
-      } else if ($activityType == 'Agência de Turismo') {
-        $agenciaDeTurismoValidated = Validator::make($companyData, [
+        ],
+      ],
+      'Agência de Turismo' => [
+        'model' => AgenciasDeTurismo::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -89,13 +103,11 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = AgenciasDeTurismo::create($agenciaDeTurismoValidated))));
-      } else if ($activityType == 'Guia de Turismo') {
-        $companyData['nome'] = $userData['name'];
-        $companyData['municipio_de_atuacao'] = $companyData['uf'];
-
-        $guiadeTurismoValidated = Validator::make($companyData, [
+        ],
+      ],
+      'Guia de Turismo' => [
+        'model' => GuiaDeTurismo::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -104,10 +116,11 @@ class CompanyRegistrationService
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
           'nome' => ['required'],
-        ])->validate();
-        event(new Registered(($user = GuiaDeTurismo::create($guiadeTurismoValidated))));
-      } else if ($activityType == 'Parque Aquático e Empreendimento de Lazer') {
-        $parqueAquaticoEEmpreendimentoDeLazer = Validator::make($companyData, [
+        ],
+      ],
+      'Parque Aquático e Empreendimento de Lazer' => [
+        'model' => ParqueAquaticoEEmpreendimentoDeLazer::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -115,10 +128,11 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = ParqueAquaticoEEmpreendimentoDeLazer::create($parqueAquaticoEEmpreendimentoDeLazer))));
-      } else if ($activityType == 'Parque Temático') {
-        $parqueTematico = Validator::make($companyData, [
+        ],
+      ],
+      'Parque Temático' => [
+        'model' => ParqueTematico::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -126,52 +140,44 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = ParqueTematico::create($parqueTematico))));
-      } else if ($activityType == 'Locadora de Veículos para Turistas') {
-        $locadoraVeiculos = Validator::make($companyData, [
+        ],
+      ],
+      'Locadora de Veículos para Turistas' => [
+        'model' => LocadoraDeVeiculosParaTuristas::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'municipio' => ['required', 'string', 'max:255'],
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = LocadoraDeVeiculosParaTuristas::create($locadoraVeiculos))));
-      } else if ($activityType == 'Acampamento Turístico') {
-        $acampamentoTuristico = Validator::make($companyData, [
+        ],
+      ],
+      'Acampamento Turístico' => [
+        'model' => AcampamentoTuristico::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'municipio' => ['required', 'string', 'max:255'],
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = AcampamentoTuristico::create($acampamentoTuristico))));
-      } else if ($activityType == 'Casa de Espetáculos') {
-        $casaDeEspetaculos = Validator::make($companyData, [
+        ],
+      ],
+      'Casa de Espectáculos' => [
+        'model' => CasaDeEspetaculos::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'municipio' => ['required', 'string', 'max:255'],
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = CasaDeEspetaculos::create($casaDeEspetaculos))));
-      } else if ($activityType == 'Organizadora de Eventos') {
-
-        $organizadoraDeEventos = Validator::make($companyData, [
-          'cnpj' => ['required', 'string'],
-          'nome_fantasia' => ['required', 'string', 'max:50'],
-          'especialidade' => ['required'],
-          'municipio' => ['required', 'string', 'max:255'],
-          'uf' => ['required', 'string', 'size:2'],
-          'email_comercial' => ['required', 'string'],
-          'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = OrganizadoraDeEventos::create($organizadoraDeEventos))));
-      } else if ($activityType == 'Turismo Náutico') {
-        $turismoNautico = Validator::make($companyData, [
+        ],
+      ],
+      'Organizadora de Eventos' => [
+        'model' => OrganizadoraDeEventos::class,
+        'rules' => [
           'cnpj' => ['required', 'string'],
           'nome_fantasia' => ['required', 'string', 'max:50'],
           'especialidade' => ['required'],
@@ -179,21 +185,29 @@ class CompanyRegistrationService
           'uf' => ['required', 'string', 'size:2'],
           'email_comercial' => ['required', 'string'],
           'numero_do_certificado' => ['required'],
-        ])->validate();
-        event(new Registered(($user = TurismoNautico::create($turismoNautico))));
-      }
+        ],
+      ],
+      'Turismo Náutico' => [
+        'model' => TurismoNautico::class,
+        'rules' => [
+          'cnpj' => ['required', 'string'],
+          'nome_fantasia' => ['required', 'string', 'max:50'],
+          'especialidade' => ['required'],
+          'municipio' => ['required', 'string', 'max:255'],
+          'uf' => ['required', 'string', 'size:2'],
+          'email_comercial' => ['required', 'string'],
+          'numero_do_certificado' => ['required'],
+        ],
+      ],
+    ];
 
-
-
-
-
-
-
-
-      return $user;
-    } catch (Exception $e) {
-      dd($e);
-      throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
+    if (!isset($validators[$activityType])) {
+      throw new Exception("Tipo de atividade desconhecido: {$activityType}");
     }
+
+    $validator = Validator::make($companyData, $validators[$activityType]['rules']);
+    $validatedData = $validator->validate();
+
+    return $validators[$activityType]['model']::create($validatedData);
   }
 }

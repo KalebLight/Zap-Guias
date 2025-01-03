@@ -44,6 +44,11 @@ class AgenciasDeTurismo extends Model
         'quantidade_de_cruzeiro_fluvial',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

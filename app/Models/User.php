@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'name',
         'email',
@@ -27,7 +28,14 @@ class User extends Authenticatable
         'provider_id',
         'provider_token',
         'cnpj',
+        'company_id',
+        'company_type',
     ];
+
+    public function company()
+    {
+        return $this->morphTo();
+    }
 
     /**
      * The attributes that should be hidden for serialization.

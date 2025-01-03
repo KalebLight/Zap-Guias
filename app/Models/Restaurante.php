@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+
 class Restaurante extends Model
 {
     use HasFactory;
@@ -39,6 +40,11 @@ class Restaurante extends Model
         'numero_do_certificado',
         'validade_certificado'
     ];
+
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
 
     /**
      * Atributos ocultos

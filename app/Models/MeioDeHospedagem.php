@@ -42,6 +42,11 @@ class MeioDeHospedagem extends Model
         'leitos_acessiveis'
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

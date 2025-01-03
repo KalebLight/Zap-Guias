@@ -40,6 +40,11 @@ class ParqueAquaticoEEmpreendimentoDeLazer extends Model
         'area_total_construida',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

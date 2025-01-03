@@ -38,6 +38,11 @@ class OrganizadoraDeEventos extends Model
         'validade_certificado',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *

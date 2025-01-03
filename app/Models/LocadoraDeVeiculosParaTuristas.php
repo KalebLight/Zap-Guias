@@ -38,6 +38,11 @@ class LocadoraDeVeiculosParaTuristas extends Model
         'tipo_de_veiculos_terrestre',
     ];
 
+    public function owner()
+    {
+        return $this->morphOne(User::class, 'company');
+    }
+
     /**
      * Atributos ocultos
      *
