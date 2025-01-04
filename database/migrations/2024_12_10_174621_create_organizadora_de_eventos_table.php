@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('tipo_de_eventos')->nullable();
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
+            $table->string('slug')->unique()->nullable();
             $table->string('endereco')->nullable();
             $table->string('data_de_abertura')->nullable();
             $table->string('telefone')->nullable();

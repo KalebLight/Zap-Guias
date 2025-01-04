@@ -39,7 +39,8 @@ class MeioDeHospedagem extends Model
         'unidades_habitacionais',
         'leitos',
         'uhs_acessiveis',
-        'leitos_acessiveis'
+        'leitos_acessiveis',
+        'slug',
     ];
 
     public function owner()

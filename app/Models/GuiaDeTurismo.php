@@ -35,6 +35,7 @@ class GuiaDeTurismo extends Model
         'nome',
         'idiomas',
         'descricao',
+        'slug'
     ];
 
     public function owner()

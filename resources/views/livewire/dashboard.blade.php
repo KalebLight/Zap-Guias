@@ -11,7 +11,12 @@
         @forelse($partners as $partner)
             <tr>
                 <td class="border border-gray-300 px-4 py-2">{{ $partner->id }}</td>
-                <td class="border border-gray-300 px-4 py-2">{{ $partner->nome_fantasia ?? 'N/A' }}</td>
+                <td>
+                    <a href="{{ route('partner.profile', ['slug' => $partner->slug]) }}">
+                        {{  $partner->nome_fantasia ?? 'N/A' }}
+                    </a>
+                </td>
+
                 <td class="border border-gray-300 px-4 py-2">{{ class_basename($partner) }}</td>
                 <td class="border border-gray-300 px-4 py-2">{{ $partner->cnpj ?? 'N/A' }}</td>
             </tr>

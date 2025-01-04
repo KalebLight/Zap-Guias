@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
+            $table->string('slug')->unique()->nullable();
             $table->string('especialidade')->required();
             $table->string('natureza_juridica')->nullable();
             $table->string('endereco_completo')->nullable();

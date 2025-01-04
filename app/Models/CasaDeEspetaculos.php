@@ -37,6 +37,7 @@ class CasaDeEspetaculos extends Model
         'idiomas',
         'tipo',
         'capacidade_de_lugares',
+        'slug'
     ];
 
     public function owner()

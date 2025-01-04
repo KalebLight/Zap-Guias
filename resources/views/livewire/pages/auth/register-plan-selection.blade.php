@@ -49,7 +49,7 @@ new #[Layout('layouts.guest')] class extends Component {
         Auth::loginUsingId(User::latest()->first()->id);
         session()->forget(['register_user_data', 'register_company_data']);
         redirect()->route('dashboard');
-    } catch (\Exception $e) {
+    } catch (\Exception $e) {        
         $this->addError('general', $e->getMessage());
     }
     }

@@ -38,6 +38,7 @@ class ParqueAquaticoEEmpreendimentoDeLazer extends Model
         'validade_certificado',
         'idiomas',
         'area_total_construida',
+        'slug'
     ];
 
     public function owner()

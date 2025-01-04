@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('uf')->required();
             $table->string('municipio')->required();
             $table->string('nome_fantasia')->required();
+            $table->string('slug')->unique()->nullable();
             $table->string('cnpj')->required();
             $table->string('endereco_completo')->nullable();
             $table->string('data_de_abertura')->nullable();

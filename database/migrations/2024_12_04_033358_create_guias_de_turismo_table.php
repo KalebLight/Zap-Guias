@@ -22,6 +22,7 @@ class CreateGuiasDeTurismoTable extends Migration
             $table->string('municipio_de_atuacao')->nullable();
             $table->string('guia_motorista')->nullable();
             $table->string('nome')->required();
+            $table->string('slug')->unique()->nullable();
             $table->json('idiomas')->nullable();
             $table->text('descricao')->nullable();
             $table->timestamps();

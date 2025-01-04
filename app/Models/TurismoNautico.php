@@ -37,6 +37,7 @@ class TurismoNautico extends Model
         'numero_do_certificado',
         'validade_certificado',
         'idiomas',
+        'slug'
     ];
 
     public function owner()

@@ -38,6 +38,7 @@ class CentroDeConvencoes extends Model
         'idiomas',
         'area_total_construida',
         'area_locavel',
+        'slug'
     ];
 
     public function owner()

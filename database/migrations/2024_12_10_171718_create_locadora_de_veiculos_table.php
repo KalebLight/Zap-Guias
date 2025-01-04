@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('municipio')->required();
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
+            $table->string('slug')->unique()->nullable();
             $table->string('endereco_completo_receita_federal')->nullable();
             $table->string('data_de_abertura')->nullable();
             $table->string('telefone')->nullable();

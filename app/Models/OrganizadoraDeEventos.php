@@ -36,6 +36,7 @@ class OrganizadoraDeEventos extends Model
         'website',
         'numero_do_certificado',
         'validade_certificado',
+        'slug'
     ];
 
     public function owner()

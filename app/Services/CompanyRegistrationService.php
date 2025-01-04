@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 use Exception;
+use Str;
 
 class CompanyRegistrationService
 {
@@ -208,6 +209,15 @@ class CompanyRegistrationService
     $validator = Validator::make($companyData, $validators[$activityType]['rules']);
     $validatedData = $validator->validate();
 
-    return $validators[$activityType]['model']::create($validatedData);
+    $modelClass = $validators[$activityType]['model'];
+    $company = $modelClass::create($validatedData);
+
+    $slugBase = Str::slug($company->nome_fantasia);
+    $slug = "{$slugBase}-{$company->id}";
+
+    $company->slug = $slug;
+    $company->save();
+
+    return $company;
   }
 }

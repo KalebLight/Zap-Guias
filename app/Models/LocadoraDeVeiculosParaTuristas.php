@@ -36,6 +36,7 @@ class LocadoraDeVeiculosParaTuristas extends Model
         'idiomas',
         'tipo_de_veiculos_aquaticos',
         'tipo_de_veiculos_terrestre',
+        'slug'
     ];
 
     public function owner()
