@@ -23,7 +23,7 @@
 
 
     <!-- Page Content -->
-    <main class="pt-16 md:pt-20">
+    <main class="mt-40 bg-red-500">
         {{ $slot }}
     </main>
 
