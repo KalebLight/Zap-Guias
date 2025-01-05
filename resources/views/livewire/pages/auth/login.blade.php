@@ -13,22 +13,26 @@ new #[Layout('layouts.guest')] class extends Component {
     /**
      * Handle an incoming authentication request.
      */
-    public function login(): void
+    public function login()
     {
         try {
-            $this->validate();
-            $this->form->authenticate();
-            Session::regenerate();
+            $this->validate(); // Validação dos campos
+            $this->form->authenticate(); // Autenticação
+            Session::regenerate(); // Regenerar a sessão para segurança
             
-            redirect()->route('dashboard');
-
+            return redirect()->route('dashboard'); // Redirecionar ao sucesso
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Adiciona apenas os erros que realmente existem
+            foreach ($e->errors() as $field => $messages) {
+                $this->addError($field, $messages[0]);
+            }
         } catch (\Exception $e) {
-            
-            
-            dd($e); 
+            // Captura qualquer outra exceção inesperada
+            $this->addError('general', 'Ocorreu um erro inesperado. Tente novamente.');
         }
-        
     }
+    
+
 
     public function swapView(string $view): void
     {
@@ -90,6 +94,7 @@ new #[Layout('layouts.guest')] class extends Component {
                     class="block xl:w-[570px] sm:w-[440px] w-[350px]" type="password" name="password" required
                     autocomplete="current-password" />
                 <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
+                <x-input-error :messages="$errors->get('general')" class="mt-2" />
             </div>
             <a href="{{ route('password.request') }}" class="underline text-primary font-normal my-4"
                 wire:navigate>Esqueci minha senha</a>
