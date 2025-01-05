@@ -16,17 +16,18 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased bg-gray-100">
-
+<body class="font-sans antialiased bg-white min-h-screen flex flex-col">
+    <!-- Navigation -->
     <livewire:layout.navigation />
 
-
-
     <!-- Page Content -->
-    <main class="mt-44 bg-red-500">
+    <main class="flex-grow mt-44">
         {{ $slot }}
     </main>
 
+    <!-- Footer -->
+    <livewire:layout.footer />
 </body>
+
 
 </html>
