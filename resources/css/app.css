@@ -9,3 +9,16 @@
 .custom-input {
     font-weight: 300;
 }
+
+.partner-label {
+    font-size: 16px;
+    color: theme("colors.primary");
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.partner-info {
+    font-size: 16px;
+    color: theme("colors.primary");
+    font-weight: 400;
+}

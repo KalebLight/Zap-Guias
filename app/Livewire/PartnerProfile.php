@@ -9,6 +9,9 @@ class PartnerProfile extends Component
 
     public $partner;
 
+
+
+
     public function mount($slug)
     {
         $models = [

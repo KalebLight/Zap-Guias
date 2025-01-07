@@ -10,24 +10,21 @@ new #[Layout('layouts.guest')] class extends Component {
 
     public string $currentView = 'login';
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function login()
     {
         try {
-            $this->validate(); // Validação dos campos
-            $this->form->authenticate(); // Autenticação
-            Session::regenerate(); // Regenerar a sessão para segurança
+            $this->validate(); 
+            $this->form->authenticate(); 
+            Session::regenerate(); 
             
-            return redirect()->route('dashboard'); // Redirecionar ao sucesso
+            return redirect()->route('dashboard'); 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            // Adiciona apenas os erros que realmente existem
+            
             foreach ($e->errors() as $field => $messages) {
                 $this->addError($field, $messages[0]);
             }
         } catch (\Exception $e) {
-            // Captura qualquer outra exceção inesperada
+            
             $this->addError('general', 'Ocorreu um erro inesperado. Tente novamente.');
         }
     }

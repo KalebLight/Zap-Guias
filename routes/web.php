@@ -6,8 +6,7 @@ use App\Http\Controllers\Auth\SocialController;
 use App\Livewire\Dashboard;
 
 
-
-Route::view('/', 'welcome');
+Route::redirect('/', '/dashboard');
 
 
 Route::get('dashboard', Dashboard::class)
