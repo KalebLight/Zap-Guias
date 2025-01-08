@@ -21,7 +21,7 @@
     <livewire:layout.navigation />
 
     <!-- Page Content -->
-    <main class="flex-grow mt-44">
+    <main class="flex-grow lg:mt-44 mt-20">
         {{ $slot }}
     </main>
 

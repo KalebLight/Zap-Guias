@@ -1,4 +1,4 @@
-<div class="flex w-full">
+<div class="w-full">
     <div class="lg:hidden">
         <livewire:profile.partner-profile-mobile :partner="$partner" />
     </div>
