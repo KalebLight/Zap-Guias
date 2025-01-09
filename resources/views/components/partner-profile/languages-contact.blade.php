@@ -10,7 +10,7 @@
   <!-- contato -->
   <div class="lg:ml-0 ml-2 wrap">
     <p class='partner-label whitespace-nowrap lg:text-left text-right'>Contato</p>
-    <p class="partner-info whitespace-nowrap lg:text-left text-right">cesinhasBar@gmail.com</p>
+    <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->email_comercial}}</p>
     <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->website ?? 'teste.com.br'}}</p>
     <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->telefone ?? '(84) 99999-9999'}}</p>
   </div>
