@@ -1,2 +1,2 @@
-<h2 class="text-primary font-black text-5xl mt-1 mb-5">Culinária {{$especialidade}}</h2>
+<h2 class="text-primary font-black lg:text-5xl xs:text-4xl text-3xl mt-1 mb-5">Culinária {{$especialidade}}</h2>
 <p class="partner-info pb-5 border-b border-primary">Apresentação. Lorem ipsum dolor sit amet. Non accusantium quia in minus autem sed repellat numquam nam amet quia id dicta adipisci qui tempora voluptatem sit molestias omnis. Vel dicta quod sit sint dolore sed Quis laudantium sit sequi neque est minima illo et aliquid labore et dolores quam. Et veniam consequatur 33 voluptatem tenetur ut internos aliquid est consequuntur debitis ut quasi laboriosam qui nobis perferendis.</p>

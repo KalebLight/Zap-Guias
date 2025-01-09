@@ -1,5 +1,5 @@
 <div>
-  <h2 class="text-primary font-black text-5xl mt-1 mb-5">Menu</h2>
+  <h2 class="text-primary font-black lg:text-5xl text-3xl lg:mt-1 lg:p-0 pt-2 mb-5 lg:border-none border-t border-primary">Menu</h2>
 
   <!-- servicos -->
   <div class="flex flex-row flex-wrap w-full gap-1 justify-center">

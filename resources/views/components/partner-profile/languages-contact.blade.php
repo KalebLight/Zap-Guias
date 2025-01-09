@@ -1,16 +1,17 @@
-<div class="flex flex-col">
-@foreach($partner->idiomas as $idioma)
-  <div class="rounded-full border border-primary px-6 py-2 w-fit mb-2">
-    <p class="text-primary">{{ $idioma }}</p>
+<div class="flex lg:flex-col flex-row w-full justify-between">
+  <div class="flex lg:flex-col flex-row lg:gap-0 sm:gap-2 gap-1 flex-wrap w-fit">
+    @foreach($partner->idiomas as $idioma)
+    <div class="rounded-full border border-primary sm:px-6 px-4 sm:py-2  w-fit mb-2 sm:h-[44px] h-9 grid place-items-center">
+      <p class="text-primary sm:text-base text-sm">{{ $idioma }}</p>
+    </div>
+  @endforeach
   </div>
-@endforeach
-</div>
 
-
-<!-- contato -->
-<div class="">
-  <p class='partner-label'>Contato</p>
-  <p class="partner-info">{{$partner->email_comercial}}</p>
-  <p class="partner-info">{{$partner->website ?? 'teste.com.br'}}</p>
-  <p class="partner-info">{{$partner->telefone ?? '(84) 99999-9999'}}</p>
+  <!-- contato -->
+  <div class="lg:ml-0 ml-2 wrap">
+    <p class='partner-label whitespace-nowrap lg:text-left text-right'>Contato</p>
+    <p class="partner-info whitespace-nowrap lg:text-left text-right">cesinhasBar@gmail.com</p>
+    <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->website ?? 'teste.com.br'}}</p>
+    <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->telefone ?? '(84) 99999-9999'}}</p>
+  </div>
 </div>
