@@ -19,6 +19,12 @@
 
 .partner-info {
     font-size: 16px;
-    color: theme("colors.primary");
+    color: #192829; /* primary color */
     font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+    .partner-info {
+        font-size: 14px;
+    }
 }
