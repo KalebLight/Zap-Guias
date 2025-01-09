@@ -56,4 +56,7 @@ class OrganizadoraDeEventos extends Model
      *
      * @var array
      */
+    protected $casts = [
+        'idiomas' => 'array'
+    ];
 }

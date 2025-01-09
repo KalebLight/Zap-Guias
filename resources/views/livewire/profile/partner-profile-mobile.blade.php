@@ -45,7 +45,7 @@ new class extends Component {
 
   public function mount($partner)
   {
-    // dd($this->partner);
+
   }
 
 

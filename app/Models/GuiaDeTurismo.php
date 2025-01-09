@@ -55,4 +55,7 @@ class GuiaDeTurismo extends Model
      *
      * @var array
      */
+    protected $casts = [
+        'idiomas' => 'array'
+    ];
 }

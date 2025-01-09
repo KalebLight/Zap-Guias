@@ -58,4 +58,7 @@ class CentroDeConvencoes extends Model
      *
      * @var array
      */
+    protected $casts = [
+        'idiomas' => 'array'
+    ];
 }

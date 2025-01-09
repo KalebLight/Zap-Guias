@@ -56,4 +56,8 @@ class LocadoraDeVeiculosParaTuristas extends Model
      *
      * @var array
      */
+
+    protected $casts = [
+        'idiomas' => 'array'
+    ];
 }

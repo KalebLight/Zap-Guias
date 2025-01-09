@@ -38,6 +38,7 @@ class CompanyRegistrationService
       return $user;
 
     } catch (\Exception $e) {
+      // dd($userData, $companyData);
       DB::rollBack();
       throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
     }
@@ -211,6 +212,7 @@ class CompanyRegistrationService
 
     $modelClass = $validators[$activityType]['model'];
     $company = $modelClass::create($validatedData);
+
 
     $slugBase = Str::slug($company->nome_fantasia);
     $slug = "{$slugBase}-{$company->id}";
