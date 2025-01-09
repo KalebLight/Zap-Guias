@@ -35,22 +35,36 @@ new class extends Component {
                     </x-nav-link>
 
                     @if (auth()->check())
-                        <x-dropdown align="right" width="48" wrapperClasses="flex" divContentClasses="top-12">
-                            <x-slot name="trigger" class="flex">
-                                <x-person-icon />
-                            </x-slot>
+                                    <x-dropdown align="right" width="48" wrapperClasses="flex" divContentClasses="top-12">
+                                        <x-slot name="trigger" class="flex">
+                                            <x-person-icon />
+                                        </x-slot>
 
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('profile')" wire:navigate>
-                                    {{ __('Perfil') }}
-                                </x-dropdown-link>
-                                <button wire:click="logout" class='w-full'>
-                                    <x-dropdown-link>
-                                        {{ __('Sair') }}
-                                    </x-dropdown-link>
-                                </button>
-                            </x-slot>
-                        </x-dropdown>
+                                        <x-slot name="content">
+                                            <x-dropdown-link :href="route('profile')" wire:navigate>
+                                                {{ __('Perfil') }}
+                                            </x-dropdown-link>
+
+                                            @if (auth()->user()->company_type && auth()->user()->company_id)
+                                                                    @php
+
+                                                                        $company = app(auth()->user()->company_type)::find(auth()->user()->company_id);
+                                                                    @endphp
+                                                                    @if ($company && $company->slug)
+                                                                        <x-dropdown-link :href="route('partner.profile', ['slug' => $company->slug])" wire:navigate>
+                                                                            {{ __('Minha Empresa') }}
+                                                                        </x-dropdown-link>
+                                                                    @endif
+                                            @endif
+
+                                            <button wire:click="logout" class='w-full'>
+                                                <x-dropdown-link>
+                                                    {{ __('Sair') }}
+                                                </x-dropdown-link>
+                                            </button>
+
+                                        </x-slot>
+                                    </x-dropdown>
                     @else
                         <x-nav-link :href="route('login')" :active="request()->routeIs('login')" wire:navigate>
                             {{ __('Entrar') }}
