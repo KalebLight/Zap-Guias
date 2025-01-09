@@ -22,7 +22,7 @@
                     Ou VOLTE
                 </p>
 
-                <div class="flex items-center justify-start flex-col mt-9 mb-10">
+                <div class="flex justify-end flex-col mt-9 mb-10">
                     <div class="flex flex-col items-end">
                         @foreach (config('categories') as $text => $items)
                                                 @livewire('button-link', [
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <div class="w-full flex flex-row justify-center">
+                <div class="w-full flex justify-end">
                     <x-search-input id="search" placeholder='Pesquisar' class="block w-max shadow-custom placeholder-secondary" type="email" name="search" required autofocus />
                 </div>
             </div>
