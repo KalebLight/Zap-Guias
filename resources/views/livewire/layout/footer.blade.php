@@ -10,28 +10,31 @@ new class extends Component {
 
 }; ?>
 
-<footer class="w-full p-4 flex flex-col justify-between text-primary sm:px-[60px] md:px-[100px] lg:px-[188px] ">
-  <div class="w-full flex justify-between flex-wrap">
-    <div class="text-primary text-left w-fit">
+
+<footer class="w-full p-4 flex flex-col sm:justify-between justify-center text-primary sm:px-[60px] md:px-[110px] lg:px-[188px]">
+  <div class="w-full flex sm:justify-between justify-center flex-wrap ">
+    <div class="text-primary sm:text-left text-center w-fit px-3">
       <h3 class="text-xl underline">Redes Sociais</h3>
       <p class='text-base mt-1'>Facebook | Instagram</p>
-      <p class='text-base mt-1'>Site desenvolvido por B20</p>
+      <p class='text-base xs:mt-1 mt-0'>Site desenvolvido por B20</p>
     </div>
 
-    <div class="text-primary md:text-left text-right w-fit">
+    <div class="text-primary sm:text-right md:text-left xs:mt-0 mt-4 text-center w-fit px-3">
       <h3 class="text-xl underline">Turismo</h3>
-      <p class='text-base mt-1'>Sobre</p>
-      <p class='text-base mt-1'>Política de Privacidade</p>
-      <p class='text-base mt-1'>Termos de Uso</p>
+      <p class='text-base xs:mt-1 mt-0'>Sobre</p>
+      <p class='text-base xs:mt-1 mt-0'>Política de Privacidade</p>
+      <p class='text-base xs:mt-1 mt-0'>Termos de Uso</p>
     </div>
 
-    <div class="text-primary text-left w-full md:w-auto">
+    <div class="text-primary sm:text-left text-center xs:mt-0 mt-4  md:w-auto px-3">
       <h3 class="text-xl underline">Newsletter</h3>
       <p class='text-base mt-1'>Inscreva-se e receba novidades</p>
-      <p class='-mt-1 text-base '>sobre turismo e o Turismo</p>
+      <p class='text-base '>sobre turismo e o Turismo</p>
       <form class="flex justify-center items-center gap-2">
-        <input type="email" placeholder="E-mail" class="p-1 border border-gray-300 rounded-md">
-        <button class="py-1 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">Enviar</button>
+        <div class="">
+          <input type="email" placeholder="E-mail" class="shadow-custom border-primary rounded-full  custom-input text-primary placeholder-primary  lg:h-[50px] h-[36px] pl-10 flex items-center ">
+        </div>
+
       </form>
     </div>
   </div>
