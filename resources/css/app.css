@@ -5,6 +5,9 @@
 .custom-button {
     @apply bg-buttonPrimary;
 }
+.custom-secondary-button {
+    @apply bg-secondary;
+}
 
 .custom-input {
     font-weight: 300;

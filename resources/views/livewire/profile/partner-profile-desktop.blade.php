@@ -4,6 +4,7 @@ use Livewire\Volt\Component;
 
 new class extends Component {
   public $partner = [];
+
   public $servicos = [
     [
       "nome" => "Baklava",
@@ -45,7 +46,10 @@ new class extends Component {
 
   public function mount($partner)
   {
-    // dd($this->partner);
+    if ($this->partner->cnpj == Auth::user()->cnpj) {
+
+    }
+
   }
 
 
@@ -57,10 +61,17 @@ new class extends Component {
   <!-- first row of elements -->
   <div class="flex row">
     <!-- left part -->
-    <div class="2xl:w-3/12 w-1/4 mr-3">
+    <div class="2xl:w-3/12 w-1/4 mr-3  flex flex-col justify-between pb-3">
       <a class="leading-[4px] text-sm underline font-medium" href="/">
         Voltar para a PESQUISA
       </a>
+
+      <div class="w-full px-6">
+        <x-custom-secondary-button width="w-full" x-on:click="$dispatch('close')" class="underline">
+          Adicionar Informações
+        </x-custom-secondary-button>
+
+      </div>
     </div>
 
     <!-- middle -->
