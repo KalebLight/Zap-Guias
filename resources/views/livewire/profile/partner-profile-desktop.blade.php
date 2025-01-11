@@ -5,6 +5,13 @@ use Livewire\Volt\Component;
 new class extends Component {
   public $partner = [];
 
+
+  public function getIsOwnerProperty(): bool
+  {
+    return Auth::check() && $this->partner['cnpj'] === Auth::user()->cnpj;
+  }
+
+
   public $servicos = [
     [
       "nome" => "Baklava",
@@ -44,14 +51,15 @@ new class extends Component {
     ]
   ];
 
-  public function mount($partner)
-  {
-    if ($this->partner->cnpj == Auth::user()->cnpj) {
-
-    }
-
-  }
-
+  public $schedule = [
+    'Segunda-feira' => ['active' => false, 'from' => '', 'to' => ''],
+    'Terça-feira' => ['active' => false, 'from' => '', 'to' => ''],
+    'Quarta-feira' => ['active' => false, 'from' => '', 'to' => ''],
+    'Quinta-feira' => ['active' => false, 'from' => '', 'to' => ''],
+    'Sexta-feira' => ['active' => false, 'from' => '', 'to' => ''],
+    'Sábado' => ['active' => false, 'from' => '', 'to' => ''],
+    'Domingo' => ['active' => false, 'from' => '', 'to' => ''],
+  ];
 
 }; ?>
 
@@ -67,9 +75,19 @@ new class extends Component {
       </a>
 
       <div class="w-full px-6">
-        <x-custom-secondary-button width="w-full" x-on:click="$dispatch('close')" class="underline">
-          Adicionar Informações
+
+        <div>
+          @if ($this->isOwner)
+        <!-- Botão para abrir o modal -->
+        <x-custom-secondary-button width="w-full" class="underline" wire:click="$dispatch('openModal')">
+        Adicionar Informações
         </x-custom-secondary-button>
+      @endif
+
+          <!-- Modal Component -->
+          @livewire('modal-info-edit', ['id' => 'modal-1'], key('modal-info-edit'))
+        </div>
+
 
       </div>
     </div>
@@ -77,8 +95,6 @@ new class extends Component {
     <!-- middle -->
     <div class="2xl:w-7/12 w-2/4 mr-3">
       @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
-
-      <!-- <h3 class="text-primary font-black text-7xl border-t border-primary text-right mb-5">{{$partner->nome_fantasia }}</h3> -->
     </div>
 
     <!-- right -->
