@@ -36,7 +36,12 @@ class OrganizadoraDeEventos extends Model
         'website',
         'numero_do_certificado',
         'validade_certificado',
-        'slug'
+        'slug',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()

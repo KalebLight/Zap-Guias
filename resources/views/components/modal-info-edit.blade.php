@@ -9,8 +9,8 @@
         <!-- Social Media -->
         <div>
         <h4 class="underline text-primary text-left font-medium">Redes Sociais</h4>
-        <input type="text" placeholder="/facebook" class="w-full rounded-full border border-primary text-primary placeholder:text-primary h-8 mt-1">
-        <input type="text" placeholder="@instagram" class="w-full rounded-full border border-primary text-primary placeholder:text-primary h-8 mt-2">
+        <input type="text" placeholder="/facebook" wire:model="facebook" class="w-full rounded-full border border-primary text-primary placeholder:text-primary h-8 mt-1">
+        <input type="text" placeholder="@instagram" wire:model="instagram" class="w-full rounded-full border border-primary text-primary placeholder:text-primary h-8 mt-2">
         </div>
 
         <!-- Schedule -->

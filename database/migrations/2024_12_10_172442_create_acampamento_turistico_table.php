@@ -32,7 +32,10 @@ return new class extends Migration {
             $table->integer('area_montagem')->nullable();
             $table->string('capacidade')->nullable();
             $table->json('idiomas')->nullable();
-
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->json('formas_de_pagamento')->nullable();
+            $table->json('funcionamento')->nullable();
 
 
 

@@ -39,7 +39,12 @@ class AcampamentoTuristico extends Model
         'area_montagem',
         'capacidade',
         'idiomas',
-        'slug'
+        'slug',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()

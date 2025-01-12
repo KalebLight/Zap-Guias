@@ -41,6 +41,11 @@ class MeioDeHospedagem extends Model
         'uhs_acessiveis',
         'leitos_acessiveis',
         'slug',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()

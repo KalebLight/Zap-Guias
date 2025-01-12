@@ -30,7 +30,10 @@ return new class extends Migration {
             $table->integer('leitos')->nullable();
             $table->integer('uhs_acessiveis')->nullable();
             $table->integer('leitos_acessiveis')->nullable();
-
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->json('formas_de_pagamento')->nullable();
+            $table->json('funcionamento')->nullable();
             $table->timestamps();
         });
     }

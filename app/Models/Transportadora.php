@@ -39,7 +39,12 @@ class Transportadora extends Model
         'quantidade_de_embarcacoes',
         'quantidade_de_cruzeiro_maritmo',
         'quantidade_de_cruzeiro_fluvial',
-        'slug'
+        'slug',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()

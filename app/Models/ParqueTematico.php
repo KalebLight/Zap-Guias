@@ -37,7 +37,12 @@ class ParqueTematico extends Model
         'numero_do_certificado',
         'validade_certificado',
         'area_total_do_empreendimento',
-        'slug'
+        'slug',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()

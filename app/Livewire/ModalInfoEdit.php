@@ -2,32 +2,20 @@
 
 namespace App\Livewire;
 
+use Auth;
 use Livewire\Component;
 
 class ModalInfoEdit extends Component
 {
   public string $id;
-  public ?string $footer = null;
-
   public bool $credito = false;
   public bool $pix = false;
   public bool $boleto = false;
   public bool $debito = false;
-  protected $listeners = ['openModal', 'closeModal'];
+  public string $instagram = '';
+  public string $facebook = '';
   public bool $isOpen = false;
-  // Método para abrir o modal
-  public function openModal()
-  {
-    $this->isOpen = true;
-  }
 
-  // Método para fechar o modal
-  public function closeModal()
-  {
-    $this->isOpen = false;
-  }
-
-  // Propriedade para armazenar os horários
   public $schedule = [
     'Segunda-feira' => ['active' => false, 'from' => '', 'to' => ''],
     'Terça-feira' => ['active' => false, 'from' => '', 'to' => ''],
@@ -38,10 +26,116 @@ class ModalInfoEdit extends Component
     'Domingo' => ['active' => false, 'from' => '', 'to' => ''],
   ];
 
+  protected $listeners = ['openModal', 'closeModal'];
+
+  public function mount()
+  {
+    $user = Auth::user();
+
+    if (!$user || !$user->cnpj) {
+      session()->flash('error', 'Não foi possível encontrar o CNPJ vinculado ao usuário.');
+      return;
+    }
+
+    $models = [
+      \App\Models\Restaurante::class,
+      \App\Models\Transportadora::class,
+      \App\Models\MeioDeHospedagem::class,
+      \App\Models\CentroDeConvencoes::class,
+      \App\Models\AgenciasDeTurismo::class,
+      \App\Models\GuiaDeTurismo::class,
+      \App\Models\ParqueAquaticoEEmpreendimentoDeLazer::class,
+      \App\Models\ParqueTematico::class,
+      \App\Models\LocadoraDeVeiculosParaTuristas::class,
+      \App\Models\AcampamentoTuristico::class,
+      \App\Models\CasaDeEspetaculos::class,
+      \App\Models\OrganizadoraDeEventos::class,
+      \App\Models\TurismoNautico::class,
+    ];
+
+    foreach ($models as $model) {
+      $empresa = $model::where('cnpj', $user->cnpj)->first();
+      if ($empresa) {
+        $formasDePagamento = $empresa->formas_de_pagamento ? json_decode($empresa->formas_de_pagamento, true) : [];
+
+
+        $this->facebook = $empresa->facebook ?? '';
+        $this->instagram = $empresa->instagram ?? '';
+
+        $this->credito = $formasDePagamento['credito'] ?? false;
+        $this->pix = $formasDePagamento['pix'] ?? false;
+        $this->boleto = $formasDePagamento['boleto'] ?? false;
+        $this->debito = $formasDePagamento['debito'] ?? false;
+
+        $this->schedule = $empresa->funcionamento ? json_decode($empresa->funcionamento, true) : $this->schedule;
+        break;
+      }
+    }
+  }
+
+  public function openModal()
+  {
+    $this->isOpen = true;
+  }
+
+  public function closeModal()
+  {
+    $this->isOpen = false;
+  }
 
   public function saveSchedule()
   {
-    dd($this->schedule);
+    $user = Auth::user();
+
+    if (!$user || !$user->cnpj) {
+      session()->flash('error', 'Não foi possível encontrar o CNPJ vinculado ao usuário.');
+      return;
+    }
+
+    $models = [
+      \App\Models\Restaurante::class,
+      \App\Models\Transportadora::class,
+      \App\Models\MeioDeHospedagem::class,
+      \App\Models\CentroDeConvencoes::class,
+      \App\Models\AgenciasDeTurismo::class,
+      \App\Models\GuiaDeTurismo::class,
+      \App\Models\ParqueAquaticoEEmpreendimentoDeLazer::class,
+      \App\Models\ParqueTematico::class,
+      \App\Models\LocadoraDeVeiculosParaTuristas::class,
+      \App\Models\AcampamentoTuristico::class,
+      \App\Models\CasaDeEspetaculos::class,
+      \App\Models\OrganizadoraDeEventos::class,
+      \App\Models\TurismoNautico::class,
+    ];
+
+    $empresa = null;
+
+    foreach ($models as $model) {
+      $empresa = $model::where('cnpj', $user->cnpj)->first();
+      if ($empresa) {
+        break;
+      }
+    }
+
+    if (!$empresa) {
+      session()->flash('error', 'Nenhuma empresa foi encontrada para o CNPJ vinculado ao usuário.');
+      return;
+    }
+
+    $empresa->update([
+      'facebook' => $this->facebook,
+      'instagram' => $this->instagram,
+      'formas_de_pagamento' => json_encode([
+        'credito' => $this->credito,
+        'pix' => $this->pix,
+        'boleto' => $this->boleto,
+        'debito' => $this->debito,
+      ]),
+      'funcionamento' => json_encode($this->schedule),
+    ]);
+
+    $this->closeModal();
+    session()->flash('success', 'Informações atualizadas com sucesso.');
   }
 
   public function render()

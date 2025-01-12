@@ -41,6 +41,11 @@ class Restaurante extends Model
         'website',
         'numero_do_certificado',
         'validade_certificado',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()

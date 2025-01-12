@@ -28,6 +28,10 @@ class CreateRestaurantesTable extends Migration
             $table->string('website')->nullable();
             $table->string('numero_do_certificado');
             $table->string('validade_certificado')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->json('formas_de_pagamento')->nullable();
+            $table->json('funcionamento')->nullable();
 
         });
     }

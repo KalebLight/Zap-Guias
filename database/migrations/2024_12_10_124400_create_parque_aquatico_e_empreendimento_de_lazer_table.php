@@ -30,8 +30,11 @@ return new class extends Migration {
             $table->string('numero_do_certificado')->required();
             $table->string('validade_certificado')->nullable();
             $table->json('idiomas')->nullable();
-            ;
             $table->integer('area_total_construida')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->json('formas_de_pagamento')->nullable();
+            $table->json('funcionamento')->nullable();
         });
     }
 

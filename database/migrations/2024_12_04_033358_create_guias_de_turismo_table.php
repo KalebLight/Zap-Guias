@@ -25,6 +25,10 @@ class CreateGuiasDeTurismoTable extends Migration
             $table->string('slug')->unique()->nullable();
             $table->json('idiomas')->nullable();
             $table->text('descricao')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->json('formas_de_pagamento')->nullable();
+            $table->json('funcionamento')->nullable();
             $table->timestamps();
         });
     }

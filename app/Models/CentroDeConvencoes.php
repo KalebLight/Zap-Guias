@@ -38,7 +38,12 @@ class CentroDeConvencoes extends Model
         'idiomas',
         'area_total_construida',
         'area_locavel',
-        'slug'
+        'slug',
+        'instagram',
+        'facebook',
+        'twitter',
+        'formas_de_pagamento',
+        'funcionamento',
     ];
 
     public function owner()
