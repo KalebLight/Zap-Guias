@@ -14,8 +14,15 @@
   <!-- contato -->
   <div class="lg:ml-0 ml-2 wrap">
     <p class='partner-label whitespace-nowrap lg:text-left text-right'>Contato</p>
+    @isset($partner->email_comercial)
     <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->email_comercial}}</p>
-    <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->website ?? 'teste.com.br'}}</p>
+  @endisset
+    @isset($partner->website)
+    <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->website}}</p>
+  @endisset
+    @isset($partner->telefone)
     <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->telefone ?? '(84) 99999-9999'}}</p>
+  @endisset
+
   </div>
 </div>
