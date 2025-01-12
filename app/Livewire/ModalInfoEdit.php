@@ -8,7 +8,7 @@ use Validator;
 
 class ModalInfoEdit extends Component
 {
-  public bool $isOpen = true;
+  public bool $isOpen = false;
   public string $id;
   public bool $credito = false;
   public bool $pix = false;
