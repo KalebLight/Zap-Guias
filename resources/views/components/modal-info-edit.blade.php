@@ -38,6 +38,7 @@
         </div>
       </div>
     @endforeach
+        <x-input-error :messages="$errors->get('funcionamento')" class="mt-2" />
         </div>
 
         <!-- Payment Methods -->
@@ -73,7 +74,7 @@
       </div>
 
       <!-- Save Button -->
-      <x-custom-secondary-button width="w-3/4" class="underline mt-4" wire:click="saveSchedule">
+      <x-custom-secondary-button width="w-3/4" class="underline mt-4" wire:click="saveData">
         Salvar
       </x-custom-secondary-button>
       </div>

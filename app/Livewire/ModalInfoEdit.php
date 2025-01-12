@@ -4,9 +4,11 @@ namespace App\Livewire;
 
 use Auth;
 use Livewire\Component;
+use Validator;
 
 class ModalInfoEdit extends Component
 {
+  public bool $isOpen = true;
   public string $id;
   public bool $credito = false;
   public bool $pix = false;
@@ -14,7 +16,6 @@ class ModalInfoEdit extends Component
   public bool $debito = false;
   public string $instagram = '';
   public string $facebook = '';
-  public bool $isOpen = false;
 
   public $schedule = [
     'Segunda-feira' => ['active' => false, 'from' => '', 'to' => ''],
@@ -83,7 +84,7 @@ class ModalInfoEdit extends Component
     $this->isOpen = false;
   }
 
-  public function saveSchedule()
+  public function saveData()
   {
     $user = Auth::user();
 
@@ -91,6 +92,26 @@ class ModalInfoEdit extends Component
       session()->flash('error', 'Não foi possível encontrar o CNPJ vinculado ao usuário.');
       return;
     }
+    foreach ($this->schedule as $dia => $horario) {
+      if (!$horario['active']) {
+        continue;
+      }
+
+      if (empty($horario['from']) || empty($horario['to'])) {
+        $this->addError('funcionamento', 'O horário de início e término são obrigatórios.');
+        return;
+      }
+
+      if (strtotime($horario['to']) <= strtotime($horario['from'])) {
+        $this->addError('funcionamento', 'O horário de término de todas as datas deve ser posterior ao horário de início.');
+        return;
+      }
+    }
+
+
+
+
+
 
     $models = [
       \App\Models\Restaurante::class,
@@ -108,7 +129,7 @@ class ModalInfoEdit extends Component
       \App\Models\TurismoNautico::class,
     ];
 
-    $empresa = null;
+
 
     foreach ($models as $model) {
       $empresa = $model::where('cnpj', $user->cnpj)->first();
