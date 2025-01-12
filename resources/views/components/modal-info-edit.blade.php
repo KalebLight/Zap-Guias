@@ -17,9 +17,9 @@
         <div class="flex flex-col gap-4 mt-3 w-full">
         <h4 class="underline text-primary text-left font-medium">Funcionamento</h4>
         @foreach ($schedule as $day => $data)
-      <div class="flex items-center justify-between" wire:key="schedule-{{ $day }}">
+      <div class="flex items-center justify-between  h-6" wire:key="schedule-{{ $day }}">
         <!-- Botão toggle -->
-        <div>
+        <div class="flex flex-row gap-1">
         <label class="relative inline-flex items-center cursor-pointer">
         <input type="checkbox" wire:model="schedule.{{ $day }}.active" class="sr-only peer  text-nowrap">
         <div class="w-10 h-6 bg-gray-200 peer-focus:ring-secondary rounded-full peer peer-checked:bg-secondary transition-colors"></div>
