@@ -16,6 +16,7 @@ class ModalInfoEdit extends Component
   public bool $debito = false;
   public string $instagram = '';
   public string $facebook = '';
+  public string $website = '';
 
   public $schedule = [
     'Segunda-feira' => ['active' => false, 'from' => '', 'to' => ''],
@@ -62,6 +63,7 @@ class ModalInfoEdit extends Component
 
         $this->facebook = $empresa->facebook ?? '';
         $this->instagram = $empresa->instagram ?? '';
+        $this->website = $empresa->website ?? '';
 
         $this->credito = $formasDePagamento['credito'] ?? false;
         $this->pix = $formasDePagamento['pix'] ?? false;
@@ -108,11 +110,6 @@ class ModalInfoEdit extends Component
       }
     }
 
-
-
-
-
-
     $models = [
       \App\Models\Restaurante::class,
       \App\Models\Transportadora::class,
@@ -129,8 +126,6 @@ class ModalInfoEdit extends Component
       \App\Models\TurismoNautico::class,
     ];
 
-
-
     foreach ($models as $model) {
       $empresa = $model::where('cnpj', $user->cnpj)->first();
       if ($empresa) {
@@ -146,6 +141,7 @@ class ModalInfoEdit extends Component
     $empresa->update([
       'facebook' => $this->facebook,
       'instagram' => $this->instagram,
+      'website' => $this->website,
       'formas_de_pagamento' => json_encode([
         'credito' => $this->credito,
         'pix' => $this->pix,

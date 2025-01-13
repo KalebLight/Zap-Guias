@@ -9,8 +9,9 @@
         <!-- Social Media -->
         <div>
         <h4 class="underline text-primary text-left font-medium">Redes Sociais</h4>
-        <input type="text" placeholder="/facebook" wire:model="facebook" class="w-full rounded-full border border-primary text-primary placeholder:text-primary h-8 mt-1" maxlength="20">
-        <input type="text" placeholder="@instagram" wire:model="instagram" class="w-full rounded-full border border-primary text-primary placeholder:text-primary h-8 mt-2" maxlength="20">
+        <input type="text" placeholder="/facebook" wire:model="facebook" class="w-full rounded-full border border-primary text-primary  h-8 mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20">
+        <input type="text" placeholder="@instagram" wire:model="instagram" class="w-full rounded-full border border-primary text-primary h-8 mt-2 placeholder:text-primary placeholder:opacity-60" maxlength="20">
+        <input type="text" placeholder="seusite.com.br" wire:model="website" class="w-full rounded-full border border-primary text-primary h-8 mt-2  placeholder:text-primary placeholder:opacity-60" maxlength="30">
         <x-input-error :messages="$errors->get('redes_sociais')" class="mt-2" />
         </div>
 
