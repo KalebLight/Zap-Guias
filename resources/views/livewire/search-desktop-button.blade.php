@@ -11,7 +11,7 @@
     </div>
 
     <!-- Hover Container  -->
-    <div x-show="isOpen" class="fixed left-1/2 transform -translate-x-1/2 rounded z-10 mt-5" @mouseover="isOpen = true" @mouseout="isOpen = false" style="width: 90vw; max-width: 90vw; top:134px;">
+    <div x-show="isOpen" class="fixed left-1/2 transform -translate-x-1/2 rounded z-10 mt-5" @mouseover="isOpen = true" @mouseout="isOpen = false" style="width: 90vw; max-width: 90vw; top:120px;">
         <div class="p-4 flex justify-center flex-wrap" style="background-image: linear-gradient(to bottom, #ffffff 65%, rgba(255, 255, 255, 0) 100%)">
             @foreach($items as $item)
                 <button type='submit' class='custom-button w-fit lg:h-[50px] leading-none px-4 py-2 min-h-[36px] m-3 shadow-custom border border-primary rounded-full text-primary font-semibold hover:shadow-md hover:bg-secondary transition ease-in-out duration-150'>
