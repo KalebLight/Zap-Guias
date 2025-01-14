@@ -15,7 +15,7 @@ new class extends Component {
     }
 }; ?>
 
-<nav class="bg-white fixed top-0 z-50 w-full  md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px] shadow-md">
+<nav class="bg-white fixed top-0 z-50 w-full  md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
     <div class="flex h-100 w-full items-center">
         <!-- Logo -->
         <a href="{{ route('dashboard') }}" wire:navigate class="shrink-0">
