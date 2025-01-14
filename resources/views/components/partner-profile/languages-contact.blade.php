@@ -7,7 +7,7 @@
     </div>
   @endforeach
   @else
-  <div class="rounded-full border border-primary sm:px-6 px-4 sm:py-2 w-fit mb-2 sm:h-[44px] h-9 grid place-items-center">
+  <div class="rounded-full border border-primary sm:px-6 px-4 sm:py-2 w-fit mb-2 grid place-items-center">
     <p class="text-primary sm:text-base text-sm leading-none">Não há informação sobre idiomas</p>
   </div>
 @endisset

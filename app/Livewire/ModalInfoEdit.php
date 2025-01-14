@@ -150,9 +150,8 @@ class ModalInfoEdit extends Component
       ]),
       'funcionamento' => json_encode($this->schedule),
     ]);
-
-    $this->closeModal();
-    session()->flash('success', 'Informações atualizadas com sucesso.');
+    //todo notificar
+    return redirect(request()->header('Referer'))->with('success', 'Informações atualizadas com sucesso.');
   }
 
   public function render()

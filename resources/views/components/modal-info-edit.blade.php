@@ -1,14 +1,21 @@
 <div>
   @if ($isOpen)
     <!-- Overlay -->
-    <div class="fixed inset-0 z-50 flex justify-center items-center  ss:p-0 px-3">
+    <div class="fixed inset-0 z-50 flex justify-center items-center ss:p-0 px-3">
     <!-- Background Overlay -->
     <div class="absolute inset-0 bg-gray-400 opacity-55 transition-opacity" wire:click="closeModal"></div>
 
     <!-- Modal Container -->
     <div class="relative flex flex-col w-full max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden" style="max-height: calc(100vh - 64px); margin-top: 32px; margin-bottom: 32px;">
+      <!-- Close Button -->
+      <button type="button" wire:click="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      </button>
+
       <!-- Modal Content with Scroll -->
-      <div class="flex-1 overflow-y-auto px-5 py-5">
+      <div class="flex-1 overflow-y-auto px-5 pt-5 pb-5">
       <!-- Social Media -->
       <div class="mb-4">
         <h4 class="underline text-primary text-left font-medium">Redes Sociais</h4>
@@ -18,19 +25,16 @@
         <x-input-error :messages="$errors->get('redes_sociais')" class="mt-2" />
       </div>
 
-
-
       <!-- Schedule -->
       <div class="mb-4">
         <h4 class="underline text-primary text-left font-medium">Funcionamento</h4>
         @foreach ($schedule as $day => $data)
-
       <div class="flex flex-col ss:flex-row items-center ss:justify-between mb-2 mt-1 leading-none justify-center" wire:key="schedule-{{ $day }}">
       <!-- Toggle Button -->
       <div class="flex items-center gap-1">
         <label class="relative inline-flex items-center cursor-pointer">
         <input type="checkbox" wire:model="schedule.{{ $day }}.active" class="sr-only peer">
-        <div class="w-10 h-6 bg-gray-200 peer-focus:ring-secondary rounded-full peer peer-checked:bg-secondary transition-colors"></div>
+        <div class="w-10 h-7 bg-gray-200 peer-focus:ring-secondary rounded-full peer peer-checked:bg-secondary transition-colors"></div>
         </label>
         <span class="text-primary font-medium">{{ $day }}</span>
       </div>
@@ -42,14 +46,9 @@
         <input type="time" wire:model="schedule.{{ $day }}.to" class="w-[100px] border border-primary rounded-full focus:outline-none focus:ring focus:ring-secondary h-7 transition-all">
       </div>
       </div>
-
     @endforeach
         <x-input-error :messages="$errors->get('funcionamento')" class="mt-2" />
       </div>
-
-
-
-
 
       <!-- Payment Methods -->
       <div>
