@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CompanyHelper;
 use Auth;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;
@@ -40,40 +41,21 @@ class ModalInfoEdit extends Component
       return;
     }
 
-    $models = [
-      \App\Models\Restaurante::class,
-      \App\Models\Transportadora::class,
-      \App\Models\MeioDeHospedagem::class,
-      \App\Models\CentroDeConvencoes::class,
-      \App\Models\AgenciasDeTurismo::class,
-      \App\Models\GuiaDeTurismo::class,
-      \App\Models\ParqueAquaticoEEmpreendimentoDeLazer::class,
-      \App\Models\ParqueTematico::class,
-      \App\Models\LocadoraDeVeiculosParaTuristas::class,
-      \App\Models\AcampamentoTuristico::class,
-      \App\Models\CasaDeEspetaculos::class,
-      \App\Models\OrganizadoraDeEventos::class,
-      \App\Models\TurismoNautico::class,
-    ];
+    $empresa = CompanyHelper::findCompanyByCNPJ($user->cnpj);
 
-    foreach ($models as $model) {
-      $empresa = $model::where('cnpj', $user->cnpj)->first();
-      if ($empresa) {
-        $formasDePagamento = $empresa->formas_de_pagamento ? json_decode($empresa->formas_de_pagamento, true) : [];
+    if ($empresa) {
+      $formasDePagamento = $empresa->formas_de_pagamento ? json_decode($empresa->formas_de_pagamento, true) : [];
 
+      $this->facebook = $empresa->facebook ?? '';
+      $this->instagram = $empresa->instagram ?? '';
+      $this->website = $empresa->website ?? '';
 
-        $this->facebook = $empresa->facebook ?? '';
-        $this->instagram = $empresa->instagram ?? '';
-        $this->website = $empresa->website ?? '';
+      $this->credito = $formasDePagamento['credito'] ?? false;
+      $this->pix = $formasDePagamento['pix'] ?? false;
+      $this->boleto = $formasDePagamento['boleto'] ?? false;
+      $this->debito = $formasDePagamento['debito'] ?? false;
 
-        $this->credito = $formasDePagamento['credito'] ?? false;
-        $this->pix = $formasDePagamento['pix'] ?? false;
-        $this->boleto = $formasDePagamento['boleto'] ?? false;
-        $this->debito = $formasDePagamento['debito'] ?? false;
-
-        $this->schedule = $empresa->funcionamento ? json_decode($empresa->funcionamento, true) : $this->schedule;
-        break;
-      }
+      $this->schedule = $empresa->funcionamento ? json_decode($empresa->funcionamento, true) : $this->schedule;
     }
   }
 
