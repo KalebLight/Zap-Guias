@@ -27,6 +27,7 @@
 
     <!-- Footer -->
     <livewire:layout.footer />
+    <x-toaster-hub />
 </body>
 
 

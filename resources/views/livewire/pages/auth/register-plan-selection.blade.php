@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 use App\Services\CompanyRegistrationService;
-
+use Masmerise\Toaster\Toaster;
 new #[Layout('layouts.guest')] class extends Component {
     public array $registerUserData = [];
     public array $registerCompanyData = [];
@@ -48,6 +48,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $service->registerCompany($this->registerUserData, $this->registerCompanyData);
         Auth::loginUsingId(User::latest()->first()->id);
         session()->forget(['register_user_data', 'register_company_data']);
+        Toaster::success('Usuário criado com sucesso');
         redirect()->route('dashboard');
     } catch (\Exception $e) {       
         dd($e) ;

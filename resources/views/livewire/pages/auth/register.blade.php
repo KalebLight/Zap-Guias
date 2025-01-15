@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Masmerise\Toaster\Toaster;
 
 new #[Layout('layouts.guest')] class extends Component {
     public string $name = '';
@@ -61,7 +62,7 @@ new #[Layout('layouts.guest')] class extends Component {
         }
 
         event(new Registered(($user = User::create($validated))));
-
+        Toaster::success('Usuário criado com sucesso');
         Auth::login($user);
 
         redirect()->route('dashboard');

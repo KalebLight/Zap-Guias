@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Auth;
 use Livewire\Component;
+use Masmerise\Toaster\Toaster;
 use Validator;
 
 class ModalInfoEdit extends Component
@@ -150,7 +151,9 @@ class ModalInfoEdit extends Component
       ]),
       'funcionamento' => json_encode($this->schedule),
     ]);
-    //todo notificar
+
+    Toaster::success('Dados salvos com sucesso');
+
     return redirect(request()->header('Referer'))->with('success', 'Informações atualizadas com sucesso.');
   }
 

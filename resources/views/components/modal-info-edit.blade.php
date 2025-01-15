@@ -15,7 +15,7 @@
       </button>
 
       <!-- Modal Content with Scroll -->
-      <div class="flex-1 overflow-y-auto overflow-x-scroll px-5 pt-5 pb-5 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary scrollbar-always">
+      <div class="flex-1 overflow-y-auto px-5 pt-5 pb-5 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary scrollbar-always">
       <!-- Social Media -->
       <div class="mb-4">
         <h4 class="underline text-primary text-left font-medium">Redes Sociais</h4>
