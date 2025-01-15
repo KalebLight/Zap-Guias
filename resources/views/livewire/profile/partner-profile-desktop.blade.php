@@ -95,6 +95,7 @@ new class extends Component {
     <!-- middle -->
     <div class="2xl:w-7/12 w-2/4 mr-3">
       @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+
     </div>
 
     <!-- right -->
@@ -117,7 +118,16 @@ new class extends Component {
     <!-- middle -->
     <div class=" 2xl:w-7/12 w-2/4 mr-3">
       <div class=" lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ asset('images/hand-holding-plate.jpg') }}')"></div>
+
       @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade])
+
+
+      @if ($this->isOwner)
+      <x-primary-button width="w-full" class="underline" wire:click="$dispatch('openModalBioEdit')">
+      Adicionar Bio
+    </x-primary-button> @endif
+      @livewire('modal-bio-edit', ['id' => 'modal-2'], key('modal-bio-edit'))
+
       @include('components.partner-profile.services', ['servicos' => $servicos])
     </div>
 

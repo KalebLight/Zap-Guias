@@ -13,7 +13,7 @@
   <div class=" mt-1 pb-3 lg:border-b lg:border-primary">
     @php
     $formasPagamento = json_decode($partner->formas_de_pagamento, true);
-  @endphp
+    @endphp
 
     @if(array_filter($formasPagamento))
     <div>
