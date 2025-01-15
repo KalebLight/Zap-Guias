@@ -61,7 +61,7 @@ new class extends Component {
   <div class="lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ asset('images/hand-holding-plate.jpg') }}')"></div>
   @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio])
 
-  @include('components.partner-profile.reviews', ['especialidade' => $partner->especialidade])
+  @include('components.partner-profile.reviews', ['isOwner' => $this->isOwner])
 
   @include('components.partner-profile.languages-contact', ['partner' => $partner])
 

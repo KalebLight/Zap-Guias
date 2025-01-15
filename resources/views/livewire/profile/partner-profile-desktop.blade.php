@@ -112,7 +112,7 @@ new class extends Component {
     <div class="2xl:w-3/12 w-1/4 mr-3">
 
       <!-- avaliação -->
-      @include('components.partner-profile.reviews', ['especialidade' => $partner->especialidade])
+      @include('components.partner-profile.reviews', ['isOwner' => $this->isOwner])
     </div>
 
     <!-- middle -->

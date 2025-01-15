@@ -5,6 +5,9 @@
   <div class="lg:w-full w-1/2 lg:pl-4 pl-3 lg:pt-0 pt-3">
     <p class="lg:text-base lg:font-normal text-sm font-medium">“Adorei a comida! Super recomendo, fica perto do centro e tem um ambiente bem agradável.”</p>
     <p class="lg:font-semibold lg:text-base text-xs font-medium">- Márcia Andrade</p>
+    @if (!$isOwner)
+
     <x-primary-button width="w-full" class="underline mt-8">Avaliar</x-primary-button>
+  @endif
   </div>
 </div>
