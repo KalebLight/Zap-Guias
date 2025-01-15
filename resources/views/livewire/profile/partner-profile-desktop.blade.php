@@ -119,13 +119,16 @@ new class extends Component {
     <div class=" 2xl:w-7/12 w-2/4 mr-3">
       <div class=" lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ asset('images/hand-holding-plate.jpg') }}')"></div>
 
-      @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade])
+      @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio])
+
 
 
       @if ($this->isOwner)
       <x-primary-button width="w-full" class="underline" wire:click="$dispatch('openModalBioEdit')">
-      Adicionar Bio
-    </x-primary-button> @endif
+      {{ !empty($partner->bio) ? 'Editar Bio' : 'Adicionar Bio' }}
+      </x-primary-button>
+    @endif
+
       @livewire('modal-bio-edit', ['id' => 'modal-2'], key('modal-bio-edit'))
 
       @include('components.partner-profile.services', ['servicos' => $servicos])

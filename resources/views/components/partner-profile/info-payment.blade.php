@@ -10,12 +10,12 @@
     </div>
   @endisset
   <!-- formas de pagamento -->
-  <div class=" mt-1 pb-3 lg:border-b lg:border-primary">
+  <div class="mt-1 pb-3 lg:border-b lg:border-primary">
     @php
     $formasPagamento = json_decode($partner->formas_de_pagamento, true);
-    @endphp
+  @endphp
 
-    @if(array_filter($formasPagamento))
+    @if(is_array($formasPagamento) && array_filter($formasPagamento))
     <div>
       <p class="lg:partner-info text-sm font-medium">Formas de pagamento:</p>
       <p class="lg:partner-info text-sm font-medium">
@@ -27,6 +27,6 @@
       </p>
     </div>
   @endif
-
   </div>
+
 </div>

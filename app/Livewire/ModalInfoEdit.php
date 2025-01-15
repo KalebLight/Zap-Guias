@@ -41,21 +41,21 @@ class ModalInfoEdit extends Component
       return;
     }
 
-    $empresa = CompanyHelper::findCompanyByCNPJ($user->cnpj);
+    $partner = CompanyHelper::findCompanyByCNPJ($user->cnpj);
 
-    if ($empresa) {
-      $formasDePagamento = $empresa->formas_de_pagamento ? json_decode($empresa->formas_de_pagamento, true) : [];
+    if ($partner) {
+      $formasDePagamento = $partner->formas_de_pagamento ? json_decode($partner->formas_de_pagamento, true) : [];
 
-      $this->facebook = $empresa->facebook ?? '';
-      $this->instagram = $empresa->instagram ?? '';
-      $this->website = $empresa->website ?? '';
+      $this->facebook = $partner->facebook ?? '';
+      $this->instagram = $partner->instagram ?? '';
+      $this->website = $partner->website ?? '';
 
       $this->credito = $formasDePagamento['credito'] ?? false;
       $this->pix = $formasDePagamento['pix'] ?? false;
       $this->boleto = $formasDePagamento['boleto'] ?? false;
       $this->debito = $formasDePagamento['debito'] ?? false;
 
-      $this->schedule = $empresa->funcionamento ? json_decode($empresa->funcionamento, true) : $this->schedule;
+      $this->schedule = $partner->funcionamento ? json_decode($partner->funcionamento, true) : $this->schedule;
     }
   }
 
@@ -93,35 +93,14 @@ class ModalInfoEdit extends Component
       }
     }
 
-    $models = [
-      \App\Models\Restaurante::class,
-      \App\Models\Transportadora::class,
-      \App\Models\MeioDeHospedagem::class,
-      \App\Models\CentroDeConvencoes::class,
-      \App\Models\AgenciasDeTurismo::class,
-      \App\Models\GuiaDeTurismo::class,
-      \App\Models\ParqueAquaticoEEmpreendimentoDeLazer::class,
-      \App\Models\ParqueTematico::class,
-      \App\Models\LocadoraDeVeiculosParaTuristas::class,
-      \App\Models\AcampamentoTuristico::class,
-      \App\Models\CasaDeEspetaculos::class,
-      \App\Models\OrganizadoraDeEventos::class,
-      \App\Models\TurismoNautico::class,
-    ];
+    $partner = CompanyHelper::findCompanyByCNPJ($user->cnpj);
 
-    foreach ($models as $model) {
-      $empresa = $model::where('cnpj', $user->cnpj)->first();
-      if ($empresa) {
-        break;
-      }
-    }
-
-    if (!$empresa) {
-      session()->flash('error', 'Nenhuma empresa foi encontrada para o CNPJ vinculado ao usuário.');
+    if (!$partner) {
+      session()->flash('error', 'Nenhuma partner foi encontrada para o CNPJ vinculado ao usuário.');
       return;
     }
 
-    $empresa->update([
+    $partner->update([
       'facebook' => $this->facebook,
       'instagram' => $this->instagram,
       'website' => $this->website,

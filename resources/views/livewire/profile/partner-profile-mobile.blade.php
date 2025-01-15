@@ -59,7 +59,7 @@ new class extends Component {
   @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf])
 
   <div class="lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ asset('images/hand-holding-plate.jpg') }}')"></div>
-  @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade])
+  @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio])
 
   @include('components.partner-profile.reviews', ['especialidade' => $partner->especialidade])
 

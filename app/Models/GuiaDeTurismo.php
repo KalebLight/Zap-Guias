@@ -41,6 +41,7 @@ class GuiaDeTurismo extends Model
         'twitter',
         'formas_de_pagamento',
         'funcionamento',
+        'bio',
     ];
 
     public function owner()

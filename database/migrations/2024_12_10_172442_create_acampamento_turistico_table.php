@@ -36,6 +36,7 @@ return new class extends Migration {
             $table->string('instagram')->nullable();
             $table->json('formas_de_pagamento')->nullable();
             $table->json('funcionamento')->nullable();
+            $table->string('bio', 200)->nullable();
 
 
 
