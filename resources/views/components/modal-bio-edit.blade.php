@@ -15,12 +15,12 @@
                 </button>
 
                 <div class="flex-1 overflow-y-auto px-5 pt-5 pb-5 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
-                    <textarea placeholder="Adicione uma bio" wire:model="bio" class="w-full rounded-md border border-primary text-primary h-24 resize-y mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="200"></textarea>
+                    <textarea placeholder="Adicione uma bio" wire:model="bio" class="w-full rounded-md border border-primary text-primary h-24 resize-y mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="200" style="max-height: 230px; min-height: 90px;"></textarea>
                 </div>
 
 
                 <!-- Fixed Save Button -->
-                <div class="py-3 flex justify-center">
+                <div class=" py-3 flex justify-center">
                     <x-custom-secondary-button width="w-3/4" class="underline" wire:click="saveData">
                         Salvar
                     </x-custom-secondary-button>
