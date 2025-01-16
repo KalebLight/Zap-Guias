@@ -138,6 +138,14 @@ new class extends Component {
     <div class="2xl:w-3/12 w-1/4">
       @include('components.partner-profile.languages-contact', ['partner' => $partner])
       @include('components.partner-profile.info-payment', ['partner' => $partner])
+
+      @if ($this->isOwner)
+      <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
+      {{ !empty($partner->bio) ? 'Editar Endereço' : 'Adicionar Endereço' }}
+      </x-primary-button>
+    @endif
+
+      @livewire('modal-address-edit', ['id' => 'modal-2'], key('modal-address-edit'))      
     </div>
 
   </div>
