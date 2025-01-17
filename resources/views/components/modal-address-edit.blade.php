@@ -15,32 +15,19 @@
                 </button>
 
                 <!-- Modal Content with Scroll -->
-                <div class="flex-1 overflow-y-auto px-5 pt-5 pb-5 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
+                <div class="flex-1 overflow-y-auto px-5 pt-5 pb-3 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
 
                     <p class="lg:partner-info text-sm font-medium ">Endereço</p>
 
                     <form wire:submit.prevent="saveData">
-                        <label>Logradouro:</label>
-                        <input type="text" wire:model.defer="endereco.logradouro" required />
-                        <br>
-                        <label>Número:</label>
-                        <input type="text" wire:model.defer="endereco.numero" required />
-                        <br>
-                        <label>Bairro:</label>
-                        <input type="text" wire:model.defer="endereco.bairro" required />
-                        <br>
-                        <label>Cidade:</label>
-                        <input type="text" wire:model.defer="endereco.cidade" required />
-                        <br>
-                        <label>Estado:</label>
-                        <input type="text" wire:model.defer="endereco.estado" required />
-                        <br>
-                        <label>CEP:</label>
-                        <input type="text" wire:model.defer="endereco.cep" required pattern="\d{5}-\d{3}" />
-
-
+                        <input type="text" placeholder="Logradouro" wire:model="endereco.logradouro" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20" required>
+                        <input type="text" placeholder="Número" wire:model.defer="endereco.numero" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
+                        <input type="text" placeholder="Bairro" wire:model.defer="endereco.bairro" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
+                        <input type="text" placeholder="Cidade" wire:model.defer="endereco.cidade" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
+                        <input type="text" placeholder="Estado" wire:model.defer="endereco.estado" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
+                        <input type="text" placeholder="CEP" wire:model.defer="endereco.cep" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required pattern="\d{5}-\d{3}" />
                     </form>
-
+                    <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>
 
                 <!-- Fixed Save Button -->

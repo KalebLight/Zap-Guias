@@ -38,9 +38,6 @@ class ModalAddressEdit extends Component
             $this->endereco['estado'] = $enderecoPartner['estado'] ?? '';
             $this->endereco['cep'] = $enderecoPartner['cep'] ?? '';
         }
-
-
-
     }
 
     protected $listeners = ['openAddressModal', 'closeAddressModal'];
@@ -55,17 +52,32 @@ class ModalAddressEdit extends Component
         $this->isOpen = false;
     }
 
-
-
     public function saveData()
     {
+        // Validação de campos obrigatórios
+        $camposObrigatorios = [
+            'logradouro' => 'Logradouro',
+            'numero' => 'Número',
+            'bairro' => 'Bairro',
+            'cidade' => 'Cidade',
+            'estado' => 'Estado',
+            'cep' => 'CEP',
+        ];
+
+        foreach ($camposObrigatorios as $campo => $nomeCampo) {
+            if (empty($this->endereco[$campo])) {
+                $this->addError('address', 'Preencha todos os campos');
+                return;
+            }
+        }
+
         $this->partner->update([
             'endereco' => json_encode($this->endereco),
         ]);
+
         Toaster::success('Dados salvos com sucesso');
         return redirect(request()->header('Referer'))->with('success', 'Informações atualizadas com sucesso.');
     }
-
 
 
     public function render()
