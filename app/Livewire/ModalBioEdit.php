@@ -10,6 +10,13 @@ use Masmerise\Toaster\Toaster;
 class ModalBioEdit extends Component
 {
     public $partner = [];
+    public bool $isOpen = false;
+    public string $id;
+
+    public string $bio = '';
+
+    protected $listeners = ['openModalBioEdit', 'closeModalBioEdit'];
+
     function mount()
     {
         if (Auth::user()) {
@@ -22,14 +29,6 @@ class ModalBioEdit extends Component
             }
         }
     }
-
-
-    public bool $isOpen = false;
-    public string $id;
-
-    public string $bio = '';
-
-    protected $listeners = ['openModalBioEdit', 'closeModalBioEdit'];
 
     public function openModalBioEdit()
     {
