@@ -18,6 +18,7 @@ class ModalInfoEdit extends Component
   public bool $debito = false;
   public string $instagram = '';
   public string $facebook = '';
+  public string $whatsapp = '';
   public string $website = '';
 
   public $schedule = [
@@ -48,6 +49,7 @@ class ModalInfoEdit extends Component
 
       $this->facebook = $partner->facebook ?? '';
       $this->instagram = $partner->instagram ?? '';
+      $this->whatsapp = $partner->whatsapp ?? '';
       $this->website = $partner->website ?? '';
 
       $this->credito = $formasDePagamento['credito'] ?? false;
@@ -73,6 +75,7 @@ class ModalInfoEdit extends Component
   {
     $user = Auth::user();
 
+    //validação de funcionamento
     if (!$user || !$user->cnpj) {
       session()->flash('error', 'Não foi possível encontrar o CNPJ vinculado ao usuário.');
       return;
@@ -93,6 +96,18 @@ class ModalInfoEdit extends Component
       }
     }
 
+    // validação do WhatsApp
+    if ($this->whatsapp) {
+      $whatsapp = str_replace(['(', ')', '-', ' '], '', $this->whatsapp);
+      if (strpos($whatsapp, '+55') === 0) {
+        $whatsapp = substr($whatsapp, 3);
+      }
+      if (!preg_match('/^\d{11}$/', $whatsapp)) {
+        $this->addError('redes_sociais', 'Número do WhatsApp inválido. Utilize o formato +55(DD)XXXXX-XXXX.');
+        return;
+      }
+      $this->whatsapp = '+55' . substr($whatsapp, 0, 2) . substr($whatsapp, 2);
+    }
     $partner = CompanyHelper::findCompanyByCNPJ($user->cnpj);
 
     if (!$partner) {
@@ -103,6 +118,7 @@ class ModalInfoEdit extends Component
     $partner->update([
       'facebook' => $this->facebook,
       'instagram' => $this->instagram,
+      'whatsapp' => $this->whatsapp,
       'website' => $this->website,
       'formas_de_pagamento' => json_encode([
         'credito' => $this->credito,
