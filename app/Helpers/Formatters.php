@@ -4,39 +4,52 @@ function formatarHorario($horarios)
 {
   $diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
   $horariosFormatados = [];
-  $diasConsecutivos = [];
-
-  foreach ($horarios as $dia => $horario) {
-    if (!$horario['active']) {
-      continue;
-    }
-
-    $diasConsecutivos[] = [
-      'dia' => $dia,
-      'from' => $horario['from'],
-      'to' => $horario['to'],
-    ];
-  }
-
   $gruposConsecutivos = [];
   $grupoAtual = [];
 
-  foreach ($diasConsecutivos as $diaConsecutivo) {
-    if (empty($grupoAtual) || ($grupoAtual[count($grupoAtual) - 1]['from'] == $diaConsecutivo['from'] && $grupoAtual[count($grupoAtual) - 1]['to'] == $diaConsecutivo['to'])) {
-      $grupoAtual[] = $diaConsecutivo;
+  foreach ($diasSemana as $index => $dia) {
+    if ($horarios[$dia]['active']) {
+      $horarioAtual = [
+        'dia' => $dia,
+        'from' => $horarios[$dia]['from'],
+        'to' => $horarios[$dia]['to'],
+      ];
+
+      if (empty($grupoAtual)) {
+        $grupoAtual[] = $horarioAtual;
+      } else {
+        $ultimoDia = end($grupoAtual);
+        $ultimoIndex = array_search($ultimoDia['dia'], $diasSemana);
+
+        // Verifica se o horário é igual e se os dias são consecutivos
+        if (
+          $ultimoDia['from'] === $horarioAtual['from'] &&
+          $ultimoDia['to'] === $horarioAtual['to'] &&
+          $ultimoIndex + 1 === $index
+        ) {
+          $grupoAtual[] = $horarioAtual;
+        } else {
+          $gruposConsecutivos[] = $grupoAtual;
+          $grupoAtual = [$horarioAtual];
+        }
+      }
     } else {
-      $gruposConsecutivos[] = $grupoAtual;
-      $grupoAtual = [$diaConsecutivo];
+      if (!empty($grupoAtual)) {
+        $gruposConsecutivos[] = $grupoAtual;
+        $grupoAtual = [];
+      }
     }
   }
 
+  // Adiciona o último grupo se existir
   if (!empty($grupoAtual)) {
     $gruposConsecutivos[] = $grupoAtual;
   }
 
+  // Formata os grupos
   foreach ($gruposConsecutivos as $grupo) {
     $primeiroDia = $grupo[0]['dia'];
-    $ultimoDia = $grupo[count($grupo) - 1]['dia'];
+    $ultimoDia = end($grupo)['dia'];
     $horario = $grupo[0]['from'] . ' - ' . $grupo[0]['to'];
 
     $horariosFormatados[] = [
@@ -63,20 +76,14 @@ function abbreviarDia($dia)
   return $diasAbreviados[$dia];
 }
 
-
-
 function abbreviarDias($primeiroDia, $ultimoDia)
 {
   $primeiroDia = abbreviarDia($primeiroDia);
   $ultimoDia = abbreviarDia($ultimoDia);
 
-  if ($primeiroDia == $ultimoDia) {
+  if ($primeiroDia === $ultimoDia) {
     return $primeiroDia;
   } else {
     return $primeiroDia . ' - ' . $ultimoDia;
   }
 }
-
-
-
-
