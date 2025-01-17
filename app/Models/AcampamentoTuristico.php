@@ -43,6 +43,7 @@ class AcampamentoTuristico extends Model
         'instagram',
         'facebook',
         'twitter',
+        'whatsapp',
         'formas_de_pagamento',
         'funcionamento',
         'bio',

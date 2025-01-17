@@ -41,7 +41,7 @@ class CentroDeConvencoes extends Model
         'slug',
         'instagram',
         'facebook',
-        'twitter',
+        'whatsapp',
         'formas_de_pagamento',
         'funcionamento',
         'bio',

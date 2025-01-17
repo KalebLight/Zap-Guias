@@ -34,6 +34,7 @@ return new class extends Migration {
             $table->json('idiomas')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->json('formas_de_pagamento')->nullable();
             $table->json('funcionamento')->nullable();
             $table->string('bio', 200)->nullable();

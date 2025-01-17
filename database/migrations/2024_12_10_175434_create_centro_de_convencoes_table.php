@@ -33,6 +33,7 @@ return new class extends Migration {
             $table->integer('area_locavel')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->json('formas_de_pagamento')->nullable();
             $table->json('funcionamento')->nullable();
             $table->string('bio', 200)->nullable();
