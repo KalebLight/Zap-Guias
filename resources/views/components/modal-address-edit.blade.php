@@ -20,12 +20,12 @@
                     <p class="lg:partner-info text-sm font-medium ">Endereço</p>
 
                     <form wire:submit.prevent="saveData">
-                        <input type="text" placeholder="Logradouro" wire:model="endereco.logradouro" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20" required>
+                        <input type="text" placeholder="Logradouro" wire:model="endereco.logradouro" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required>
                         <input type="text" placeholder="Número" wire:model.defer="endereco.numero" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
                         <input type="text" placeholder="Bairro" wire:model.defer="endereco.bairro" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
                         <input type="text" placeholder="Cidade" wire:model.defer="endereco.cidade" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
                         <input type="text" placeholder="Estado" wire:model.defer="endereco.estado" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required />
-                        <input type="text" placeholder="CEP" wire:model.defer="endereco.cep" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required pattern="\d{5}-\d{3}" />
+                        <input type="text" placeholder="CEP" wire:model.defer="endereco.cep" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" required pattern="\d{5}-\d{3}" x-mask="99999-999" />
                     </form>
                     <x-input-error :messages="$errors->get('address')" class="mt-2" />
                 </div>

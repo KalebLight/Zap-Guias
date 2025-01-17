@@ -10,6 +10,7 @@ use Validator;
 
 class ModalInfoEdit extends Component
 {
+  public $partner;
   public bool $isOpen = false;
   public string $id;
   public bool $credito = false;
@@ -42,10 +43,9 @@ class ModalInfoEdit extends Component
       return;
     }
 
-    $partner = CompanyHelper::findCompanyByCNPJ($user->cnpj);
 
-    if ($partner) {
-      $formasDePagamento = $partner->formas_de_pagamento ? json_decode($partner->formas_de_pagamento, true) : [];
+    if ($this->partner != null) {
+      $formasDePagamento = $this->partner->formas_de_pagamento ? json_decode($this->partner->formas_de_pagamento, true) : [];
 
       $this->facebook = $partner->facebook ?? '';
       $this->instagram = $partner->instagram ?? '';
@@ -57,7 +57,7 @@ class ModalInfoEdit extends Component
       $this->boleto = $formasDePagamento['boleto'] ?? false;
       $this->debito = $formasDePagamento['debito'] ?? false;
 
-      $this->schedule = $partner->funcionamento ? json_decode($partner->funcionamento, true) : $this->schedule;
+      $this->schedule = $this->partner->funcionamento ? json_decode($this->partner->funcionamento, true) : $this->schedule;
     }
   }
 
@@ -74,6 +74,10 @@ class ModalInfoEdit extends Component
   public function saveData()
   {
     $user = Auth::user();
+    if ($this->partner === null) {
+      Toaster::error('Erro!');
+      return;
+    }
 
     //validação de funcionamento
     if (!$user || !$user->cnpj) {

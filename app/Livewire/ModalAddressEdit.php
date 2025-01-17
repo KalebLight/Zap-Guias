@@ -23,11 +23,8 @@ class ModalAddressEdit extends Component
 
     public function mount()
     {
-        $user = Auth::user();
 
-        if ($user && $user->cnpj) {
-            $this->partner = CompanyHelper::findCompanyByCNPJ($user->cnpj);
-        }
+
         $enderecoPartner = json_decode($this->partner->endereco, true);
 
         if ($this->partner) {

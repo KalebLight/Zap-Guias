@@ -9,7 +9,7 @@ use Masmerise\Toaster\Toaster;
 
 class ModalBioEdit extends Component
 {
-    public $partner = [];
+    public $partner;
     public bool $isOpen = false;
     public string $bio = '';
 
@@ -18,9 +18,6 @@ class ModalBioEdit extends Component
     function mount()
     {
         if (Auth::user()) {
-
-            $user = Auth::user();
-            $this->partner = CompanyHelper::findCompanyByCNPJ($user->cnpj);
 
             if ($this->partner) {
                 $this->bio = $this->partner->bio ?? '';

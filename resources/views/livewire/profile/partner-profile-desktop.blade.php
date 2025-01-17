@@ -75,7 +75,7 @@ new class extends Component {
       @endif
 
           <!-- Modal Component -->
-          @livewire('modal-info-edit', ['id' => 'modal-1'])
+          @livewire('modal-info-edit', ['partner' => $partner])
         </div>
 
 
@@ -133,7 +133,7 @@ new class extends Component {
       </x-primary-button>
     @endif
 
-      @livewire('modal-bio-edit', ['id' => 'modal-2'])
+      @livewire('modal-bio-edit', ['partner' => $partner])
 
       @include('components.partner-profile.services', ['servicos' => $servicos])
     </div>
@@ -151,7 +151,8 @@ new class extends Component {
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
-    @livewire('modal-address-edit', ['id' => 'modal-2'])    @endif
+      @livewire('modal-address-edit', ['partner' => $partner])    
+  @endif
 
     </div>
 

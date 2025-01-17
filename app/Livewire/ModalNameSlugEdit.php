@@ -12,7 +12,7 @@ class ModalNameSlugEdit extends Component
 {
 
     public $partner;
-    public bool $isOpen = true;
+    public bool $isOpen = false;
     public string $nome_fantasia = '';
     public $slug = '';
 
@@ -44,6 +44,17 @@ class ModalNameSlugEdit extends Component
             $this->addError('nameSlug', 'URL já utilizada!');
             return;
         }
+
+        if (
+            $this->slug !== $this->partner->slug &&
+            CompanyHelper::isSlugUsed($this->slug) ||
+            !preg_match('/^[a-zA-Z0-9-_]+$/', $this->slug)
+        ) {
+            $this->addError('nameSlug', 'URL inválida! Caracteres especiais e espaços não são permitidos.');
+            return;
+        }
+
+
         $this->partner->update([
             'nome_fantasia' => $this->nome_fantasia,
             'slug' => $this->slug,
