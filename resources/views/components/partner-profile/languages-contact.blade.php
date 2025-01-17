@@ -25,4 +25,28 @@
     <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->telefone ?? '(84) 99999-9999'}}</p>
   @endisset
   </div>
+  <div class="flex flex-row">
+
+    @if($partner->whatsapp)
+    <a href="https://wa.me/{{$partner->whatsapp}}" target="_blank">
+      <img src="{{ asset('images/whatsapp.svg') }}" alt="Ícone WhatsApp" class="w-11 mr-1 cursor-pointer">
+    </a>
+  @endif
+
+
+    @if($partner->facebook)
+    <a href="https://www.facebook.com/{{$partner->facebook}}" target="_blank">
+      <img src="{{ asset('images/facebook.svg') }}" alt="Ícone Facebook" class="w-11 mr-1 cursor-pointer">
+    </a>
+  @endif
+
+
+    @if($partner->instagram)
+    <a href="https://www.instagram.com/{{$partner->instagram}}" target="_blank">
+      <img src="{{ asset('images/instagram.svg') }}" alt="Ícone Instagram" class="w-11 cursor-pointer">
+    </a>
+  @endif
+
+
+  </div>
 </div>
