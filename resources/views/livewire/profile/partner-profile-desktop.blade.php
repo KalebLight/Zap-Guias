@@ -75,7 +75,7 @@ new class extends Component {
       @endif
 
           <!-- Modal Component -->
-          @livewire('modal-info-edit', ['id' => 'modal-1'], key('modal-info-edit'))
+          @livewire('modal-info-edit', ['id' => 'modal-1'])
         </div>
 
 
@@ -87,9 +87,10 @@ new class extends Component {
 
       <div class="flex flex-row w-full justify-between">
         @if ($this->isOwner)
-      <div class="cursor-pointer rounded-md hover:bg-gray-200 w-fit h-fit p-1 mt-2">
-        <img src="{{ asset('images/edit-icon.png') }}" alt="Editar" class="w-5 h-5" wire:click="$dispatch('openModalNameSlugEdit')">
+      <div class="cursor-pointer rounded-md hover:bg-gray-200 p-1 h-fit flex items-center justify-center mt-2">
+        <img src="{{ asset('images/edit-icon.png') }}" alt="Editar" class="object-contain min-w-[25px] min-h-[25px]" wire:click="$dispatch('openModalNameSlugEdit')">
       </div>
+
     @endif
 
         @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
@@ -97,7 +98,7 @@ new class extends Component {
 
       <div>
         <!-- Modal Component -->
-        @livewire('modal-name-slug-edit', ['partnerTest' => $partner])
+        @livewire('modal-name-slug-edit', ['partner' => $partner])
       </div>
     </div>
 
@@ -150,8 +151,7 @@ new class extends Component {
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
-      @livewire('modal-address-edit', ['id' => 'modal-2'])      
-  @endif
+    @livewire('modal-address-edit', ['id' => 'modal-2'])    @endif
 
     </div>
 
