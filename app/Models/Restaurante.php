@@ -43,7 +43,6 @@ class Restaurante extends Model
         'validade_certificado',
         'instagram',
         'facebook',
-        'twitter',
         'formas_de_pagamento',
         'funcionamento',
         'bio',
