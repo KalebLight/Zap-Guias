@@ -49,6 +49,7 @@ class AgenciasDeTurismo extends Model
         'formas_de_pagamento',
         'funcionamento',
         'bio',
+        'endereco',
     ];
 
     public function owner()

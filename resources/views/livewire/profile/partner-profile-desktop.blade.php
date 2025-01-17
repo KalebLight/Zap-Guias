@@ -51,16 +51,6 @@ new class extends Component {
     ]
   ];
 
-  public $schedule = [
-    'Segunda-feira' => ['active' => false, 'from' => '', 'to' => ''],
-    'Terça-feira' => ['active' => false, 'from' => '', 'to' => ''],
-    'Quarta-feira' => ['active' => false, 'from' => '', 'to' => ''],
-    'Quinta-feira' => ['active' => false, 'from' => '', 'to' => ''],
-    'Sexta-feira' => ['active' => false, 'from' => '', 'to' => ''],
-    'Sábado' => ['active' => false, 'from' => '', 'to' => ''],
-    'Domingo' => ['active' => false, 'from' => '', 'to' => ''],
-  ];
-
 }; ?>
 
 
@@ -129,7 +119,7 @@ new class extends Component {
       </x-primary-button>
     @endif
 
-      @livewire('modal-bio-edit', ['id' => 'modal-2'], key('modal-bio-edit'))
+      @livewire('modal-bio-edit', ['id' => 'modal-2'])
 
       @include('components.partner-profile.services', ['servicos' => $servicos])
     </div>
@@ -139,13 +129,17 @@ new class extends Component {
       @include('components.partner-profile.languages-contact', ['partner' => $partner])
       @include('components.partner-profile.info-payment', ['partner' => $partner])
 
+      @include('components.partner-profile.address', ['endereco' => json_decode($partner->endereco)])
+
+
+
       @if ($this->isOwner)
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
-      {{ !empty($partner->bio) ? 'Editar Endereço' : 'Adicionar Endereço' }}
+      {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
     @endif
 
-      @livewire('modal-address-edit', ['id' => 'modal-2'], key('modal-address-edit'))      
+      @livewire('modal-address-edit', ['id' => 'modal-2'])      
     </div>
 
   </div>

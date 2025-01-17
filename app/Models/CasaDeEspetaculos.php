@@ -23,7 +23,6 @@ class CasaDeEspetaculos extends Model
     protected $fillable = [
         'cnpj',
         'nome_fantasia',
-        'endereco',
         'tipo_de_estabelecimento',
         'natureza_juridica',
         'uf',
@@ -44,6 +43,7 @@ class CasaDeEspetaculos extends Model
         'formas_de_pagamento',
         'funcionamento',
         'bio',
+        'endereco',
     ];
 
     public function owner()

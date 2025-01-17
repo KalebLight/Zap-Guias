@@ -29,7 +29,6 @@ class OrganizadoraDeEventos extends Model
         'tipo_de_eventos',
         'cnpj',
         'nome_fantasia',
-        'endereco',
         'data_de_abertura',
         'telefone',
         'email_comercial',
@@ -43,6 +42,7 @@ class OrganizadoraDeEventos extends Model
         'formas_de_pagamento',
         'funcionamento',
         'bio',
+        'endereco',
     ];
 
     public function owner()

@@ -16,8 +16,31 @@
 
                 <!-- Modal Content with Scroll -->
                 <div class="flex-1 overflow-y-auto px-5 pt-5 pb-5 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
-                    <!-- Social Media -->
-                    <h1>teste</h1>
+
+                    <p class="lg:partner-info text-sm font-medium ">Endereço</p>
+
+                    <form wire:submit.prevent="saveData">
+                        <label>Logradouro:</label>
+                        <input type="text" wire:model.defer="endereco.logradouro" required />
+                        <br>
+                        <label>Número:</label>
+                        <input type="text" wire:model.defer="endereco.numero" required />
+                        <br>
+                        <label>Bairro:</label>
+                        <input type="text" wire:model.defer="endereco.bairro" required />
+                        <br>
+                        <label>Cidade:</label>
+                        <input type="text" wire:model.defer="endereco.cidade" required />
+                        <br>
+                        <label>Estado:</label>
+                        <input type="text" wire:model.defer="endereco.estado" required />
+                        <br>
+                        <label>CEP:</label>
+                        <input type="text" wire:model.defer="endereco.cep" required pattern="\d{5}-\d{3}" />
+
+
+                    </form>
+
                 </div>
 
                 <!-- Fixed Save Button -->

@@ -33,7 +33,7 @@ class CreateRestaurantesTable extends Migration
             $table->json('formas_de_pagamento')->nullable();
             $table->json('funcionamento')->nullable();
             $table->string('bio', 200)->nullable();
-
+            $table->json('endereco')->nullable();
         });
     }
 

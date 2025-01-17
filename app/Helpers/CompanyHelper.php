@@ -12,7 +12,6 @@ class CompanyHelper
       \App\Models\MeioDeHospedagem::class,
       \App\Models\CentroDeConvencoes::class,
       \App\Models\AgenciasDeTurismo::class,
-      \App\Models\GuiaDeTurismo::class,
       \App\Models\ParqueAquaticoEEmpreendimentoDeLazer::class,
       \App\Models\ParqueTematico::class,
       \App\Models\LocadoraDeVeiculosParaTuristas::class,

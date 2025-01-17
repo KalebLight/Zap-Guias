@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
             $table->string('slug')->unique()->nullable();
-            $table->string('endereco')->nullable();
             $table->string('tipo_de_estabelecimento')->nullable();
             $table->string('natureza_juridica')->nullable();
             $table->string('uf')->required();
@@ -37,6 +36,7 @@ return new class extends Migration {
             $table->json('formas_de_pagamento')->nullable();
             $table->json('funcionamento')->nullable();
             $table->string('bio', 200)->nullable();
+            $table->string('endereco')->nullable();
 
         });
     }

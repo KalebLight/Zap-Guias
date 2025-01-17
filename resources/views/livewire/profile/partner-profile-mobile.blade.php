@@ -4,10 +4,17 @@ use Livewire\Volt\Component;
 
 new class extends Component {
   public $partner = [];
+
+
   public function getIsOwnerProperty(): bool
   {
+
+
+
     return Auth::check() && $this->partner['cnpj'] === Auth::user()->cnpj;
   }
+
+
   public $servicos = [
     [
       "nome" => "Baklava",
@@ -47,12 +54,7 @@ new class extends Component {
     ]
   ];
 
-  public function mount($partner)
-  {
-    // Inicialização do componente
-  }
-}; 
-?>
+}; ?>
 
 <div class="px-[30px] ">
   @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])

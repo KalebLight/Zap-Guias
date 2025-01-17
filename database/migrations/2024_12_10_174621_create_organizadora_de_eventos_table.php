@@ -22,7 +22,6 @@ return new class extends Migration {
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
             $table->string('slug')->unique()->nullable();
-            $table->string('endereco')->nullable();
             $table->string('data_de_abertura')->nullable();
             $table->string('telefone')->nullable();
             $table->string('email_comercial')->required();
@@ -34,6 +33,7 @@ return new class extends Migration {
             $table->json('formas_de_pagamento')->nullable();
             $table->json('funcionamento')->nullable();
             $table->string('bio', 200)->nullable();
+            $table->string('endereco')->nullable();
         });
     }
 
