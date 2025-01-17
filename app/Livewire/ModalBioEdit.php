@@ -11,8 +11,6 @@ class ModalBioEdit extends Component
 {
     public $partner = [];
     public bool $isOpen = false;
-    public string $id;
-
     public string $bio = '';
 
     protected $listeners = ['openModalBioEdit', 'closeModalBioEdit'];
