@@ -83,9 +83,22 @@ new class extends Component {
     </div>
 
     <!-- middle -->
-    <div class="2xl:w-7/12 w-2/4 mr-3">
-      @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+    <div class="2xl:w-7/12 w-2/4 mr-3 border-t border-primary">
 
+      <div class="flex flex-row w-full justify-between">
+        @if ($this->isOwner)
+      <div class="cursor-pointer rounded-md hover:bg-gray-200 w-fit h-fit p-1 mt-2">
+        <img src="{{ asset('images/edit-icon.png') }}" alt="Editar" class="w-5 h-5" wire:click="$dispatch('openModalNameSlugEdit')">
+      </div>
+    @endif
+
+        @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+      </div>
+
+      <div>
+        <!-- Modal Component -->
+        @livewire('modal-name-slug-edit', ['partnerTest' => $partner])
+      </div>
     </div>
 
     <!-- right -->
@@ -137,9 +150,9 @@ new class extends Component {
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
-    @endif
-
       @livewire('modal-address-edit', ['id' => 'modal-2'])      
+  @endif
+
     </div>
 
   </div>
