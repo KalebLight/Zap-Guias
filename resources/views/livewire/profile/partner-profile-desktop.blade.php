@@ -121,11 +121,11 @@ new class extends Component {
 
     <!-- middle -->
     <div class=" 2xl:w-7/12 w-2/4 mr-3">
-      <div class=" lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ asset('images/hand-holding-plate.jpg') }}')"></div>
+      <div class="lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ $partner->foto_perfil ? asset('storage/' . $partner->foto_perfil) : asset('images/hand-holding-plate.jpg') }}')">
+      </div>
+
 
       @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio])
-
-
 
       @if ($this->isOwner)
       <x-primary-button width="w-full" class="underline" wire:click="$dispatch('openModalBioEdit')">
@@ -151,8 +151,7 @@ new class extends Component {
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
-      @livewire('modal-address-edit', ['partner' => $partner])    
-  @endif
+    @livewire('modal-address-edit', ['partner' => $partner])  @endif
 
     </div>
 

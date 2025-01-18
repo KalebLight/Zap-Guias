@@ -16,16 +16,35 @@
                 <div class="flex-1 overflow-y-auto px-5 pt-5 pb-3 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
                     <form wire:submit="saveData">
                         <h4 class="underline text-primary text-left font-medium">Nome</h4>
-                        <input type="text" placeholder="Nome do Título da Página" wire:model="nome_fantasia" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60 " minlength="5" required>
+                        <input type="text" placeholder="Nome do Título da Página" wire:model="nome_fantasia" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60 " required>
                         <h4 class="underline text-primary text-left font-medium mt-2">URL</h4>
 
                         <div class="relative" onclick="focusInput(this)">
                             <span class="absolute left-2 top-2 text-primary">URL:</span>
                             <span class="absolute left-10 top-2 text-gray-400">www.zapguias.com.br/</span>
-                            <input type="text" wire:model="slug" class="w-full rounded-full border border-primary text-primary h-8 pl-[198px] mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20" minlength="3" required>
+                            <input type="text" wire:model="slug" class="w-full rounded-full border border-primary text-primary h-8 pl-[198px] mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20" required>
                         </div>
 
-                        <x-input-error :messages="$errors->get('nameSlug')" class="mt-2" />
+                        <div>
+                            <h4 class="underline text-primary text-left font-medium">Foto de Perfil</h4>
+                            <input type="file" id="foto_perfil" wire:model="foto_perfil" class="block w-full text-sm text-secondary border rounded-md cursor-pointer focus:outline-none" accept="image/*">
+
+                            <!-- Pré-visualização da foto -->
+                            @if ($foto_perfil)
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ $foto_perfil->temporaryUrl() }}" class="w-24 h-24 mt-2 rounded-md">
+                                </div>
+                            @elseif($partner->foto_perfil)
+                                <div class="w-full flex justify-center">
+                                    <img src="{{ asset('storage/' . $partner->foto_perfil) }}" class="w-32 h-w-32 mt-2 rounded-md">
+                                </div>
+                            @endif
+                        </div>
+
+
+                        @error('foto_perfil') <x-input-error :messages=$message class="mt-2" />@enderror
+                        @error('nome_fantasia') <x-input-error :messages=$message class="mt-2" />@enderror
+                        @error('slug') <x-input-error :messages=$message class="mt-2" />@enderror
                         <!-- Fixed Save Button -->
                         <div class=" py-3 flex justify-center">
                             <button type="submit">
