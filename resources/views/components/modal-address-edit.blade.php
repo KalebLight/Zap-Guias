@@ -15,7 +15,7 @@
                 </button>
 
                 <!-- Modal Content with Scroll -->
-                <div class="flex-1 overflow-y-auto px-5 pt-5 pb-3 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
+                <div class="flex-1 overflow-y-auto px-5 pt-5 pb-3 scrollbar scrollbar-thumb-secondary scrollbar-track-gray-200">
 
                     <p class="lg:partner-info text-sm font-medium ">Endereço</p>
 
