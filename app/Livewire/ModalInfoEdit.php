@@ -36,21 +36,14 @@ class ModalInfoEdit extends Component
 
   public function mount()
   {
-    $user = Auth::user();
-
-    if (!$user || !$user->cnpj) {
-      session()->flash('error', 'Não foi possível encontrar o CNPJ vinculado ao usuário.');
-      return;
-    }
-
 
     if ($this->partner != null) {
       $formasDePagamento = $this->partner->formas_de_pagamento ? json_decode($this->partner->formas_de_pagamento, true) : [];
 
-      $this->facebook = $partner->facebook ?? '';
-      $this->instagram = $partner->instagram ?? '';
-      $this->whatsapp = $partner->whatsapp ?? '';
-      $this->website = $partner->website ?? '';
+      $this->facebook = $this->partner->facebook ?? '';
+      $this->instagram = $this->partner->instagram ?? '';
+      $this->whatsapp = $this->partner->whatsapp ?? '';
+      $this->website = $this->partner->website ?? '';
 
       $this->credito = $formasDePagamento['credito'] ?? false;
       $this->pix = $formasDePagamento['pix'] ?? false;
