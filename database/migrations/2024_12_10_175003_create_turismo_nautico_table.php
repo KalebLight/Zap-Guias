@@ -38,6 +38,7 @@ return new class extends Migration {
             $table->json('funcionamento')->nullable();
             $table->string('bio', 200)->nullable();
             $table->json('endereco')->nullable();
+            $table->string('foto_perfil')->nullable();
         });
     }
 

@@ -43,6 +43,7 @@ class OrganizadoraDeEventos extends Model
         'funcionamento',
         'bio',
         'endereco',
+        'foto_perfil',
     ];
 
     public function owner()
