@@ -15,8 +15,16 @@
                 </button>
                 <div class="flex-1 overflow-y-auto px-5 pt-5 pb-3 scrollbar scrollbar-thumb-secondary scrollbar-track-secondary">
                     <form wire:submit="saveData">
+                        <h4 class="underline text-primary text-left font-medium">Nome</h4>
                         <input type="text" placeholder="Nome do Título da Página" wire:model="nome_fantasia" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60 " minlength="5" required>
-                        <input type="text" placeholder="URL:" wire:model="slug" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20" minlength="3" required>
+                        <h4 class="underline text-primary text-left font-medium mt-2">URL</h4>
+
+                        <div class="relative" onclick="focusInput(this)">
+                            <span class="absolute left-2 top-2 text-primary">URL:</span>
+                            <span class="absolute left-10 top-2 text-gray-400">www.zapguias.com.br/</span>
+                            <input type="text" wire:model="slug" class="w-full rounded-full border border-primary text-primary h-8 pl-[198px] mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="20" minlength="3" required>
+                        </div>
+
                         <x-input-error :messages="$errors->get('nameSlug')" class="mt-2" />
                         <!-- Fixed Save Button -->
                         <div class=" py-3 flex justify-center">
@@ -33,3 +41,11 @@
         </div>
     @endif
 </div>
+<script>
+    function focusInput(container) {
+        const input = container.querySelector('input');
+        if (input) {
+            input.focus();
+        }
+    }
+</script>

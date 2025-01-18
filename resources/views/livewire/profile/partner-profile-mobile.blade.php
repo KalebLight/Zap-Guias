@@ -56,33 +56,75 @@ new class extends Component {
 
 }; ?>
 
-<div class="px-[30px] ">
-  @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+<div class="px-[30px]">
+
+  <div class="w-full flex justify-between">
+
+    <!-- edit name slug modal -->
+    @if ($this->isOwner)
+    <div class="cursor-pointer rounded-md hover:bg-gray-200 p-1 h-fit flex items-center justify-center mt-2">
+      <img src="{{ asset('images/edit-icon.png') }}" alt="Editar" class="object-contain min-w-[25px] min-h-[25px]" wire:click="$dispatch('openModalNameSlugEdit')">
+    </div>
+  @endif
+    <div>
+      @livewire('modal-name-slug-edit', ['partner' => $partner])
+    </div>
+
+    <!-- name -->
+    @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+  </div>
+  <!-- small info -->
   @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf])
 
+  <!-- main photo -->
   <div class="lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ asset('images/hand-holding-plate.jpg') }}')"></div>
+
+  <!-- bio -->
   @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio])
 
+  <!-- edit bio modal -->
+  @if ($this->isOwner)
+    <x-primary-button width="w-full" class="underline" wire:click="$dispatch('openModalBioEdit')">
+    {{ !empty($partner->bio) ? 'Editar Bio' : 'Adicionar Bio' }}
+    </x-primary-button>
+  @endif
+  @livewire('modal-bio-edit', ['partner' => $partner])
+
+  <!-- reviews -->
   @include('components.partner-profile.reviews', ['isOwner' => $this->isOwner])
 
+  <!-- languages -->
   @include('components.partner-profile.languages-contact', ['partner' => $partner])
 
-  <!-- Modal adicionado aqui -->
+  <!-- info and payment -->
+  <div class="w-full flex flex-row justify-between mt-2">
+    <div class="w-1/2">
+      @include('components.partner-profile.info-payment', ['partner' => $partner]) 
+    </div>
 
+    <div class="w-1/2 flex flex-col items-end">
+      @include('components.partner-profile.address', ['endereco' => json_decode($partner->endereco)])
 
-  <div class="w-1/2">
-    @include('components.partner-profile.info-payment', ['partner' => $partner])
-    <!-- componente de mapa -->
+      <!-- edit address modal -->
+      @if ($this->isOwner)
+      <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
+      {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
+      </x-primary-button>
+      @livewire('modal-address-edit', ['partner' => $partner])  
+  @endif
+    </div>
+
   </div>
+
+  <!-- modal info edit-->
   <div>
     @if ($this->isOwner)
     <x-custom-secondary-button width="w-full" class="underline mt-1 mb-3" wire:click="$dispatch('openModal')">
       Adicionar Informações
     </x-custom-secondary-button>
   @endif
-
-    <!-- Modal Component -->
-    @livewire('modal-info-edit', ['id' => 'modal-1'], key('modal-info-edit'))
+    @livewire('modal-info-edit', ['partner' => $partner])    
   </div>
+  <!-- services -->
   @include('components.partner-profile.services', ['servicos' => $servicos])
 </div>
