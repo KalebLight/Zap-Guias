@@ -28,8 +28,28 @@
         <x-input-error :messages="$errors->get('redes_sociais')" class="mt-2" />
       </div>
 
+      <!-- languages -->
+        <div>
+          <button class="w-full bg-gray-200 rounded-lg text-primary font-medium flex items-center justify-between px-4 py-2 underline" wire:click="toggleIdiomas">
+            <span>Idiomas</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform" :class="{ 'rotate-180': $wire.idiomasOpen }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          @if ($idiomasOpen)
+            <div class="mt-2 p-4 bg-gray-100 rounded-lg shadow-inner flex flex-row flex-wrap gap-3">
+              @foreach ($idiomasList as $idioma)
+                <div class="flex items-center mb-2">
+                  <input class="w-4 h-4 text-secondary border-primary rounded focus:ring-secondary focus:ring-2 checked:bg-secondary checked:border-transparent mr-[2px]" type="checkbox" id="idioma-{{ $idioma }}" value="{{ $idioma }}" wire:model="selectedIdiomas" >
+                  <label for="idioma-{{ $idioma }}">{{ $idioma }}</label>
+                </div>
+              @endforeach
+            </div>
+           @endif
+        </div>
+
       <!-- Schedule -->
-      <div class="mb-4">
+      <div class="mb-4 mt-2">
         <h4 class="underline text-primary text-left font-medium">Funcionamento</h4>
         @foreach ($schedule as $day => $data)
       <div class="flex flex-col ss:flex-row items-center ss:justify-between mb-2 mt-1 leading-none justify-center" wire:key="schedule-{{ $day }}">

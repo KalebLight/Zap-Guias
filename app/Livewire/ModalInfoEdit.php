@@ -21,7 +21,40 @@ class ModalInfoEdit extends Component
   public string $facebook = '';
   public string $whatsapp = '';
   public string $website = '';
-
+  public bool $idiomasOpen = false;
+  public array $selectedIdiomas = []; // Idiomas selecionados
+  public array $idiomasList = [
+    'Português',
+    'Inglês',
+    'Espanhol',
+    'Francês',
+    'Alemão',
+    'Italiano',
+    'Japonês',
+    'Grego',
+    'Arábe',
+    'Mandarim',
+    'Russo',
+    'Hebraico',
+    'Dinamarquês',
+    'Norueguês',
+    'Turco',
+    'Ucraniano',
+    'Polonês',
+    'Sueco',
+    'Coreano',
+    'Húngaro',
+    'Holandês',
+    'Guarani',
+    'Libras',
+    'Armênio',
+    'Búlgaro',
+    'Esperanto',
+    'Finlandês',
+    'Suiço',
+    'Catalão',
+    'Persa',
+  ];
   public $schedule = [
     'Segunda-feira' => ['active' => false, 'from' => '', 'to' => ''],
     'Terça-feira' => ['active' => false, 'from' => '', 'to' => ''],
@@ -33,13 +66,17 @@ class ModalInfoEdit extends Component
   ];
 
   protected $listeners = ['openModal', 'closeModal'];
+  public function toggleIdiomas()
+  {
+    $this->idiomasOpen = !$this->idiomasOpen;
+  }
 
   public function mount()
   {
 
     if ($this->partner != null) {
       $formasDePagamento = $this->partner->formas_de_pagamento ? json_decode($this->partner->formas_de_pagamento, true) : [];
-
+      $this->selectedIdiomas = $this->partner->idiomas ? json_decode($this->partner->idiomas, true) : [];
       $this->facebook = $this->partner->facebook ?? '';
       $this->instagram = $this->partner->instagram ?? '';
       $this->whatsapp = $this->partner->whatsapp ?? '';
@@ -117,6 +154,7 @@ class ModalInfoEdit extends Component
       'instagram' => $this->instagram,
       'whatsapp' => $this->whatsapp,
       'website' => $this->website,
+      'idiomas' => json_encode($this->selectedIdiomas),
       'formas_de_pagamento' => json_encode([
         'credito' => $this->credito,
         'pix' => $this->pix,
