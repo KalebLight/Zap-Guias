@@ -4,7 +4,7 @@ use Livewire\Volt\Component;
 
 new class extends Component {
   public $partner = [];
-
+  public $formasDePagamento;
 
   public function getIsOwnerProperty(): bool
   {
@@ -141,7 +141,7 @@ new class extends Component {
     <!-- right part -->
     <div class="2xl:w-3/12 w-1/4">
       @include('components.partner-profile.languages-contact', ['partner' => $partner])
-      @include('components.partner-profile.info-payment', ['partner' => $partner])
+      @include('components.partner-profile.info-payment', ['partner' => $partner, 'formasDePagamento' => $formasDePagamento])
 
       @include('components.partner-profile.address', ['endereco' => json_decode($partner->endereco)])
 

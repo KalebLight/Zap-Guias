@@ -87,3 +87,20 @@ function abbreviarDias($primeiroDia, $ultimoDia)
     return $primeiroDia . ' - ' . $ultimoDia;
   }
 }
+
+
+
+function formataFormasDePagamento(array $array): array
+{
+  return array_values(array_map(function ($key) {
+    $key = str_replace(
+      ['credito', 'pix', 'boleto', 'debito'],
+      ['Crédito', 'Pix', 'Boleto', 'Débito'],
+      $key
+    );
+    return mb_strtoupper(mb_substr($key, 0, 1)) . mb_substr($key, 1);
+  }, array_keys($array)));
+}
+
+
+

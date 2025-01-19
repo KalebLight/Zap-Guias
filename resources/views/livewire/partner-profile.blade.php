@@ -1,8 +1,8 @@
 <div class="w-full">
     <div class="lg:hidden">
-        <livewire:profile.partner-profile-mobile :partner="$partner" />
+        <livewire:profile.partner-profile-mobile :partner="$partner" :formasDePagamento="$ativas" />
     </div>
     <div class="hidden lg:block">
-        <livewire:profile.partner-profile-desktop :partner="$partner" />
+        <livewire:profile.partner-profile-desktop :partner="$partner" :formasDePagamento="$ativas" />
     </div>
 </div>
