@@ -17,7 +17,7 @@
   <!-- formas de pagamento -->
   <div class="mt-1 pb-3 lg:border-b lg:border-primary">
 
-    @if(count($formasDePagamento) > 0)
+    @if($formasDePagamento && count($formasDePagamento) > 0)
     <div>
       <p class="lg:partner-info text-sm font-medium">Formas de pagamento:</p>
       <p class="lg:partner-info text-sm font-medium">

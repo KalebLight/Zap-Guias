@@ -40,6 +40,7 @@ class CompanyRegistrationService
     } catch (\Exception $e) {
       // dd($userData, $companyData);
       DB::rollBack();
+
       throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
     }
   }
@@ -71,7 +72,7 @@ class CompanyRegistrationService
           'numero_do_certificado' => ['required'],
         ],
       ],
-      'Meio de Hospedagem Turística' => [
+      'Meio de Hospedagem' => [
         'model' => MeioDeHospedagem::class,
         'rules' => [
           'cnpj' => ['required', 'string'],
