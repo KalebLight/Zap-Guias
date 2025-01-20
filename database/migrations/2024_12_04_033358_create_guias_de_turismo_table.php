@@ -35,7 +35,8 @@ class CreateGuiasDeTurismoTable extends Migration
 
             $table->string('numero_do_certificado')->required();
             $table->string('validade_certificado')->nullable();
-            $table->string('seguimento')->nullable();
+            $table->string('categoria')->nullable();
+            $table->string('segmento')->nullable();
             $table->string('municipio_de_atuacao')->nullable();
             $table->string('guia_motorista')->nullable();
             $table->text('descricao')->nullable();

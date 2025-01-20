@@ -48,6 +48,7 @@ return new class extends Migration {
             $table->string('categoria_de_atuação')->nullable();
             $table->string('atividades_obrigatorias')->nullable();
             $table->string('atividades_opcionais')->nullable();
+            $table->string('segmentos_turisticos')->nullable();
             $table->integer('quantidade_de_veiculos')->nullable();
             $table->integer('quantidade_de_embarcacoes')->nullable();
             $table->integer('quantidade_de_cruzeiro_maritmo')->nullable();

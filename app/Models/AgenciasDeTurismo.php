@@ -40,6 +40,7 @@ class AgenciasDeTurismo extends Model
         'especialidade',
         'quantidade_de_veiculos',
         'quantidade_de_embarcacoes',
+        'segmentos_turisticos',
         'quantidade_de_cruzeiro_maritmo',
         'quantidade_de_cruzeiro_fluvial',
         'slug',

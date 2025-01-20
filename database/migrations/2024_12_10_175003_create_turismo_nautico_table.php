@@ -40,8 +40,8 @@ return new class extends Migration {
             $table->string('data_de_abertura')->nullable();
             $table->string('numero_do_certificado')->required();
             $table->string('validade_certificado')->nullable();
-
             $table->string('tipo_de_estabelecimento')->nullable();
+
             $table->string('tipo_da_estrutura_nautica')->nullable();
         });
     }

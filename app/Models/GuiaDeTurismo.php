@@ -29,7 +29,7 @@ class GuiaDeTurismo extends Model
         'website',
         'validade_certificado',
         'especialidade',
-        'seguimento',
+        'segmento',
         'municipio_de_atuacao',
         'guia_motorista',
         'nome',
@@ -42,6 +42,7 @@ class GuiaDeTurismo extends Model
         'formas_de_pagamento',
         'funcionamento',
         'bio',
+        'categoria',
         'endereco',
         'foto_perfil',
     ];

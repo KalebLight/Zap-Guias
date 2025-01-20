@@ -37,9 +37,9 @@ return new class extends Migration {
             $table->string('natureza_juridica')->nullable();
             $table->string('endereco_completo')->nullable();
             $table->string('data_de_abertura')->nullable();
-
             $table->string('numero_do_certificado')->required();
             $table->string('validade_certificado')->nullable();
+
             $table->integer('area_montagem')->nullable();
             $table->string('capacidade')->nullable();
         });

@@ -33,13 +33,13 @@ return new class extends Migration {
             $table->string('uf')->required();
             $table->string('municipio')->required();
 
-            $table->string('tipo_de_hospedagem')->nullable();
             $table->string('natureza_juridica')->nullable();
             $table->string('endereco_completo')->nullable();
             $table->string('data_de_abertura')->nullable();
             $table->string('numero_do_certificado')->required();
             $table->string('validade_certificado')->nullable();
 
+            $table->string('tipo_de_hospedagem')->nullable();
             $table->integer('unidades_habitacionais')->nullable();
             $table->integer('leitos')->nullable();
             $table->integer('uhs_acessiveis')->nullable();
