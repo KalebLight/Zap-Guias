@@ -111,7 +111,7 @@ new class extends Component {
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
-    @endif
+  @endif
     </div>
 
   </div>
@@ -119,12 +119,17 @@ new class extends Component {
   <!-- modal info edit-->
   <div>
     @if ($this->isOwner)
-    <x-custom-secondary-button width="w-full" class="underline mt-1 mb-3" wire:click="$dispatch('openModal')">
+    <x-custom-secondary-button width="w-full" class="underline mt-4 mb-3" wire:click="$dispatch('openModal')">
       Adicionar Informações
     </x-custom-secondary-button>
   @endif
     @livewire('modal-info-edit', ['partner' => $partner])    
+
   </div>
+
+
+  @livewire('show-specific-fields', ['partner' => $partner])
+
   <!-- services -->
   @include('components.partner-profile.services', ['servicos' => $servicos])
 </div>

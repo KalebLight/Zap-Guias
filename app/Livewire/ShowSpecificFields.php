@@ -17,6 +17,7 @@ class ShowSpecificFields extends Component
     {
         $this->partner = $partner;
         $this->specificData = formatSpecificData(json_decode($partner->dados_especificos, true) ?? []);
+
     }
 
     public function render()
