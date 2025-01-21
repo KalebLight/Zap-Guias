@@ -44,6 +44,8 @@ return new class extends Migration {
             $table->string('validade_certificado')->nullable();
 
             $table->integer('area_total_do_empreendimento')->nullable();
+
+            $table->json('dados_especificos')->nullable();
         });
     }
 

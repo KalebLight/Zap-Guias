@@ -43,6 +43,8 @@ return new class extends Migration {
             $table->string('tipo')->nullable();
 
             $table->text('capacidade_de_lugares')->nullable();
+
+            $table->json('dados_especificos')->nullable();
         });
     }
 

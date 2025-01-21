@@ -43,6 +43,8 @@ return new class extends Migration {
             $table->string('validade_certificado')->nullable();
 
             $table->string('tipo_de_eventos')->nullable();
+
+            $table->json('dados_especificos')->nullable();
         });
     }
 

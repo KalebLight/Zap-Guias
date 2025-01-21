@@ -1,5 +1,83 @@
 <?php
 
+function formatSpecificData(array $data): array
+{
+  $map = [
+    'unidades_habitacionais' => 'Unidades Habitacionais',
+    'leitos' => 'Leitos',
+    'uhs_acessiveis' => 'UHS Acessíveis',
+    'leitos_acessiveis' => 'Leitos Acessíveis',
+    'tipo_de_hospedagem' => 'Tipo de Hospedagem',
+    'area_total_construida' => 'Área Total Construída m²',
+    'area_locavel' => 'Área Locável m²',
+    'tipo_de_eventos' => 'Tipo de Eventos',
+    'capacidade_de_lugares' => 'Capacidade de Lugares',
+    'tipo_da_estrutura_nautica' => 'Tipo da Estrutura Náutica',
+    'capacidade' => 'Capacidade',
+    'area_montagem' => 'Área de Montagem m²',
+    'tipo_de_veiculos_aquaticos' => 'Tipo de Veículos Aquáticos',
+    'tipo_de_veiculos_terrestre' => 'Tipo de Veículos Terrestres',
+    'segmento' => 'Segmento',
+    'categoria' => 'Categoria',
+    'guia_motorista' => 'Guia Motorista',
+    'municipio_de_atuacao' => 'Município de Atuação',
+    'categoria_de_atuacao' => 'Categoria de Atuação',
+    'atividades_obrigatorias' => 'Atividades Obrigatórias',
+    'atividades_opcionais' => 'Atividades Opcionais',
+    'segmentos_turisticos' => 'Segmentos Turísticos',
+    'especialidade' => 'Especialidade',
+    'quantidade_de_veiculos' => 'Quantidade de Veículos',
+    'quantidade_de_embarcacoes' => 'Quantidade de Embarcações',
+    'quantidade_de_cruzeiro_maritmo' => 'Quantidade de Cruzeiros Marítmos',
+    'quantidade_de_cruzeiro_fluvial' => 'Quantidade de Cruzeiros Fluviais',
+  ];
+
+  $formattedData = [];
+  foreach ($data as $key => $value) {
+    $formattedKey = $map[strtolower($key)] ?? ucfirst($key);
+    $formattedData[$formattedKey] = $value;
+  }
+
+  return $formattedData;
+}
+
+function formatLabels(array $keys): array
+{
+  $map = [
+    'unidades_habitacionais' => 'Unidades Habitacionais',
+    'leitos' => 'Leitos',
+    'uhs_acessiveis' => 'UHS Acessíveis',
+    'leitos_acessiveis' => 'Leitos Acessíveis',
+    'tipo_de_hospedagem' => 'Tipo de Hospedagem',
+    'area_total_construida' => 'Área Total Construída: m2',
+    'area_locavel' => 'Área Locável: m2',
+    'tipo_de_eventos' => 'Tipo de Eventos',
+    'capacidade_de_lugares' => 'Capacidade de Lugares',
+    'tipo_da_estrutura_nautica' => 'Tipo da Estrutura Náutica',
+    'capacidade' => 'Capacidade',
+    'area_montagem' => 'Área de Montagem',
+    'tipo_de_veiculos_aquaticos' => 'Tipo de Veículos Aquáticos',
+    'tipo_de_veiculos_terrestre' => 'Tipo de Veículos Terrestres',
+    'segmento' => 'Segmento',
+    'categoria' => 'Categoria',
+    'guia_motorista' => 'Guia Motorista',
+    'municipio_de_atuacao' => 'Município de Atuação',
+    'categoria_de_atuacao' => 'Categoria de Atuação',
+    'atividades_obrigatorias' => 'Atividades Obrigatórias',
+    'atividades_opcionais' => 'Atividades Opcionais',
+    'segmentos_turisticos' => 'Segmentos Turísticos',
+    'especialidade' => 'Especialidade',
+    'quantidade_de_veiculos' => 'Quantidade de Veículos',
+    'quantidade_de_embarcacoes' => 'Quantidade de Embarcações',
+    'quantidade_de_cruzeiro_maritmo' => 'Quantidade de Cruzeiros Marítmos',
+    'quantidade_de_cruzeiro_fluvial' => 'Quantidade de Cruzeiros Fluviais',
+  ];
+
+  return array_map(fn($key) => $map[$key] ?? ucfirst(str_replace('_', ' ', $key)), $keys);
+}
+
+
+
 function formatarHorario($horarios)
 {
   $diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
@@ -101,6 +179,9 @@ function formataFormasDePagamento(array $array): array
     return mb_strtoupper(mb_substr($key, 0, 1)) . mb_substr($key, 1);
   }, array_keys($array)));
 }
+
+
+
 
 
 

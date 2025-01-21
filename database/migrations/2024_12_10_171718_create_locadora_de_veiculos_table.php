@@ -38,6 +38,7 @@ return new class extends Migration {
             $table->json('tipo_de_veiculos_aquaticos')->nullable();
             $table->json('tipo_de_veiculos_terrestre')->nullable();
 
+            $table->json('dados_especificos')->nullable();
         });
     }
 

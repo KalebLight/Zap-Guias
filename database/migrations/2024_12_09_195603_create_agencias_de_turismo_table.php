@@ -53,6 +53,8 @@ return new class extends Migration {
             $table->integer('quantidade_de_embarcacoes')->nullable();
             $table->integer('quantidade_de_cruzeiro_maritmo')->nullable();
             $table->integer('quantidade_de_cruzeiro_fluvial')->nullable();
+
+            $table->json('dados_especificos')->nullable();
         });
     }
 

@@ -42,6 +42,8 @@ return new class extends Migration {
 
             $table->integer('area_montagem')->nullable();
             $table->string('capacidade')->nullable();
+
+            $table->json('dados_especificos')->nullable();
         });
     }
 

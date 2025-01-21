@@ -45,6 +45,7 @@ class GuiaDeTurismo extends Model
         'categoria',
         'endereco',
         'foto_perfil',
+        'dados_especificos',
     ];
 
     public function owner()

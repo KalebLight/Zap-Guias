@@ -46,6 +46,7 @@ class TurismoNautico extends Model
         'bio',
         'endereco',
         'foto_perfil',
+        'dados_especificos',
     ];
 
     public function owner()

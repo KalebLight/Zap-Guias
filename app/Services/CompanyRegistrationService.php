@@ -29,6 +29,7 @@ class CompanyRegistrationService
     $activityType = $companyData['tipoDeAtividade'];
 
     try {
+      // dd($userData, $companyData);
       DB::beginTransaction();
       $user = User::create($userData);
       $company = $this->createCompany($activityType, $companyData);
@@ -38,7 +39,7 @@ class CompanyRegistrationService
       return $user;
 
     } catch (\Exception $e) {
-      // dd($userData, $companyData);
+      dd($e);
       DB::rollBack();
 
       throw new Exception('Erro ao registrar a empresa: ' . $e->getMessage());
@@ -212,12 +213,12 @@ class CompanyRegistrationService
     $validatedData = $validator->validate();
 
     $modelClass = $validators[$activityType]['model'];
+
     $company = $modelClass::create($validatedData);
 
 
     $slugBase = Str::slug($company->nome_fantasia);
     $slug = "{$slugBase}-{$company->id}";
-
     $company->slug = $slug;
     $company->save();
 

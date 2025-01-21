@@ -16,7 +16,7 @@ return new class extends Migration {
 
             $table->string('cnpj')->required();
             $table->string('nome_fantasia')->required();
-            $table->string('slug')->unique()->required();
+            $table->string('slug')->unique()->nullable();
             $table->json('idiomas')->nullable();
 
             $table->string('facebook')->nullable();
@@ -45,6 +45,8 @@ return new class extends Migration {
 
             $table->integer('area_total_construida')->nullable();
             $table->integer('area_locavel')->nullable();
+
+            $table->json('dados_especificos')->nullable();
         });
     }
 
