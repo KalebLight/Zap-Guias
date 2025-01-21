@@ -51,6 +51,20 @@ function getEspecialidade($class)
   }
 }
 
+function addSpace($str)
+{
+  $resultado = '';
+  for ($i = 0; $i < strlen($str); $i++) {
+    if ($i > 0 && ctype_upper($str[$i])) {
+      $resultado .= ' ';
+    }
+    $resultado .= $str[$i];
+  }
+  return $resultado;
+}
+
+
+
 
 function formatLabels(array $keys): array
 {

@@ -104,7 +104,7 @@ new class extends Component {
 
     <!-- right -->
     <div class="2xl:w-3/12 w-1/4 border-t border-primary">
-      @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf])
+      @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf, 'class' => class_basename($partner)])
     </div>
 
   </div>
@@ -122,14 +122,14 @@ new class extends Component {
       @livewire('show-specific-fields', ['partner' => $partner])
 
       @if ($this->isOwner)
-      <x-primary-button width="w-full" class="underline mt-1" wire:click="$dispatch('openModalSpecificData')">
-      {{ $partner->dados_especificos ? 'Editar Dados Empresariais' : 'Adicionar Dados Empresariais' }}
-      @php
+        <x-primary-button width="w-full" class="underline mt-1" wire:click="$dispatch('openModalSpecificData')">
+        {{ $partner->dados_especificos ? 'Editar Dados Empresariais' : 'Adicionar Dados Empresariais' }}
+        @php
 
-  @endphp
+      @endphp
 
 
-      </x-primary-button>
+        </x-primary-button>
     @endif
       @livewire('edit-specific-fields', ['partner' => $partner])
 

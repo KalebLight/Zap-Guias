@@ -74,7 +74,7 @@ new class extends Component {
     @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
   </div>
   <!-- small info -->
-  @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf])
+  @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf, 'class' => class_basename($partner)])
 
   <!-- main photo -->
   <div class="lg:h-[320px] h-[250px] bg-cover bg-no-repeat bg-center" style="background-image: url('{{ $partner->foto_perfil ? asset('storage/' . $partner->foto_perfil) : asset('images/hand-holding-plate.jpg') }}')">
@@ -111,7 +111,7 @@ new class extends Component {
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
-    @endif
+  @endif
     </div>
 
   </div>
