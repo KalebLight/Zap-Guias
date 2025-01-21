@@ -7,7 +7,7 @@ use Masmerise\Toaster\Toaster;
 
 class EditSpecificFields extends Component
 {
-    public bool $isOpen = false;
+    public bool $isOpen = true;
     public $partner;
     public $schema = [];
     public $dadosEspecificos = [];
