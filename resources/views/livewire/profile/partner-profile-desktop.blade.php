@@ -126,7 +126,7 @@ new class extends Component {
       {{ $partner->dados_especificos ? 'Editar Dados Empresariais' : 'Adicionar Dados Empresariais' }}
       @php
 
-    @endphp
+  @endphp
 
 
       </x-primary-button>
@@ -141,7 +141,7 @@ new class extends Component {
       </div>
 
 
-      @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio])
+      @include('components.partner-profile.subtitle', ['especialidade' => $partner->especialidade, 'bio' => $partner->bio, 'class' => class_basename($partner)])
 
       @if ($this->isOwner)
       <x-primary-button width="w-full" class="underline" wire:click="$dispatch('openModalBioEdit')">

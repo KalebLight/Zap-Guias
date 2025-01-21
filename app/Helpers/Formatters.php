@@ -41,6 +41,17 @@ function formatSpecificData(array $data): array
   return $formattedData;
 }
 
+function getEspecialidade($class)
+{
+  switch ($class) {
+    case 'Restaurante':
+      return 'Culinária';
+    default:
+      return '';
+  }
+}
+
+
 function formatLabels(array $keys): array
 {
   $map = [
