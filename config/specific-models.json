@@ -1,0 +1,229 @@
+{
+    "GuiaDeTurismo": {
+        "segmento": {
+            "tipo": "select",
+            "opcoes": [
+                "Ecoturismo",
+                "Turismo Social",
+                "Turismo de Aventura",
+                "Turismo de Sol e Praia",
+                "Turismo Náutico",
+                "Turismo Cultural",
+                "Turismo de Negócios e Eventos",
+                "Turismo de Estudo e Intercâmbio",
+                "Turismo de Esporte",
+                "Turismo de Pesca",
+                "Turismo Rural",
+                "Turismo de Saúde",
+                "Turismo Religioso"
+            ]
+        },
+        "categoria": {
+            "tipo": "select",
+            "opcoes": [
+                "Atrativo Cultural",
+                "Atrativo Natural",
+                "Excursão Internacional",
+                "Excursão Nacional - Brasil / América do Sul",
+                "Guia Regional",
+                "Guia Especializado em Atrativo Turístico"
+            ]
+        },
+        "guia_motorista": {
+            "tipo": "bool"
+        },
+        "municipio_de_atuacao": {
+            "tipo": "text"
+        }
+    },
+    "AgenciasDeTurismo": {
+        "categoria_de_atuacao": {
+            "tipo": "select",
+            "opcoes": [
+                "Agência de Viagens",
+                "Agência de Viagens e Turismo (Operadoras Turísticas)"
+            ]
+        },
+        "atividades_obrigatorias": {
+            "tipo": "select",
+            "opcoes": [
+                "Venda comissionada ou intermediação remunerada na comercialização de passagens, passeios, viagens e excursões, nas modalidades aérea, aquaviária, terrestre, ferroviária e conjugadas.",
+                "Assessoramento, planejamento e organização de atividades associadas à execução de viagens turísticas ou excursões.",
+                "Organização de programas, serviços, roteiros e itinerários de viagens, individuais ou em grupo, e intermediação remunerada na sua execução e comercialização.",
+                "Organização de programas e serviços relativos a viagens educacionais ou culturais e intermediação remunerada na sua execução e comercialização."
+            ]
+        },
+        "atividades_opcionais": {
+            "tipo": "select",
+            "opcoes": [
+                "Assessoramento, organização e execução de atividades relativas a feiras, exposições, congressos e eventos similares",
+                "Desembaraço de bagagens, nas viagens e excursões de seus clientes",
+                "Intermediação remunerada na reserva e contratação de hospedagem e na locação de veículos",
+                "Intermediação remunerada na reserva e venda de ingressos para espetáculos públicos, artísticos, esportivos e culturais",
+                "Obtenção e legalização de documentos para viajantes",
+                "Representação de empresa transportadora, de meios de hospedagem e de outras empresas fornecedoras de serviços turísticos",
+                "Transporte turístico de superfície",
+                "Venda comissionada ou intermediação remunerada de seguros vinculados a viagens e excursões e de cartões de assistência ao viajante",
+                "Intermediação remunerada de serviços de carga aérea e terrestre",
+                "Venda de livros, revistas e outros artigos destinados a viajantes",
+                "Outros serviços de interesse de viajantes",
+                "Desembaraço de bagagens nas viagens e excursões de seus clientes"
+            ]
+        },
+        "segmentos_turisticos": {
+            "tipo": "select",
+            "opcoes": [
+                "Turismo Cultural",
+                "Turismo de Negócios e Eventos",
+                "Turismo de Sol e Praia",
+                "Turismo de Aventura",
+                "Ecoturismo",
+                "Turismo de Saúde",
+                "Turismo de Esporte",
+                "Turismo de Estudo e Intercâmbio",
+                "Turismo de Pesca",
+                "Turismo Náutico",
+                "Turismo Rural",
+                "Turismo Social",
+                "Turismo Religioso"
+            ]
+        },
+        "quantidade_de_veiculos": {
+            "tipo": "number"
+        },
+        "quantidade_de_embarcacoes": {
+            "tipo": "number"
+        },
+        "quantidade_de_cruzeiro_maritmo": {
+            "tipo": "number"
+        },
+        "quantidade_de_cruzeiro_fluvial": {
+            "tipo": "number"
+        }
+    },
+    "Transportadora": {
+        "quantidade_de_veiculos": {
+            "tipo": "number"
+        },
+        "quantidade_de_embarcacoes": {
+            "tipo": "number"
+        },
+        "quantidade_de_cruzeiro_maritmo": {
+            "tipo": "number"
+        },
+        "quantidade_de_cruzeiro_fluvial": {
+            "tipo": "number"
+        }
+    },
+    "ParqueAquaticoEEmpreendimentoDeLazer": {
+        "area_total_construida": {
+            "tipo": "number",
+            "unidade": "m²"
+        }
+    },
+    "ParqueTematico": {
+        "area_total_do_empreendimento": {
+            "tipo": "number",
+            "unidade": "m²"
+        }
+    },
+    "MeioDeHospedagem": {
+        "unidades_habitacionais": {
+            "tipo": "number"
+        },
+        "leitos": {
+            "tipo": "number"
+        },
+        "uhs_acessiveis": {
+            "tipo": "number"
+        },
+        "leitos_acessiveis": {
+            "tipo": "number"
+        }
+    },
+    "LocadoraDeVeiculosParaTuristas": {
+        "tipo_de_veiculos_aquaticos": {
+            "tipo": "checkbox",
+            "opcoes": [
+                "Bote",
+                "Catamarã",
+                "Escuna",
+                "Flutuante",
+                "Jangada",
+                "Lancha",
+                "Moto aquática",
+                "Passageiro",
+                "Saveiro",
+                "Traineira",
+                "Veleiro"
+            ]
+        },
+        "tipo_de_veiculos_terrestre": {
+            "tipo": "checkbox",
+            "opcoes": [
+                "Automóvel",
+                "Utilitário",
+                "Caminhonete",
+                "Motocicleta",
+                "Buggy",
+                "Motorhome",
+                "Trailler"
+            ]
+        }
+    },
+    "AcampamentoTuristico": {
+        "area_montagem": {
+            "tipo": "number",
+            "unidade": "m²"
+        },
+        "capacidade": {
+            "tipo": "number"
+        }
+    },
+    "CasaDeEspetaculos": {
+        "capacidade_de_lugares": {
+            "tipo": "number"
+        }
+    },
+    "OrganizadoraDeEventos": {
+        "tipo_de_eventos": {
+            "tipo": "checkbox",
+            "opcoes": [
+                "Cultural",
+                "Social",
+                "Técnico-Científico",
+                "Nenhum Específico",
+                "Comercial",
+                "Esportivo",
+                "Promocional"
+            ]
+        }
+    },
+    "TurismoNautico": {
+        "tipo_da_estrutura_nautica": {
+            "tipo": "checkbox",
+            "opcoes": [
+                "Base de apoio",
+                "Loja de equipamento de pesca",
+                "Marina",
+                "Porto turístico",
+                "Pier/Plataforma",
+                "Garagem náutica",
+                "Pesque e pague",
+                "Rampa privada",
+                "Clube náutico"
+            ]
+        }
+    },
+    "CentroDeConvencoes": {
+        "area_total_construida": {
+            "tipo": "number",
+            "unidade": "m²"
+        },
+        "area_locavel": {
+            "tipo": "number",
+            "unidade": "m²"
+        }
+    },
+    "Teste": {}
+}

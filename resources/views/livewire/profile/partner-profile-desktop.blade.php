@@ -117,6 +117,22 @@ new class extends Component {
 
       <!-- avaliação -->
       @include('components.partner-profile.reviews', ['isOwner' => $this->isOwner])
+
+      <!-- specific fields -->
+      @livewire('show-specific-fields', ['partner' => $partner])
+
+      @if ($this->isOwner)
+      <x-primary-button width="w-full" class="underline mt-1" wire:click="$dispatch('openModalSpecificData')">
+      {{ $partner->dados_especificos ? 'Editar Dados Empresariais' : 'Adicionar Dados Empresariais' }}
+      @php
+
+    @endphp
+
+
+      </x-primary-button>
+    @endif
+      @livewire('edit-specific-fields', ['partner' => $partner])
+
     </div>
 
     <!-- middle -->
@@ -145,13 +161,16 @@ new class extends Component {
 
       @include('components.partner-profile.address', ['endereco' => json_decode($partner->endereco)])
 
-
-
+      <!-- address -->
       @if ($this->isOwner)
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
     @livewire('modal-address-edit', ['partner' => $partner])  @endif
+
+
+
+
 
     </div>
 

@@ -19,7 +19,7 @@ class EditSpecificFields extends Component
         $this->partner = $partner;
 
         // Carregar campos do JSON
-        $schemaFile = storage_path('app/config/modelos.json');
+        $schemaFile = config_path('specific-models.json');
         $schemas = json_decode(file_get_contents($schemaFile), true);
         $partnerName = class_basename($partner);
 
