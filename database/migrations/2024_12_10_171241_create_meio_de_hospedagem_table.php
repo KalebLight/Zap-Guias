@@ -45,6 +45,7 @@ return new class extends Migration {
             $table->integer('uhs_acessiveis')->nullable();
             $table->integer('leitos_acessiveis')->nullable();
 
+            $table->json('dados_especificos')->nullable();
         });
     }
 
