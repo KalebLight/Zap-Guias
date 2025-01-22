@@ -122,14 +122,9 @@ new class extends Component {
       @livewire('show-specific-fields', ['partner' => $partner])
 
       @if ($this->isOwner)
-        <x-primary-button width="w-full" class="underline mt-1" wire:click="$dispatch('openModalSpecificData')">
-        {{ $partner->dados_especificos ? 'Editar Dados Empresariais' : 'Adicionar Dados Empresariais' }}
-        @php
-
-      @endphp
-
-
-        </x-primary-button>
+      <x-primary-button width="w-full" class="underline mt-1" wire:click="$dispatch('openModalSpecificData')">
+      {{ $partner->dados_especificos ? 'Editar Dados Empresariais' : 'Adicionar Dados Empresariais' }}
+      </x-primary-button>
     @endif
       @livewire('edit-specific-fields', ['partner' => $partner])
 
