@@ -146,7 +146,7 @@ new class extends Component {
 
       @livewire('modal-bio-edit', ['partner' => $partner])
 
-      @include('components.partner-profile.services', ['servicos' => $servicos])
+      @include('components.partner-profile.services', ['servicos' => $servicos, 'class' => class_basename($partner)])
     </div>
 
     <!-- right part -->

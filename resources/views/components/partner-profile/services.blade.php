@@ -1,5 +1,5 @@
 <div class="mt-4">
-  <h2 class="text-primary font-black lg:text-5xl text-3xl lg:mt-1 lg:p-0 pt-2 mb-5  border-t border-primary">Menu</h2>
+  <h2 class="text-primary font-black lg:text-5xl text-3xl lg:mt-1 lg:p-0 pt-2 mb-5  border-t border-primary">{{getServicosLabel($class)}}</h2>
 
   <!-- servicos -->
   <div class="flex flex-row flex-wrap w-full gap-1 justify-center">

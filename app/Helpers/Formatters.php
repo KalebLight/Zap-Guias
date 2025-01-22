@@ -51,6 +51,18 @@ function getEspecialidade($class)
   }
 }
 
+function getServicosLabel($class)
+{
+  switch ($class) {
+    case 'Restaurante':
+      return 'Menu';
+    case 'MeioDeHospedagem':
+      return 'Quartos';
+    default:
+      return 'Serviços';
+  }
+}
+
 function addSpace($str)
 {
   $resultado = '';

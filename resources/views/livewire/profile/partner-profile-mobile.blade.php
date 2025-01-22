@@ -111,7 +111,7 @@ new class extends Component {
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
-  @endif
+    @endif
     </div>
 
   </div>
@@ -137,5 +137,5 @@ new class extends Component {
   @livewire('edit-specific-fields', ['partner' => $partner])
 
   <!-- services -->
-  @include('components.partner-profile.services', ['servicos' => $servicos])
+  @include('components.partner-profile.services', ['servicos' => $servicos, 'class' => class_basename($partner)])
 </div>
