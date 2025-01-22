@@ -8,9 +8,6 @@ new class extends Component {
 
   public function getIsOwnerProperty(): bool
   {
-
-
-
     return Auth::check() && $this->partner['cnpj'] === Auth::user()->cnpj;
   }
 
@@ -107,7 +104,7 @@ new class extends Component {
 
       <!-- edit address modal -->
       @if ($this->isOwner)
-      <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
+      <x-primary-button width="w-3/4" class="underline mt-2">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
@@ -137,5 +134,5 @@ new class extends Component {
   @livewire('edit-specific-fields', ['partner' => $partner])
 
   <!-- services -->
-  @include('components.partner-profile.services', ['servicos' => $servicos, 'class' => class_basename($partner)])
+  @include('components.partner-profile.services', ['servicos' => $servicos, 'class' => class_basename($partner), 'isOwner' => $this->isOwner])
 </div>
