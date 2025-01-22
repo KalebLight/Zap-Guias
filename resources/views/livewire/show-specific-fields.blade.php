@@ -5,10 +5,15 @@
             <div class="lg:block flex flex-row  flex-wrap">
 
                 @foreach ($specificData as $campo => $valor)
-                    <div class="flex flex-row lg:mr-0  mr-4 font-medium text-sm">
-                        <p class="mr-1 text-nowrap">{{ ucfirst($campo) }}:</p> {{ $valor ?? 'Não informado' }}
-                    </div>
+                    @if($valor !== "")
+                        <p class="font-medium text-sm lg:mr-0 mr-4">
+                            <span class="font-semibold">{{ ucfirst($campo) }}:</span>
+                            <span class="font-light text-sm">{{ $valor }}</span>
+                        </p>
+                    @endif
                 @endforeach
+
+
 
             </div>
         </div>
