@@ -1,10 +1,11 @@
 <?php
 
 use App\Livewire\PartnerProfile;
+use App\Livewire\ServicoCreate;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialController;
 use App\Livewire\Dashboard;
-
+use App\Http\Controllers\ServicoController;
 
 Route::redirect('/', '/dashboard');
 
@@ -19,6 +20,13 @@ Route::view('profile', 'profile')
 
 Route::get('/partner/{slug}', PartnerProfile::class)
     ->name('partner.profile');
+
+
+
+Route::prefix('servicos')->group(function () {
+    Route::get('/create', ServicoCreate::class)
+        ->name('servicos.create');
+});
 
 
 Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->name('social.redirect');
