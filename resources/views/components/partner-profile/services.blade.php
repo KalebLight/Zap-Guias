@@ -3,9 +3,12 @@
   <div class="w-full flex flex-row justify-between mb-2  border-t border-primary">
     <h2 class="text-primary  font-black lg:text-5xl text-3xl lg:mt-1 lg:p-0 pt-2 mb-5 ">{{getServicosLabel($class)}}</h2>
     @if ($isOwner)
-    <x-primary-button width="" class="underline mt-2 h-1/5" wire:click="$dispatch('openAddressModal')">
+
+    <a href="{{ route('servicos.create')}}">
+      <x-primary-button width="" class="underline mt-2 h-1/5" wire:click="$dispatch('openAddressModal')">
       Adicionar Serviços
-    </x-primary-button>
+      </x-primary-button>
+    </a>
 
   @endif
   </div>
