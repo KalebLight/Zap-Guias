@@ -2,7 +2,7 @@
 
 <button {{ $attributes->merge([
   'type' => 'submit',
-  'class' => 'custom-secondary-button ' . $width . ' lg:h-[50px] leading-none px-4 py-2 min-h-[36px] shadow-custom border border-primary rounded-full text-primary font-semibold hover:shadow-md hover:bg-buttonPrimary transition ease-in-out duration-150',
+  'class' => 'custom-secondary-button ' . $width . ' lg:h-[50px] leading-none px-4 py-2 min-h-[36px] shadow-custom border border-primary rounded-full text-primary font-semibold hover:shadow-md transition ease-in-out duration-150',
 ]) }}>
   {{ $slot }}
 </button>

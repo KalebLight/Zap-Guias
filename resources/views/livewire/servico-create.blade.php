@@ -3,7 +3,7 @@
     <h2 class="text-3xl font-black text-secondary">VOCÊ FAZ</h2>
     <input type="text" placeholder="Título" wire:model="titulo" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60">
     <textarea placeholder="Descrição" wire:model="bio" class="w-full rounded-2xl border border-primary text-primary h-24 resize-y mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="200" style="max-height: 230px; min-height: 90px;"></textarea>
-    <input type="text" placeholder="Preço" wire:model="preco" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60">
+    <input type="text" placeholder="Preço" wire:model="preco" class="w-full rounded-full border border-primary text-primary h-8 placeholder:text-primary placeholder:opacity-60">
     <input type="text" placeholder="Local" wire:model="local" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60">
     <textarea placeholder="Inclui" wire:model="bio" class="w-full rounded-2xl border border-primary text-primary h-24 resize-y mt-1 placeholder:text-primary placeholder:opacity-60" maxlength="200" style="max-height: 230px; min-height: 90px;"></textarea>
 
