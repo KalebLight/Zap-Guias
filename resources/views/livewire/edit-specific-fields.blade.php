@@ -17,7 +17,7 @@
                 <div class="flex-1 overflow-y-auto px-5 pt-5 pb-5 scrollbar scrollbar-thumb-secondary scrollbar-track-gray-200">
                     <!-- Modal Content -->
                     <div>
-                        <h4 class="underline text-primary text-left font-medium">Editar Dados Específicos</h4>
+                        <h4 class="underline text-primary text-left font-medium">Editar Dados Empresariais</h4>
                         <form wire:submit.prevent="atualizar">
                             <div class="flex flex-col">
                                 @foreach ($schema as $campo => $detalhes)
