@@ -71,4 +71,8 @@ class Transportadora extends Model
     protected $casts = [
         'idiomas' => 'array'
     ];
+    public function servicos()
+    {
+        return $this->morphMany(\App\Models\Servico::class, 'empresa');
+    }
 }

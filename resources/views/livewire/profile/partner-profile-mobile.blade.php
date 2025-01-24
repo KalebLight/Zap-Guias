@@ -4,52 +4,13 @@ use Livewire\Volt\Component;
 
 new class extends Component {
   public $partner = [];
+  public $services;
   public $formasDePagamento;
 
   public function getIsOwnerProperty(): bool
   {
     return Auth::check() && $this->partner['cnpj'] === Auth::user()->cnpj;
   }
-
-
-  public $servicos = [
-    [
-      "nome" => "Baklava",
-      "descricao" => "Recheado de nozes",
-      "valor" => 20,
-      "foto" => "baklava.jpg"
-    ],
-    [
-      "nome" => "Tajine",
-      "descricao" => "Cordeiro servido com salada de grão de bico",
-      "valor" => 25,
-      "foto" => "tajine.jpg"
-    ],
-    [
-      "nome" => "Hummus",
-      "descricao" => "Purê de grão-de-bico com azeite",
-      "valor" => 15,
-      "foto" => "hummus.png"
-    ],
-    [
-      "nome" => "Kebab",
-      "descricao" => "Carne grelhada com especiarias",
-      "valor" => 30,
-      "foto" => "kebab.jpg"
-    ],
-    [
-      "nome" => "Falafel",
-      "descricao" => "Bolinhos de grão-de-bico fritos",
-      "valor" => 18,
-      "foto" => "falafel.jpg"
-    ],
-    [
-      "nome" => "Gyro",
-      "descricao" => "Carne grelhada com queijo e legumes",
-      "valor" => 28,
-      "foto" => "gyro.jpg"
-    ]
-  ];
 
 }; ?>
 
@@ -134,5 +95,5 @@ new class extends Component {
   @livewire('edit-specific-fields', ['partner' => $partner])
 
   <!-- services -->
-  @include('components.partner-profile.services', ['servicos' => $servicos, 'class' => class_basename($partner), 'isOwner' => $this->isOwner])
+  @include('components.partner-profile.services', ['services' => $services, 'class' => class_basename($partner), 'isOwner' => $this->isOwner])
 </div>
