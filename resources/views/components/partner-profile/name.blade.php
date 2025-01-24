@@ -1,3 +1,3 @@
-<h3 class="text-primary font-black lg:text-7xl xs:text-5xl text-4xl text-right mb-5">
+<h3 class="text-primary font-black lg:text-7xl xs:text-5xl text-4xl text-right mb-5 break-words">
   {{ $nome_fantasia }}
 </h3>

@@ -54,7 +54,9 @@ new class extends Component {
 
     @endif
 
-        @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+        <div class="w-[90%]">
+          @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+        </div>
       </div>
 
       <div>

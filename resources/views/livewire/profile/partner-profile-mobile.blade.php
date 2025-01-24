@@ -28,8 +28,10 @@ new class extends Component {
       @livewire('modal-name-slug-edit', ['partner' => $partner])
     </div>
 
-    <!-- name -->
-    @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+
+    <div class="w-[90%]">
+      @include('components.partner-profile.name', ['nome_fantasia' => $partner->nome_fantasia])
+    </div>
   </div>
   <!-- small info -->
   @include('components.partner-profile.small-info', ['municipio' => $partner->municipio, 'uf' => $partner->uf, 'class' => class_basename($partner)])
@@ -69,7 +71,7 @@ new class extends Component {
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
-  @endif
+    @endif
     </div>
 
   </div>
