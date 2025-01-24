@@ -11,7 +11,23 @@
 
     <!-- Campo de Preço -->
 
-    <input type="text" id="preco" placeholder="Preço (R$ 0,00)" class="w-full rounded-full border border-primary text-primary h-8 placeholder:text-primary placeholder:opacity-60" x-data x-init=" $refs.input.addEventListener('input', function(e) { let value = e.target.value.replace(/\D/g, ''); value = (value / 100).toFixed(2).replace('.', ','); if (parseFloat(value.replace(',', '.')) > 1000000) { e.target.value = 'R$ 1.000.000,00'; } else { e.target.value = 'R$ ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); } }); " x-ref="input" wire:model.lazy="preco" />
+    <input type="text" id="preco" placeholder="Preço (R$ 0,00)" class="w-full rounded-full border border-primary text-primary h-8 placeholder:text-primary placeholder:opacity-60" x-data x-init="
+        $refs.input.addEventListener('input', function(e) { 
+            let value = e.target.value.replace(/\D/g, ''); 
+            value = (value / 100).toFixed(2).replace('.', ','); 
+            if (parseFloat(value.replace(',', '.')) > 1000000) { 
+                e.target.value = 'R$ 1.000.000,00'; 
+            } else { 
+                e.target.value = 'R$ ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
+            } 
+        }); 
+
+        // Resetando o input quando o evento for disparado
+        window.addEventListener('reset-inputs', () => {
+            $refs.input.value = '';
+        });
+    " x-ref="input" wire:model.lazy="preco" />
+
 
 
 

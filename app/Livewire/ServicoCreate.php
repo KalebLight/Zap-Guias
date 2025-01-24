@@ -30,20 +30,21 @@ class ServicoCreate extends Component
     public function createService()
     {
         try {
-            // Validação inicial
             $validatedData = $this->validate();
 
-            // Convertendo o preço para um formato numérico correto
-            $precoNumerico = floatval(str_replace(['R$', '.', ','], ['', '', '.'], $validatedData['preco'] ?? '0'));
+            // Tratando o preço para valores vazios
+            $precoNumerico = $this->preco !== ''
+                ? floatval(str_replace(['R$', '.', ','], ['', '', '.'], $this->preco))
+                : null;
 
             // Salvando a foto, caso enviada
-            $fotoPath = $validatedData['foto_servico'] ? $this->foto_servico->store('servicos', 'public') : null;
+            $fotoPath = $this->foto_servico ? $this->foto_servico->store('servicos', 'public') : null;
 
             // Criando o serviço no banco de dados
             Servico::create([
                 'titulo' => $validatedData['titulo'],
                 'descricao' => $validatedData['descricao'],
-                'preco' => $precoNumerico,
+                'preco' => $precoNumerico, // Salva null se não preenchido
                 'foto_servico' => $fotoPath,
                 'inclui' => $validatedData['inclui'],
                 'local' => $validatedData['local'],
@@ -51,25 +52,33 @@ class ServicoCreate extends Component
                 'empresa_id' => Auth::user()->company_id,
             ]);
 
-            // Resetando os campos e exibindo sucesso
+            // Resetando os campos
             $this->reset(['titulo', 'descricao', 'preco', 'foto_servico', 'inclui', 'local']);
+            $this->dispatchBrowserEvent('reset-inputs');
+            // Exibindo mensagem de sucesso
             Toaster::success('Serviço salvo com sucesso!');
-            return redirect()->route('dashboard');
 
+            // Redirecionando para a página anterior
+            return redirect()->to(url()->previous());
         } catch (\Illuminate\Validation\ValidationException $e) {
-
             foreach ($e->errors() as $field => $messages) {
                 foreach ($messages as $message) {
                     $this->addError($field, $message);
                 }
             }
         } catch (\Exception $e) {
-            // Lançando erros genéricos
-
             $this->addError('servicos', 'Erro ao criar o serviço: ' . $e->getMessage());
         }
     }
 
+
+
+    public function updatePreco($value)
+    {
+        // Remove a formatação (R$, pontos, e vírgulas)
+        $cleanValue = str_replace(['R$', '.', ','], ['', '', '.'], $value);
+        $this->preco = number_format((float) $cleanValue, 2, '.', '');
+    }
 
     public function render()
     {

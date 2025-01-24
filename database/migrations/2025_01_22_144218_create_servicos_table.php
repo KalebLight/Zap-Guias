@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->morphs('empresa');
             $table->string('titulo');
             $table->text('descricao')->nullable();
-            $table->decimal('preco', 10, 2);
+            $table->decimal('preco', 10, 2)->nullable();
             $table->string('local')->nullable();
             $table->text('inclui')->nullable();
             $table->string('foto_servico')->nullable();
