@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CompanyHelper;
 use Livewire\Component;
 
 class PartnerProfile extends Component
@@ -13,23 +14,12 @@ class PartnerProfile extends Component
 
     public $ativas;
 
+
+
     public function mount($slug)
     {
-        $models = [
-            \App\Models\Restaurante::class,
-            \App\Models\Transportadora::class,
-            \App\Models\MeioDeHospedagem::class,
-            \App\Models\CentroDeConvencoes::class,
-            \App\Models\AgenciasDeTurismo::class,
-            \App\Models\GuiaDeTurismo::class,
-            \App\Models\ParqueAquaticoEEmpreendimentoDeLazer::class,
-            \App\Models\ParqueTematico::class,
-            \App\Models\LocadoraDeVeiculosParaTuristas::class,
-            \App\Models\AcampamentoTuristico::class,
-            \App\Models\CasaDeEspetaculos::class,
-            \App\Models\OrganizadoraDeEventos::class,
-            \App\Models\TurismoNautico::class,
-        ];
+        $models = CompanyHelper::getModels();
+
 
         foreach ($models as $model) {
             $this->partner = $model::where('slug', $slug)->first();
@@ -38,8 +28,6 @@ class PartnerProfile extends Component
                 if ($this->formasDePagamento) {
                     $this->ativas = formataFormasDePagamento(array_filter($this->formasDePagamento));
                 }
-
-
                 return;
             }
         }
