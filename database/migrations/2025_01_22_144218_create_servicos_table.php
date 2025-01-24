@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->decimal('preco', 10, 2);
             $table->string('local')->nullable();
             $table->text('inclui')->nullable();
-            $table->string('foto')->nullable();
+            $table->string('foto_servico')->nullable();
             $table->timestamps();
         });
 
