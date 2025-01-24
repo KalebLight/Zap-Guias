@@ -19,6 +19,12 @@ class CompanyHelper
     \App\Models\TurismoNautico::class,
   ];
 
+  public static function getModels()
+  {
+    return self::$models;
+  }
+
+
   /**
    * Busca uma empresa pelo CNPJ.
    *
