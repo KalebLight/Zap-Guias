@@ -20,37 +20,56 @@ class ServicoCreate extends Component
 
     protected $rules = [
         'titulo' => 'required|string|max:255',
-        'descricao' => 'required|string|max:2000',
-        'preco' => 'required|string',
+        'descricao' => 'nullable|string|max:2000',
+        'preco' => 'nullable|string',
         'foto_servico' => 'nullable|image|max:1024',
         'inclui' => 'nullable|string|max:1000',
-        'local' => 'required|string|max:255',
+        'local' => 'nullable|string|max:255',
     ];
 
     public function createService()
     {
-        $this->validate();
         try {
-            $precoNumerico = floatval(str_replace(['R$', '.', ','], ['', '', '.'], $this->preco));
+            // Validação inicial
+            $validatedData = $this->validate();
 
-            $fotoPath = $this->foto_servico ? $this->foto_servico->store('servicos', 'public') : null;
+            // Convertendo o preço para um formato numérico correto
+            $precoNumerico = floatval(str_replace(['R$', '.', ','], ['', '', '.'], $validatedData['preco'] ?? '0'));
+
+            // Salvando a foto, caso enviada
+            $fotoPath = $validatedData['foto_servico'] ? $this->foto_servico->store('servicos', 'public') : null;
+
+            // Criando o serviço no banco de dados
             Servico::create([
-                'titulo' => $this->titulo,
-                'descricao' => $this->descricao,
+                'titulo' => $validatedData['titulo'],
+                'descricao' => $validatedData['descricao'],
                 'preco' => $precoNumerico,
                 'foto_servico' => $fotoPath,
-                'inclui' => $this->inclui,
-                'local' => $this->local,
+                'inclui' => $validatedData['inclui'],
+                'local' => $validatedData['local'],
                 'empresa_type' => Auth::user()->company_type,
                 'empresa_id' => Auth::user()->company_id,
             ]);
+
+            // Resetando os campos e exibindo sucesso
             $this->reset(['titulo', 'descricao', 'preco', 'foto_servico', 'inclui', 'local']);
             Toaster::success('Serviço salvo com sucesso!');
             return redirect()->route('dashboard');
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+
+            foreach ($e->errors() as $field => $messages) {
+                foreach ($messages as $message) {
+                    $this->addError($field, $message);
+                }
+            }
         } catch (\Exception $e) {
-            $this->addError('servicos', $e->getMessage());
+            // Lançando erros genéricos
+
+            $this->addError('servicos', 'Erro ao criar o serviço: ' . $e->getMessage());
         }
     }
+
 
     public function render()
     {
