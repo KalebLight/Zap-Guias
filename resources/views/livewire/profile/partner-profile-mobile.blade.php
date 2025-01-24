@@ -65,11 +65,11 @@ new class extends Component {
 
       <!-- edit address modal -->
       @if ($this->isOwner)
-      <x-primary-button width="w-3/4" class="underline mt-2">
+      <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
-    @endif
+  @endif
     </div>
 
   </div>

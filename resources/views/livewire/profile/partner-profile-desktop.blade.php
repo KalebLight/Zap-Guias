@@ -118,7 +118,7 @@ new class extends Component {
 
       @include('components.partner-profile.address', ['endereco' => json_decode($partner->endereco)])
 
-      <!-- address -->
+      <!-- edit address modal -->
       @if ($this->isOwner)
       <x-primary-button width="w-3/4" class="underline mt-2" wire:click="$dispatch('openAddressModal')">
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
