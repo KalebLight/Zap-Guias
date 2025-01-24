@@ -17,7 +17,7 @@
                     <form wire:submit="saveData">
                         <h4 class="underline text-primary text-left font-medium">Nome</h4>
                         <input type="text" placeholder="Nome do Título da Página" wire:model="nome_fantasia" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60 " required>
-                        <h4 class="underline text-primary text-left font-medium mt-2">URL</h4>
+                        <h4 class="underline text-primary text-left font-medium mt-2">URL (slug)</h4>
 
                         <div class="relative" onclick="focusInput(this)">
                             <span class="absolute left-2 top-2 text-primary">URL:</span>

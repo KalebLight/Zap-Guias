@@ -29,34 +29,47 @@ class ModalNameSlugEdit extends Component
 
     public function saveData()
     {
-        // Validação dos campos
-        $this->validate([
-            'nome_fantasia' => ['required', 'string', 'max:255', 'min:3'],
-            'slug' => ['required', 'string', 'max:255', 'min:3'],
-            'foto_perfil' => ['nullable', 'image', 'max:1024'], // Limite de 1MB
-        ]);
 
-        // Verifica se uma nova foto foi carregada
-        if ($this->foto_perfil instanceof \Illuminate\Http\UploadedFile) {
-            // Apaga a foto anterior
-            if ($this->partner->foto_perfil) {
-                Storage::disk('public')->delete($this->partner->foto_perfil);
+        try {
+            $this->validate([
+                'nome_fantasia' => ['required', 'string', 'max:255', 'min:3'],
+                'slug' => ['required', 'string', 'max:255', 'min:3', 'regex:/^[a-zA-Z0-9-]+$/'],
+
+                'foto_perfil' => ['nullable', 'image', 'max:1024'],
+            ]);
+
+            if ($this->foto_perfil instanceof \Illuminate\Http\UploadedFile) {
+
+                if ($this->partner->foto_perfil) {
+                    Storage::disk('public')->delete($this->partner->foto_perfil);
+                }
+
+
+                $filePath = $this->foto_perfil->store('fotos_parceiros', 'public');
+                $this->partner->foto_perfil = $filePath;
             }
 
-            // Upload da nova foto
-            $filePath = $this->foto_perfil->store('fotos_parceiros', 'public');
-            $this->partner->foto_perfil = $filePath;
+
+            $this->partner->update([
+                'nome_fantasia' => $this->nome_fantasia,
+                'slug' => $this->slug,
+                'foto_perfil' => $this->partner->foto_perfil,
+            ]);
+
+            Toaster::success('Dados salvos com sucesso');
+            return redirect(route('partner.profile', ['slug' => $this->partner->slug]));
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            foreach ($e->errors() as $field => $messages) {
+                $this->addError($field, $messages[0]);
+            }
+            return;
+        } catch (\Exception $e) {
+            Toaster::error('Ocorreu um erro inesperado ao salvar os dados. Tente novamente.');
+            return;
         }
 
-        // Atualizar os dados do parceiro
-        $this->partner->update([
-            'nome_fantasia' => $this->nome_fantasia,
-            'slug' => $this->slug,
-            'foto_perfil' => $this->partner->foto_perfil, // Atualiza a foto, se necessário
-        ]);
 
-        Toaster::success('Dados salvos com sucesso');
-        return redirect(route('partner.profile', ['slug' => $this->partner->slug]));
     }
 
 
