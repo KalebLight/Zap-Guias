@@ -11,26 +11,7 @@
 
     <!-- Campo de Preço -->
 
-    <input type="text" id="preco" placeholder="Preço (R$ 0,00)" class="w-full rounded-full border border-primary text-primary h-8 placeholder:text-primary placeholder:opacity-60" x-data x-init="
-        $refs.input.addEventListener('input', function(e) { 
-            let value = e.target.value.replace(/\D/g, ''); 
-            value = (value / 100).toFixed(2).replace('.', ','); 
-            if (parseFloat(value.replace(',', '.')) > 1000000) { 
-                e.target.value = 'R$ 1.000.000,00'; 
-            } else { 
-                e.target.value = 'R$ ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); 
-            } 
-        }); 
-
-        // Resetando o input quando o evento for disparado
-        window.addEventListener('reset-inputs', () => {
-            $refs.input.value = '';
-        });
-    " x-ref="input" wire:model.lazy="preco" />
-
-
-
-
+    <input type="text" id="preco" placeholder="Preço (R$ 0,00)" class="w-full rounded-full border border-primary text-primary h-8 placeholder:text-primary placeholder:opacity-60" x-data x-init=" $refs.input.addEventListener('input', function(e) { let value = e.target.value.replace(/\D/g, ''); value = (value / 100).toFixed(2).replace('.', ','); if (parseFloat(value.replace(',', '.')) > 1000000) { e.target.value = 'R$ 1.000.000,00'; } else { e.target.value = 'R$ ' + value.replace(/\B(?=(\d{3})+(?!\d))/g, '.'); } @this.preco = e.target.value; }); " x-ref="input" wire:model.lazy="preco" />
 
     <!-- Campo de Local -->
     <input type="text" placeholder="Local" wire:model="local" class="w-full rounded-full border border-primary text-primary h-8 mt-1 placeholder:text-primary placeholder:opacity-60" />
@@ -54,7 +35,7 @@
     <x-input-error :messages="$errors->get('servicos')" class="mt-2" />
     <!-- Botões -->
     <div class="flex flex-row mt-5 gap-4">
-        <x-primary-button width="w-full" class="underline" wire:click="createService">Adicionar Este</x-primary-button>
-        <x-custom-secondary-button width="w-full" class="underline">Adicionar Mais</x-custom-secondary-button>
+        <x-primary-button width="w-full" class="underline" wire:click="onlyOne">Adicionar Este</x-primary-button>
+        <x-custom-secondary-button width="w-full" class="underline" wire:click="oneMore">Adicionar Mais</x-custom-secondary-button>
     </div>
 </div>
