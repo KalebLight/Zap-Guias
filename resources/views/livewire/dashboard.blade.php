@@ -48,11 +48,13 @@
             @endforelse
         </tbody>
     </table>
-    <p class="text-primary font-black text-3xl mt-20">TEM DÚVIDAS?</p>
+
+
+
+
+    <!-- Dúvidas (div expansíveis) -->
+    <p class="text-primary font-black text-4xl mt-20 mb-5">TEM DÚVIDAS?</p>
     <div class="w-full">
-
-
-        <!-- Conteúdo expansível -->
         
     <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl">
         <div style="height: 10px;"></div>
@@ -76,7 +78,7 @@
             <svg class="w-6 h-6 ml-2 text-secondary transition-transform duration-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-45': expanded }">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
             </svg>
-            <p class="text-primary">Encontrei minha empresa listada, o que faço?</p>    
+            <p class="text-primary">Como me cadastro na plataforma como empresa?</p>    
         </div>
 
         <div style="height: 10px;"></div>
@@ -92,7 +94,7 @@
             <svg class="w-6 h-6 ml-2 text-secondary transition-transform duration-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-45': expanded }">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
             </svg>
-            <p class="text-primary">Encontrei minha empresa listada, o que faço?</p>    
+            <p class="text-primary">Encontrei um guia! Como entro em contato?</p>    
         </div>
 
         <div style="height: 10px;"></div>
