@@ -65,7 +65,7 @@
 
         <div style="height: 10px;"></div>
 
-        <div x-show="expanded" x-collapse class="pl-7">
+        <div x-show="expanded" x-collapse class="pl-7" x-cloak>
             <p class="p-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. </p>
         </div>
     </div>
@@ -81,7 +81,7 @@
 
         <div style="height: 10px;"></div>
 
-        <div x-show="expanded" x-collapse class="pl-7">
+        <div x-show="expanded" x-collapse class="pl-7" x-cloak>
             <p class="p-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. </p>
         </div>
     </div>
@@ -97,10 +97,9 @@
 
         <div style="height: 10px;"></div>
 
-        <div x-show="expanded" x-collapse class="pl-7">
+        <div x-show="expanded" x-collapse class="pl-7" x-cloak>
             <p class="p-4"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. </p>
         </div>
     </div>
 
-
-    </div>
+</div>
