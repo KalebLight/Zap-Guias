@@ -36,11 +36,11 @@
 
         <!-- Imagens -->
         <div class="lg:w-full lg:h-full w-[400px] h-[300px] flex justify-center mx-4">
-            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="h-auto object-cover lg:min-w-[440px] mb-10" />
+            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="h-[500px] object-cover lg:min-w-[350px] mb-10" />
         </div>
 
         <!-- Slot do conteúdo -->
-        <main class="w-full h-full  md:rounded-lg xl:px-[60px] px-[30px] flex justify-center lg:justify-normal pt-24 md:pt-24">
+        <main class="w-full h-full  md:rounded-lg xl:px-[60px] px-[30px] flex justify-center lg:justify-normal pt-16 ">
             {{ $slot }}
         </main>
     </div>
