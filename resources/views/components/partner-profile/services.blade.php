@@ -17,7 +17,7 @@
 
     <div class="flex flex-row flex-wrap w-full gap-1 justify-center">
     @foreach ($services as $service)
-    <livewire:components.service :service="$service" />
+    <livewire:components.service-profile :service="$service" />
   @endforeach
 
 
