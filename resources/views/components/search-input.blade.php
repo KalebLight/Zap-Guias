@@ -1,7 +1,7 @@
-<div class="relative w-fit">
+<div class="relative w-full">
   @props(['disabled' => false])
   <input @disabled($disabled) {{ $attributes->merge([
-  'class' => 'border-primary focus:border-secondary rounded-full focus:ring-indigo-500 custom-input text-primary placeholder-primary xl:w-[570px] sm:w-[440px] w-[350px] lg:h-[50px] h-[36px] pl-10 flex items-center',
+  'class' => 'border-primary focus:border-secondary rounded-full focus:ring-indigo-500 custom-input text-primary placeholder-primary w-full lg:h-[50px] h-[36px] pl-10 flex items-center',
   'style' => 'line-height: normal;',
 ]) 
   }}>

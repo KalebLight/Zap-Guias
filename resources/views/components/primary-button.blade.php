@@ -1,4 +1,4 @@
-@props(['width' => 'xl:w-[570px] sm:w-[440px] w-[350px]'])
+@props(['width' => 'w-full'])
 
 <button {{ $attributes->merge([
     'type' => 'submit',

@@ -11,22 +11,22 @@ new class extends Component {
 }; ?>
 
 
-<footer class="w-full p-4 flex flex-col sm:justify-between justify-center text-primary sm:px-[60px] md:px-[110px] lg:px-[188px]">
+<footer class="w-full py-4 flex flex-col sm:justify-between justify-center text-primary md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
   <div class="w-full flex sm:justify-between justify-center flex-wrap ">
-    <div class="text-primary sm:text-left text-center w-fit px-3">
+    <div class="text-primary sm:text-left text-center w-fit ">
       <h3 class="text-xl underline">Redes Sociais</h3>
       <p class='text-base mt-1'>Facebook | Instagram</p>
       <p class='text-base xs:mt-1 mt-0'>Site desenvolvido por B20</p>
     </div>
 
-    <div class="text-primary sm:text-right md:text-left xs:mt-0 mt-4 text-center w-fit px-3">
+    <div class="text-primary sm:text-right md:text-left xs:mt-0 mt-4 text-center w-fit ">
       <h3 class="text-xl underline">Turismo</h3>
       <p class='text-base xs:mt-1 mt-0'>Sobre</p>
       <p class='text-base xs:mt-1 mt-0'>Política de Privacidade</p>
       <p class='text-base xs:mt-1 mt-0'>Termos de Uso</p>
     </div>
 
-    <div class="text-primary sm:text-left text-center xs:mt-0 mt-4  md:w-auto px-3">
+    <div class="text-primary sm:text-left text-center xs:mt-0 mt-4  md:w-auto ">
       <h3 class="text-xl underline">Newsletter</h3>
       <p class='text-base mt-1'>Inscreva-se e receba novidades</p>
       <p class='text-base '>sobre turismo e o Turismo</p>

@@ -37,19 +37,19 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 }; ?>
 
-<div class="w-fit h-full flex justify-start flex-col items-start">
+<div class="w-full h-full flex justify-start flex-col items-start">
 
     @if ($currentView === 'login')
-        <form wire:submit.prevent="login" class="flex flex-col">
-            <div class="xl:w-[570px] sm:w-[440px] w-[350px] h-fit">
+        <form wire:submit.prevent="login" class="flex flex-col w-full ">
+            <div class="h-fit">
                 <h1 class="text-5xl font-black text-primary mb-10 leading-[0.5]">LOGIN</h1>
             </div>
 
-            <!-- Botão Google -->
             <div class="flex flex-col gap-3">
-                <button type="button"
-                    class="xl:w-[570px] sm:w-[440px] w-[350px] lg:h-[50px] h-[36px] border border-black rounded-full hover:bg-gray-100">
-                    <a href="/auth/google/redirect" class="flex items-center justify-center">
+                <!-- Botão Google -->
+                <button type="button "
+                    class="lg:h-[50px] h-[36px] border border-black rounded-full hover:bg-gray-100">
+                    <a href="/auth/google/redirect" class="flex items-center justify-center ">
                         <div class="flex items-center justify-center h-full">
                             <img src="{{ asset('images/google-icon.png') }}" alt="Logo do Google"
                                 class="lg:h-9 lg:w-9 h-7 w-7">
@@ -60,7 +60,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
                 <!-- Botão Facebook -->
                 <button type="button"
-                    class="xl:w-[570px] sm:w-[440px] w-[350px] lg:h-[50px] h-[36px] bg-facebook text-white rounded-full justify-center hover:bg-blue-600 ">
+                    class=" lg:h-[50px] h-[36px] bg-facebook text-white rounded-full justify-center hover:bg-blue-600 ">
                     <a href="/auth/facebook/redirect" class="flex items-center justify-center">
                         <div class="flex items-center justify-center h-full">
                             <img src="{{ asset('images/facebook-icon.png') }}" alt="Logo do Facebook"
@@ -73,7 +73,7 @@ new #[Layout('layouts.guest')] class extends Component {
 
             <div class="flex justify-center w-full">
                 <p class="text-primary my-4 hidden lg:block text-nowrap">
-                    - - - - - - - - - - - - - - - - - - - - - ou - - - - - - - - - - - - - - - - - - - - -
+                   - - - - - - - - - - - - - ou - - - - - - - - - - - - -
                 </p>
                 <p class="text-primary my-4 block lg:hidden text-nowrap">
                     - - - - - - - - - - - - - ou - - - - - - - - - - - - -
@@ -83,23 +83,24 @@ new #[Layout('layouts.guest')] class extends Component {
             <div class="flex flex-col gap-3">
                 <!-- Form Email -->
                 <x-text-input wire:model="form.email" id="email" placeholder='E-mail'
-                    class="block  xl:w-[570px] sm:w-[440px] w-[350px]" type="email" name="email" required autofocus
+                    class="block  " type="email" name="email" required autofocus
                     autocomplete="username" />
                 <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
                 <!-- Form Password -->
                 <x-text-input wire:model="form.password" placeholder="Senha" id="password"
-                    class="block xl:w-[570px] sm:w-[440px] w-[350px]" type="password" name="password" required
+                    class="block " type="password" name="password" required
                     autocomplete="current-password" />
                 <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
                 <x-input-error :messages="$errors->get('general')" class="mt-2" />
             </div>
             <a href="{{ route('password.request') }}" class="underline text-primary font-normal my-4"
                 wire:navigate>Esqueci minha senha</a>
-            <div class="xl:w-[570px] sm:w-[440px] w-[350px]">
+            <div class="">
                 <x-primary-button class='underline'>
                     {{ __('Entrar') }}
                 </x-primary-button>
             </div>
+            
             <br>
             <div class="flex flex-row w-full justify-end">
                 <a wire:click="swapView('register')" class="underline font-medium cursor-pointer" wire:navigate>Ou CRIE
@@ -110,7 +111,7 @@ new #[Layout('layouts.guest')] class extends Component {
     @elseif ($currentView === 'register')
         <div class="w-fit h-full flex justify-start flex-col items-start">
 
-            <div class="xl:w-[570px] sm:w-[440px] w-[350px] h-fit">
+            <div class=" h-fit">
                 <h1 class="text-5xl font-black text-primary mb-10 leading-[0.5]">CRIAR CONTA</h1>
             </div>
 

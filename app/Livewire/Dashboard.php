@@ -13,6 +13,7 @@ use App\Models\OrganizadoraDeEventos;
 use App\Models\ParqueAquaticoEEmpreendimentoDeLazer;
 use App\Models\ParqueTematico;
 use App\Models\Restaurante;
+use App\Models\Servico;
 use App\Models\TurismoNautico;
 use Livewire\Component;
 
@@ -20,10 +21,14 @@ class Dashboard extends Component
 {
 
     public $partners = [];
+    public $servicesHome = [];
 
     public function mount()
     {
         $this->loadPartners();
+        $this->servicesHome = Servico::latest()->take(5)->get();
+
+
     }
 
     public function loadPartners()
