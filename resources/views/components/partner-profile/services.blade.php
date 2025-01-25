@@ -17,28 +17,7 @@
 
     <div class="flex flex-row flex-wrap w-full gap-1 justify-center">
     @foreach ($services as $service)
-    <div class="2xl:w-[266px] w-[208px] p-2 cursor-pointer hover:bg-gray-200 rounded">
-      <!-- Definimos o tamanho fixo da imagem com proporções relativas -->
-      <div class="2xl:w-[248px] 2xl:h-[164px] w-full h-[114px] overflow-hidden flex items-center justify-center">
-      @if(isset($service['foto_servico']))
-      <img src="{{ asset('storage/' . $service['foto_servico']) }}" alt="{{ $service['titulo'] }}" class="w-full h-full object-cover">
-    @endif
-      </div>
-      <h3 class="partner-label mt-2">{{ $service['titulo'] }}</h3>
-      @if(isset($service['descricao']))
-      <p class="text-sm text-primary">{{ $service['descricao'] }}</p>
-    @endif
-      @if(isset($service['local']))
-      <p class="text-sm text-primary">Local: {{ $service['local'] }}</p>
-    @endif
-      @if(isset($service['inclui']))
-      <p class="text-sm text-primary">Inclui: {{ $service['inclui'] }}</p>
-    @endif
-      @if(isset($service['preco']) && $service['preco'] != 0)
-      <p class="font-bold text-primary text-base">R$ {{ number_format($service['preco'], 2, ',', '.') }}</p>
-
-    @endif
-    </div>
+    <livewire:components.service :service="$service" />
   @endforeach
 
 
