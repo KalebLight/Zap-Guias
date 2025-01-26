@@ -65,7 +65,7 @@
     <p class="text-primary font-black text-4xl mt-20 mb-5">TEM DÚVIDAS?</p>
     <div class="w-full">
         
-        <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl">
+        <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl cursor-pointer">
             <div style="height: 10px;"></div>
             <div class="flex flex-row items-center">
                 <svg class="w-6 h-6 ml-2 text-secondary transition-transform duration-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-45': expanded }">
@@ -81,7 +81,7 @@
             </div>
         </div>
         
-        <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl mt-3">
+        <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl mt-3 cursor-pointer">
             <div style="height: 10px;"></div>
             <div class="flex flex-row items-center">
                 <svg class="w-6 h-6 ml-2 text-secondary transition-transform duration-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-45': expanded }">
@@ -97,7 +97,7 @@
             </div>
         </div>
         
-        <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl mt-3">
+        <div x-data="{ expanded: false }" @click="expanded = !expanded" class="w-full bg-buttonPrimary shadow-custom h-fit px-4 rounded-3xl mt-3 cursor-pointer">
             <div style="height: 10px;"></div>
             <div class="flex flex-row items-center">
                 <svg class="w-6 h-6 ml-2 text-secondary transition-transform duration-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="{ 'rotate-45': expanded }">
