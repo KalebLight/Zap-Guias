@@ -7,18 +7,19 @@ new class extends Component {
   public $service;
 }; ?>
 
-<div class="2xl:w-[266px] w-[208px] p-2 cursor-pointer hover:bg-gray-200 rounded">
-  <!-- Definimos o tamanho fixo da imagem com proporções relativas -->
-  <div class="2xl:w-[248px] 2xl:h-[164px] w-full h-[114px] overflow-hidden flex items-center justify-center">
+<div class="2xl:w-[246px] w-[190px] p-2 rounded">
+  <div class="aspect-square w-full overflow-hidden flex items-center justify-center bg-gray-100">
     @if(isset($service['foto_servico']))
     <img src="{{ asset('storage/' . $service['foto_servico']) }}" alt="{{ $service['titulo'] }}" class="w-full h-full object-cover">
   @endif
-
   </div>
-  <h3 class="partner-label mt-2">{{ $service['titulo'] }}</h3>
+  <div class="flex flex-row">
+    <div class="w-3/4">
+      <h3 class="text-base font-normal">{{ $service['titulo'] }}</h3>
+    </div>
 
-  @if(isset($service['preco']) && $service['preco'] != 0)
-    <p class="font-bold text-primary text-base">R$ {{ number_format($service['preco'], 2, ',', '.') }}</p>
-
+    @if(isset($service['preco']) && $service['preco'] != 0)
+    <p class="font-bold text-secondary text-base text-nowrap">R$ {{ number_format($service['preco'], 2, ',', '.') }}</p>
   @endif
+  </div>
 </div>

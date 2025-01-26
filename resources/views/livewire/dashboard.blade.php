@@ -2,7 +2,7 @@
 <div class=" flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center">
     <!-- Imagens -->
     <div class="lg:mr-4 mb-10 w-full lg:w-[40%]">
-        <div class="lg:aspect-[3/4] aspect-[16/9] bg-danger overflow-hidden w-full max-w-[450px] lg:max-w-[550px] mx-auto flex justify-start">
+        <div class="lg:aspect-[3/4] aspect-[16/9] overflow-hidden w-full max-w-[450px] lg:max-w-[550px] mx-auto flex justify-start">
             <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="object-cover w-full h-full" />
         </div>
     </div>
@@ -22,13 +22,13 @@
 
 
 
-    <div class="flex flex-row flex-wrap mt-3">
+    <div class="flex flex-row flex-wrap mt-3 justify-center">
         @foreach ($servicesHome as $service)
             <livewire:components.service-home :service="$service" />
         @endforeach
     </div>
 
-    <!-- <table class="table-auto w-full border-collapse border border-gray-300">
+    <table class="table-auto w-full border-collapse border border-gray-300">
         <thead>
             <tr>
                 <th class="border border-gray-300 px-4 py-2">ID</th>
@@ -56,7 +56,7 @@
                 </tr>
             @endforelse
         </tbody>
-    </table> -->
+    </table>
 
 
 
