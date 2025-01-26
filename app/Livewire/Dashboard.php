@@ -26,7 +26,7 @@ class Dashboard extends Component
     public function mount()
     {
         $this->loadPartners();
-        $this->servicesHome = Servico::latest()->take(5)->get();
+        $this->servicesHome = Servico::latest()->take(6)->get();
 
 
     }
