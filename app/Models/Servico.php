@@ -25,5 +25,9 @@ class Servico extends Model
     {
         return $this->morphMany(Servico::class, 'empresa');
     }
+    public function empresa()
+    {
+        return $this->morphTo();
+    }
 
 }
