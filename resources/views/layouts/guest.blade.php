@@ -25,22 +25,27 @@
 
 <body class="min-h-screen flex flex-col">
     <!-- Header fixo no topo -->
-    <header class="w-full mb-40">
+    <header class="w-full lg:mb-40 mb-28">
         <livewire:layout.navigation />
     </header>
 
     <!-- Conteúdo principal -->
 
-    <div class="flex-grow  flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center w-full md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
+    <div class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center w-full md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
         <!-- Imagens -->
-        <div class="mr-4">
-            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="h-[520px] object-cover lg:min-w-[350px] mb-10" />
+        <div class="lg:mr-4 mb-10 lg:w-[40%] h-full w-full">
+            <div class="lg:aspect-[3/4] aspect-[16/9] bg-gray-200 overflow-hidden max-w-[450px] lg:max-w-[450px] w-full mx-auto">
+                <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="object-cover w-full h-full" />
+            </div>
         </div>
         <!-- Slot do conteúdo -->
-        <main class="lg:w-1/2 w-full h-full md:rounded-lg flex lg:justify-normal">
+        <main class="lg:w-1/2 w-full h-full flex lg:justify-normal">
             {{ $slot }}
         </main>
     </div>
+
+
+
 
 
     <!-- Footer -->

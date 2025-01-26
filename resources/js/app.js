@@ -3,9 +3,9 @@ import "../../vendor/masmerise/livewire-toaster/resources/js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const images = [
-        "/images/guest-image-1.png",
-        "/images/guest-image-2.png",
-        "/images/guest-image-3.png",
+        "/images/guest-image-1.jpeg",
+        "/images/guest-image-2.jpeg",
+        "/images/guest-image-3.jpeg",
     ];
 
     let currentImageIndex = 0;

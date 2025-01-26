@@ -1,33 +1,34 @@
 <div class="w-full md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
-    <div class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center ">
-
-        <!-- Imagens -->
-        <div class="mr-4">
-            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="h-[520px] object-cover lg:min-w-[350px] mb-10" />
+<div class=" flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center">
+    <!-- Imagens -->
+    <div class="lg:mr-4 mb-10 w-full lg:w-[40%]">
+        <div class="lg:aspect-[3/4] aspect-[16/9] bg-danger overflow-hidden w-full max-w-[450px] lg:max-w-[550px] mx-auto flex justify-start">
+            <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="object-cover w-full h-full" />
         </div>
-
-        <!-- Slot do conteúdo -->
-        <main class="w-1/2 h-full md:rounded-lg  flex flex-col lg:justify-normal">
-
-            <div class="flex flex-col">
-                <p class="text-primary font-black 2xl:text-9xl xl:text-8xl lg:text-7xl ">PLANEJE</p>
-                <p class="text-primary font-black 2xl:text-9xl xl:text-8xl lg:text-7xl mt-4">SUAS</p>
-                <p class="text-secondary font-black 2xl:text-9xl xl:text-8xl lg:text-7xl mt-4">FÉRIAS</p>
-                <div class="w-full py-2 flex justify-end mt-3">
-                    <x-search-input id="search" placeholder='Pesquisar' class="block w-fit shadow-custom placeholder-secondary" type="email" name="search" required autofocus />
-                </div>
-            </div>
-        </main>
     </div>
 
+    <!-- Slot do conteúdo -->
+    <main class="lg:w-1/2 w-full h-full md:rounded-lg flex flex-col lg:justify-normal">
+        <div class="flex flex-col">
+            <p class="text-primary font-black 2xl:text-9xl xl:text-8xl lg:text-7xl text-5xl">PLANEJE</p>
+            <p class="text-primary font-black 2xl:text-9xl xl:text-8xl lg:text-7xl text-5xl lg:mt-4 mt-1">SUAS</p>
+            <p class="text-secondary font-black 2xl:text-9xl xl:text-8xl lg:text-7xl text-5xl lg:mt-4 mt-1">FÉRIAS</p>
+            <div class="w-full py-2 flex justify-end mt-3">
+                <x-search-input id="search" placeholder='Pesquisar' class="block w-fit shadow-custom placeholder-secondary" type="email" name="search" required autofocus />
+            </div>
+        </div>
+    </main>
+</div>
 
-    <div class="flex flex-row flex-wrap">
+
+
+    <div class="flex flex-row flex-wrap mt-3">
         @foreach ($servicesHome as $service)
             <livewire:components.service-home :service="$service" />
         @endforeach
     </div>
 
-    <table class="table-auto w-full border-collapse border border-gray-300">
+    <!-- <table class="table-auto w-full border-collapse border border-gray-300">
         <thead>
             <tr>
                 <th class="border border-gray-300 px-4 py-2">ID</th>
@@ -55,7 +56,7 @@
                 </tr>
             @endforelse
         </tbody>
-    </table>
+    </table> -->
 
 
 
