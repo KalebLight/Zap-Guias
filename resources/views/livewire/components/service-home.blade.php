@@ -7,7 +7,6 @@ new class extends Component {
 
   public function getEmpresaSlug()
   {
-    // Acessando o relacionamento polimórfico para buscar a empresa
     return $this->service->empresa->slug ?? null;
   }
 };

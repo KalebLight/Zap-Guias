@@ -30,4 +30,10 @@ class Servico extends Model
         return $this->morphTo();
     }
 
+    public function favoritadoPor()
+    {
+        return $this->hasMany(Favorito::class, 'servico_id');
+    }
+
+
 }
