@@ -16,7 +16,10 @@ new class extends Component {
     <div class="text-primary sm:text-left text-center w-fit ">
       <h3 class="text-xl underline">Redes Sociais</h3>
       <p class='text-base mt-1'>Facebook | Instagram</p>
-      <p class='text-base xs:mt-1 mt-0'>Site desenvolvido por B20</p>
+      <div class="flex">
+        <p class='text-base xs:mt-1 mt-0'>Site desenvolvido por</p>
+        <a href="https://b20.com.br/" class="text-base font-medium xs:mt-1 mt-0 underline ml-1">B20</a>
+      </div>
     </div>
 
     <div class="text-primary sm:text-right md:text-left xs:mt-0 mt-4 text-center w-fit ">
