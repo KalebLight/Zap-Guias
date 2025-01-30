@@ -1,7 +1,7 @@
 <div class="w-full md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
 <div class=" flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center">
     <!-- Imagens -->
-    <div class="lg:mr-4 mb-10 w-full lg:w-[40%]">
+    <div class="lg:mr-4 mb-10 w-full lg:w-[36%]">
         <div class="lg:aspect-[3/4] aspect-[16/9] overflow-hidden w-full max-w-[450px] lg:max-w-[550px] mx-auto flex justify-start">
             <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="object-cover w-full h-full" />
         </div>

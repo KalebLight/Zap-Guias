@@ -33,7 +33,7 @@
 
     <div class="flex-grow flex flex-col lg:flex-row justify-center md:justify-between lg:items-start items-center w-full md:px-[100px] lg:px-[188px] xs:px-[30px] px-[10px]">
         <!-- Imagens -->
-        <div class="lg:mr-4 mb-10 lg:w-[40%] h-full w-full">
+        <div class="lg:mr-4 mb-10 lg:w-[36%] h-full w-full">
             <div class="lg:aspect-[3/4] aspect-[16/9] bg-gray-200 overflow-hidden max-w-[450px] lg:max-w-[550px] w-full mx-auto">
                 <img id="rotating-image" src="/images/guest-image-1.png" alt="Guest Image" class="object-cover w-full h-full" />
             </div>
