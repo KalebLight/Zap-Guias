@@ -4,22 +4,17 @@ use Livewire\Volt\Component;
 
 new class extends Component {
   public $service;
-  public $isFavorite = false;
 
-  public function toggleFavorite()
-  {
-    $this->isFavorite = !$this->isFavorite;
-    // Aqui você pode adicionar a lógica para salvar o estado de favorito no banco de dados, se necessário.
-  }
 }; ?>
 
-<div class="2xl:w-[266px] w-[208px] p-2 cursor-pointer hover:bg-gray-200 rounded relative">
-  <!-- Botão de favorito no canto superior direito -->
-  <div class="absolute top-4 right-4">
+<div class="2xl:w-[266px] w-[208px] p-2 cursor-pointer hover:bg-gray-200 rounded relative shadow-md">
+  @if (!Auth::user()->cnpj)
+    <div class="absolute top-4 right-4">
     @livewire('favoritar-servico', ['service' => $service])
-  </div>
+    </div>
+  @endif
 
-  <!-- Definimos o tamanho fixo da imagem com proporções relativas -->
+
   <div class="2xl:w-[248px] 2xl:h-[164px] w-full h-[114px] overflow-hidden flex items-center justify-center">
     @if(isset($service['foto_servico']))
     <img src="{{ asset('storage/' . $service['foto_servico']) }}" alt="{{ $service['titulo'] }}" class="w-full h-full object-cover">

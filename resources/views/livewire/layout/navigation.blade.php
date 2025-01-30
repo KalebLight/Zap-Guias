@@ -57,6 +57,12 @@ new class extends Component {
                                                                     @endif
                                             @endif
 
+                                            @if (!auth()->user()->cnpj)
+                                                <x-dropdown-link :href="route('favorites', ['id' => auth()->user()->id])" wire:navigate>
+                                                    {{ __('Meus Favoritos') }}
+                                                </x-dropdown-link>
+                                            @endif
+
                                             <button wire:click="logout" class='w-full'>
                                                 <x-dropdown-link>
                                                     {{ __('Sair') }}

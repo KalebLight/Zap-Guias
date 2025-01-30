@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\FavoritosPage;
 use App\Livewire\PartnerProfile;
 use App\Livewire\ServicoCreate;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,6 @@ Route::redirect('/', '/dashboard');
 
 
 Route::get('dashboard', Dashboard::class)
-
     ->name('dashboard');
 
 Route::view('profile', 'profile')
@@ -21,6 +21,7 @@ Route::view('profile', 'profile')
 Route::get('/partner/{slug}', PartnerProfile::class)
     ->name('partner.profile');
 
+Route::get('/favorites/{id}', FavoritosPage::class)->name('favorites');
 
 
 Route::prefix('servicos')->group(function () {
