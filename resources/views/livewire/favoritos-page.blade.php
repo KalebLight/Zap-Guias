@@ -2,11 +2,11 @@
     <div class="w-full border-t border-t-primary pt-2">
         <h3 class="text-primary font-black lg:text-7xl xs:text-5xl text-4xl text-right mb-5 break-words">{{Auth::user()->name}}</h3>
 
-        <div class="mt-10">
-
+        <div class="mt-10 mb-2">
             <h4 class="text-primary font-black text-4xl">Passeios</h4>
             <h4 class="text-primary font-black text-4xl">Favoritos</h4>
         </div>
+
         <div class="flex flex-wrap justify-between gap-2">
             @foreach ($services as $service)
 
