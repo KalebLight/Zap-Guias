@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Favorito;
+use App\Models\FavoritosService;
 use Illuminate\Support\Facades\Auth;
 
 class FavoritarServico extends Component
@@ -14,7 +14,7 @@ class FavoritarServico extends Component
     public function mount()
     {
         if (isset($this->service['id'])) {
-            $this->isFavorited = Favorito::where('user_id', Auth::id())
+            $this->isFavorited = FavoritosService::where('user_id', Auth::id())
                 ->where('servico_id', $this->service['id'])
                 ->exists();
         }
@@ -28,13 +28,13 @@ class FavoritarServico extends Component
         if (!isset($this->service['id'])) {
             return;
         }
-        $favorito = Favorito::where('user_id', Auth::id())
+        $favorito = FavoritosService::where('user_id', Auth::id())
             ->where('servico_id', $this->service['id']);
         if ($favorito->exists()) {
             $favorito->delete();
             $this->isFavorited = false;
         } else {
-            Favorito::create([
+            FavoritosService::create([
                 'user_id' => Auth::id(),
                 'servico_id' => $this->service['id'],
             ]);

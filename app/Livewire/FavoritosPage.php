@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Favorito;
+use App\Models\FavoritosService;
 use Auth;
 use Livewire\Component;
 
@@ -13,7 +13,7 @@ class FavoritosPage extends Component
 
     public function mount()
     {
-        $this->favoritos = Favorito::where('user_id', Auth::id())->get();
+        $this->favoritos = FavoritosService::where('user_id', Auth::id())->get();
         $this->services = $this->favoritos->pluck('servico')->unique();
 
 

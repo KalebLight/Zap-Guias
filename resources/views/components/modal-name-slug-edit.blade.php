@@ -45,6 +45,7 @@
                         @error('slug')
                             <x-input-error :messages=$message class="mt-2" />
                         @enderror
+                        <div wire:loading wire:target="foto_perfil" class="text-sm text-primary mt-1">Carregando imagem...</div>
                         <!-- Fixed Save Button -->
                         <div class=" py-3 flex justify-center">
                             <button type="submit">

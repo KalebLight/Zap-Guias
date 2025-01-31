@@ -32,7 +32,7 @@ class Servico extends Model
 
     public function favoritadoPor()
     {
-        return $this->hasMany(Favorito::class, 'servico_id');
+        return $this->hasMany(FavoritosService::class, 'servico_id');
     }
 
 

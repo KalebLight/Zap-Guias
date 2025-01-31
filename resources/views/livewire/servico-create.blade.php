@@ -44,7 +44,7 @@
             <img src="{{ $foto_servico->temporaryUrl() }}" class="w-24 h-24 rounded-md object-cover">
         @endif
 
-        <!-- Exibir mensagem de carregamento enquanto a imagem está sendo processada -->
+
         <div wire:loading wire:target="foto_servico" class="text-sm text-primary mt-1">Carregando imagem...</div>
 
         <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
