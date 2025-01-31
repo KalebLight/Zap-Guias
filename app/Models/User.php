@@ -68,6 +68,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(FavoritosService::class);
     }
 
+    public function favoritosPartners()
+    {
+        return $this->hasMany(FavoritosPartner::class);
+    }
+
 
     public function canAccessPanel(Panel $panel): bool
     {

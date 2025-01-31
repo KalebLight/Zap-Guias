@@ -51,7 +51,12 @@ new class extends Component {
       <div class="cursor-pointer rounded-md hover:bg-gray-200 p-1 h-fit flex items-center justify-center mt-2">
         <img src="{{ asset('images/edit-icon.png') }}" alt="Editar" class="object-contain min-w-[25px] min-h-[25px]" wire:click="$dispatch('openModalNameSlugEdit')">
       </div>
+    @endif
 
+        @if (!Auth::user()->cnpj)
+      <div class="p-1 hover:bg-slate-300 h-fit rounded mt-1">
+        <livewire:favoritar-partner :partner-id="$partner->id" :partner-type="get_class($partner)" />
+      </div>
     @endif
 
         <div class="w-[90%]">
@@ -62,6 +67,7 @@ new class extends Component {
       <div>
         <!-- Modal Component -->
         @livewire('modal-name-slug-edit', ['partner' => $partner])
+
       </div>
     </div>
 

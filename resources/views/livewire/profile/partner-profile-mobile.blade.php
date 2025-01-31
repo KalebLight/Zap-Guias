@@ -24,6 +24,12 @@ new class extends Component {
       <img src="{{ asset('images/edit-icon.png') }}" alt="Editar" class="object-contain min-w-[25px] min-h-[25px]" wire:click="$dispatch('openModalNameSlugEdit')">
     </div>
   @endif
+
+    @if (!Auth::user()->cnpj)
+    <div class="p-1 hover:bg-slate-300 h-fit rounded mt-1">
+      <livewire:favoritar-partner :partner-id="$partner->id" :partner-type="get_class($partner)" />
+    </div>
+  @endif
     <div>
       @livewire('modal-name-slug-edit', ['partner' => $partner])
     </div>
@@ -71,7 +77,7 @@ new class extends Component {
       {{ !empty($partner->endereco) ? 'Editar Endereço' : 'Adicionar Endereço' }}
       </x-primary-button>
       @livewire('modal-address-edit', ['partner' => $partner])  
-    @endif
+  @endif
     </div>
 
   </div>
