@@ -21,7 +21,7 @@ Route::view('profile', 'profile')
 Route::get('/partner/{slug}', PartnerProfile::class)
     ->name('partner.profile');
 
-Route::get('/favorites/{id}', FavoritosPage::class)->name('favorites');
+Route::get('/favorites/{id}', FavoritosPage::class)->middleware(['auth'])->name('favorites');
 
 
 Route::prefix('servicos')->group(function () {
