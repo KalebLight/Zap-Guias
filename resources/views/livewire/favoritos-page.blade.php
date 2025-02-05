@@ -7,25 +7,24 @@
             <h4 class="text-primary font-black text-4xl">Favoritos</h4>
         </div>
 
-        <div class="flex flex-wrap justify-between gap-2">
+        <div class="flex overflow-x-auto sm:flex-wrap sm:justify-between sm:gap-2 gap-5 pb-3">
             @foreach ($services as $service)
-
-                <livewire:components.service-profile :service="$service" />
-
+                <div class="flex-shrink-0 sm:flex-shrink">
+                    <livewire:components.service-favorite :service="$service" />
+                </div>
             @endforeach
         </div>
-
 
         <div class="mt-10 mb-2">
             <h4 class="text-primary font-black text-4xl">Parceiros</h4>
             <h4 class="text-primary font-black text-4xl">Favoritos</h4>
         </div>
 
-        <div class="flex flex-wrap justify-between gap-2">
+        <div class="flex overflow-x-auto sm:flex-wrap sm:justify-between sm:gap-2 gap-5 pb-3">
             @foreach ($partners as $partner)
-
-                <livewire:components.partner-favorite :partner="$partner" />
-
+                <div class="flex-shrink-0 sm:flex-shrink">
+                    <livewire:components.partner-favorite :partner="$partner" />
+                </div>
             @endforeach
         </div>
 
