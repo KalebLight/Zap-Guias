@@ -26,6 +26,31 @@
     font-weight: 400;
 }
 
+.width-calculada {
+    width: calc(100vw - 10px);
+}
+
+@media (min-width: 768px) {
+    /* md */
+    .width-calculada {
+        width: calc(100vw - 200px);
+    }
+}
+
+@media (min-width: 1024px) {
+    /* lg */
+    .width-calculada {
+        width: calc(100vw - 376px);
+    }
+}
+
+@media (max-width: 600px) {
+    /* xs */
+    .width-calculada {
+        width: calc(100vw - 60px);
+    }
+}
+
 @media (max-width: 1024px) {
     .partner-info {
         font-size: 14px;

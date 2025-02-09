@@ -10,7 +10,7 @@
 
             </div>
             <!-- Botão compare 'servicos' p/ telas grandes -->
-            <button class="sm:block hidden text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
+            <button wire:click="compare('services')" class="sm:block hidden text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
                 COMPARE
             </button>
         </div>
@@ -25,7 +25,7 @@
 
         <!-- Botão compare 'servicos' p/ telas pequenas -->
         <div class="w-full flex flex-row justify-end">
-            <button class="sm:hidden block text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
+            <button wire:click="compare('services')" class="sm:hidden block text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
                 COMPARE
             </button>
         </div>
@@ -39,7 +39,7 @@
             </div>
 
             <!-- Botão compare 'parceiros' p/ telas grandes -->
-            <button class="sm:block hidden text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
+            <button wire:click="compare('partners')" class="sm:block hidden text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
                 COMPARE
             </button>
         </div>
@@ -52,7 +52,7 @@
             @endforeach
         </div>
         <div class="w-full flex flex-row justify-end">
-            <button class="sm:hidden block text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
+            <button wire:click="compare('partners')" class="sm:hidden block text-primary font-semibold text-lg underline h-fit px-1 hover:bg-gray-200 rounded-md">
                 COMPARE
             </button>
         </div>

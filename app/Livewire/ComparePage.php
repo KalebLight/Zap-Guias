@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Helpers\CompanyHelper;
+use App\Models\Servico;
+use Livewire\Component;
+
+class ComparePage extends Component
+{
+    public $compareData = [];
+
+    public function mount()
+    {
+        $compareData = session()->get('compareData', []);
+        $formattedData = collect($compareData)->map(function ($item) {
+            // dd($item);
+            if ($item['model_type'] === Servico::class) {
+                $empresa = Servico::find($item['id'])->empresa;
+
+                return [
+                    'bio' => $empresa->bio ?? '—',
+                    'model_type' => CompanyHelper::getCompanyType(class_basename($empresa)),
+                    'cidade' => $empresa->municipio ?? '—',
+                    'idiomas' => $this->formatarIdiomas($empresa->idiomas),
+                    'formas_de_pagamento' => implode(',', formataFormasDePagamento(array_filter(json_decode($empresa->formas_de_pagamento, true) ?? []))),
+                    'funcionamento' => getIntervaloDeFuncionamento(json_decode($empresa->funcionamento, true)),
+                ];
+
+            } else {
+                return [
+                    'bio' => $item['bio'] ?? '—',
+                    'model_type' => CompanyHelper::getCompanyType(class_basename($item)),
+                    'cidade' => $item['municipio'] ?? '—',
+                    'idiomas' => $this->formatarIdiomas($item['idiomas']),
+                    'formas_de_pagamento' => implode(', ', formataFormasDePagamento(array_filter(json_decode($item['formas_de_pagamento'], true) ?? []))),
+                    'funcionamento' => getIntervaloDeFuncionamento(json_decode($item['funcionamento'], true)),
+                    'telefone' => $item['telefone'] ?? '—',
+                    'whatsapp' => $item['whatsapp'] ?? '—',
+                    'instagram' => $item['instagram'] ?? '—',
+                    'facebook' => $item['facebook'] ?? '—',
+                    'website' => $item['website'],
+                    'email' => $item['email_comercial'] ?? '—',
+                ];
+            }
+        })->toArray();
+
+        $this->compareData = $formattedData;
+    }
+
+
+    private function formatarIdiomas($idiomasJson)
+    {
+
+        $idiomas = json_decode($idiomasJson, true, 512, JSON_UNESCAPED_UNICODE);
+        if (empty($idiomas)) {
+            return '—';
+        }
+        $idiomas = array_map(function ($idioma) {
+            return str_replace('\\u', '&#x', $idioma);
+        }, $idiomas);
+        $idiomas = array_map(function ($idioma) {
+            return html_entity_decode($idioma, ENT_QUOTES, 'UTF-8');
+        }, $idiomas);
+
+        return implode('; ', $idiomas);
+    }
+
+
+
+
+
+
+
+    public function render()
+    {
+        return view('livewire.compare-page')->layout('layouts.app');
+    }
+}

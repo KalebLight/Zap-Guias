@@ -19,6 +19,40 @@ class CompanyHelper
     \App\Models\TurismoNautico::class,
   ];
 
+  public static function getCompanyType($company): string
+  {
+    $className = class_basename($company);
+
+    switch ($className) {
+      case 'Restaurante':
+        return 'Restaurante';
+      case 'Transportadora':
+        return 'Transportadora';
+      case 'MeioDeHospedagem':
+        return 'Meio de Hospedagem';
+      case 'CentroDeConvencoes':
+        return 'Centro de Convenções';
+      case 'AgenciasDeTurismo':
+        return 'Agência de Turismo';
+      case 'ParqueAquaticoEEmpreendimentoDeLazer':
+        return 'Parque Aquático e Empreendimento de Lazer';
+      case 'ParqueTematico':
+        return 'Parque Temático';
+      case 'LocadoraDeVeiculosParaTuristas':
+        return 'Locadora de Veículos para Turistas';
+      case 'AcampamentoTuristico':
+        return 'Acampamento Turístico';
+      case 'CasaDeEspetaculos':
+        return 'Casa de Espetáculos';
+      case 'OrganizadoraDeEventos':
+        return 'Organizadora de Eventos';
+      case 'TurismoNautico':
+        return 'Turismo Náutico';
+      default:
+        return 'Tipo de Empresa Desconhecido';
+    }
+  }
+
   public static function getModels()
   {
     return self::$models;
@@ -60,4 +94,7 @@ class CompanyHelper
 
     return false;
   }
+
+
+
 }

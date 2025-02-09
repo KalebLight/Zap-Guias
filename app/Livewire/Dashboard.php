@@ -33,7 +33,9 @@ class Dashboard extends Component
 
     public function loadPartners()
     {
-        $this->partners = collect()->merge(Restaurante::all())->merge(TurismoNautico::all())->merge(GuiaDeTurismo::all())->merge(CentroDeConvencoes::all())->merge(CasaDeEspetaculos::all())->merge(AcampamentoTuristico::all())->merge(LocadoraDeVeiculosParaTuristas::all())->merge(AgenciasDeTurismo::all())->merge(ParqueAquaticoEEmpreendimentoDeLazer::all()->merge(ParqueTematico::all())->merge(MeioDeHospedagem::all())->merge(OrganizadoraDeEventos::all()));
+        $this->partners = collect()->merge(Restaurante::all())
+            ->merge(ParqueTematico::all())
+            ->merge(TurismoNautico::all())->merge(GuiaDeTurismo::all())->merge(CentroDeConvencoes::all())->merge(CasaDeEspetaculos::all())->merge(AcampamentoTuristico::all())->merge(LocadoraDeVeiculosParaTuristas::all())->merge(AgenciasDeTurismo::all())->merge(ParqueAquaticoEEmpreendimentoDeLazer::all()->merge(ParqueTematico::all())->merge(MeioDeHospedagem::all())->merge(OrganizadoraDeEventos::all()));
     }
 
     public function render()

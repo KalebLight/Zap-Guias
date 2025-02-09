@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ComparePage;
 use App\Livewire\FavoritosPage;
 use App\Livewire\PartnerProfile;
 use App\Livewire\ServicoCreate;
@@ -28,6 +29,8 @@ Route::prefix('servicos')->group(function () {
     Route::get('/create', ServicoCreate::class)
         ->name('servicos.create');
 });
+
+Route::get('/compare/{services?}/{partners?}', ComparePage::class)->name('compare');
 
 
 Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->name('social.redirect');

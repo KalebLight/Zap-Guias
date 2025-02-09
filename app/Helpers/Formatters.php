@@ -117,6 +117,11 @@ function formatLabels(array $keys): array
 
 function formatarHorario($horarios)
 {
+  if ($horarios == []) {
+
+    return '-';
+  }
+
   $diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
   $horariosFormatados = [];
   $gruposConsecutivos = [];
@@ -176,6 +181,62 @@ function formatarHorario($horarios)
   return $horariosFormatados;
 }
 
+function getIntervaloDeFuncionamento($json)
+{
+  $diasDaSemana = [
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado',
+    'Domingo'
+  ];
+
+  if ($json != null) {
+    $diasAtivos = [];
+    foreach ($json as $dia => $valor) {
+      $diaSemSuffixo = str_replace('-feira', '', $dia);
+      if ($valor['active']) {
+        $diasAtivos[] = $diaSemSuffixo;
+      }
+    }
+
+    if (empty($diasAtivos)) {
+      return 'Fechado';
+    }
+
+    $intervalos = [];
+    $intervaloAtual = [$diasAtivos[0]];
+    for ($i = 1; $i < count($diasAtivos); $i++) {
+      $indiceAtual = array_search($diasAtivos[$i], $diasDaSemana);
+      $indiceAnterior = array_search($diasAtivos[$i - 1], $diasDaSemana);
+      if ($indiceAtual - $indiceAnterior == 1) {
+        $intervaloAtual[] = $diasAtivos[$i];
+      } else {
+        $intervalos[] = $intervaloAtual;
+        $intervaloAtual = [$diasAtivos[$i]];
+      }
+    }
+    $intervalos[] = $intervaloAtual;
+
+    $resultados = [];
+    foreach ($intervalos as $intervalo) {
+      if (count($intervalo) == 1) {
+        $resultados[] = $intervalo[0];
+      } else {
+        $resultados[] = $intervalo[0] . ' a ' . $intervalo[count($intervalo) - 1];
+      }
+    }
+
+    return implode(' e ', $resultados);
+  }
+  return null;
+}
+
+
+
+
 function abbreviarDia($dia)
 {
   $diasAbreviados = [
@@ -219,6 +280,14 @@ function formataFormasDePagamento(array $array): array
 
 
 
+function formataNumeroTelefone($numero)
+{
 
+  if ($numero == '') {
+    return '—';
+  }
+  $numeroLimpo = preg_replace('/[^0-9]/', '', $numero);
 
+  return "+55 (" . substr($numeroLimpo, 2, 2) . ") " . substr($numeroLimpo, 4, 5) . "-" . substr($numeroLimpo, 9, 4);
+}
 

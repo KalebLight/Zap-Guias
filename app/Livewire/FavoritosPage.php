@@ -22,11 +22,23 @@ class FavoritosPage extends Component
         $this->favoritosPartner = FavoritosPartner::where('user_id', Auth::id())->get();
         $this->partners = $this->favoritosPartner->pluck('partner')->unique();
 
-
-
     }
 
+    public function compare($type)
+    {
+        if ($type === 'services') {
+            $data = $this->services;
+        } else {
+            $data = $this->partners;
 
+        }
+        return redirect()->route('compare')->with('compareData', $data);
+    }
+
+    public function redirectToCompare()
+    {
+        return redirect()->route('compare');
+    }
 
     public function render()
     {
