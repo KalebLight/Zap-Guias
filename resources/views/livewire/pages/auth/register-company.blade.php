@@ -14,6 +14,7 @@ new #[Layout('layouts.guest')] class extends Component {
     public string $municipio = '';
     public string $uf = '';
     public string $email_comercial = '';
+    public string $telefone = '';
     public string $nome_fantasia = '';
     public string $categoria = '';
 
@@ -60,6 +61,7 @@ new #[Layout('layouts.guest')] class extends Component {
         $this->municipio = session('municipio', '');
         $this->uf = session('uf', '');
         $this->email_comercial = session('email_comercial', '');
+        $this->telefone = session('telefone', '');
         $this->nome_fantasia = session('nome_fantasia', '');
         $this->categoria = session('categoria', '');
         
@@ -96,6 +98,7 @@ new #[Layout('layouts.guest')] class extends Component {
         'municipio' => $this->municipio,
         'uf' => $this->uf,
         'email_comercial' => $this->email_comercial,
+        'telefone' => $this->telefone,        
         'nome_fantasia' => $this->nome_fantasia,
         'cnpj' => $this->registerUserData['cnpj']
         ];
@@ -187,6 +190,17 @@ new #[Layout('layouts.guest')] class extends Component {
                     <p class="text-secondary text-2xl ml-1">*</p>
                 </div>
                 <x-input-error :messages="$errors->get('email_comercial')" class="mt-2" />
+            </div>
+
+            <!-- telefone -->
+             <div class="flex flex-col items-center">
+                <div class="flex flex-row w-full">
+                    <x-text-input wire:model.change="telefone" id="telefone" class="block mt-1 w-full"
+                        type="text" name="telefone" required autofocus autocomplete="telefone"
+                        placeholder='Telefone Comercial'  x-mask="(99) 99999-9999"/>
+                    <p class="text-secondary text-2xl ml-1">*</p>
+                </div>
+                <x-input-error :messages="$errors->get('telefone')" class="mt-2" />
             </div>
 
             <!-- categoria -->

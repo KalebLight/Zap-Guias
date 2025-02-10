@@ -25,7 +25,7 @@
       <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->website}}</p>
     @endisset
       @isset($partner->telefone)
-      <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->telefone ?? '(84) 99999-9999'}}</p>
+      <p class="partner-info whitespace-nowrap lg:text-left text-right">{{$partner->telefone}}</p>
     @endisset
     </div>
 
