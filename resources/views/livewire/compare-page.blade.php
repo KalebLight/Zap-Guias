@@ -32,9 +32,7 @@
                     <div class="w-fit flex gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
                         @foreach ($compareData as $item)
                             <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ 
-
-                                                                                                                                                    class_basename($item['model_type']) }}
+                                {{ $item['model_type'] }}
                             </div>
                         @endforeach
                     </div>

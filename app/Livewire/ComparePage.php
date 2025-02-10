@@ -14,17 +14,24 @@ class ComparePage extends Component
     {
         $compareData = session()->get('compareData', []);
         $formattedData = collect($compareData)->map(function ($item) {
-            // dd($item);
-            if ($item['model_type'] === Servico::class) {
+
+            if ($item instanceof Servico) {
                 $empresa = Servico::find($item['id'])->empresa;
 
                 return [
                     'bio' => $empresa->bio ?? '—',
-                    'model_type' => CompanyHelper::getCompanyType(class_basename($empresa)),
+                    'model_type' => 'Serviço de ' . CompanyHelper::getCompanyType(class_basename($empresa)),
                     'cidade' => $empresa->municipio ?? '—',
                     'idiomas' => $this->formatarIdiomas($empresa->idiomas),
-                    'formas_de_pagamento' => implode(',', formataFormasDePagamento(array_filter(json_decode($empresa->formas_de_pagamento, true) ?? []))),
+                    'preco' => 'R$ ' . $item->preco,
+                    'formas_de_pagamento' => implode(', ', formataFormasDePagamento(array_filter(json_decode($empresa->formas_de_pagamento, true) ?? []))),
                     'funcionamento' => getIntervaloDeFuncionamento(json_decode($empresa->funcionamento, true)),
+                    'telefone' => $empresa->telefone ?? '—',
+                    'whatsapp' => $empresa->whatsapp ?? '—',
+                    'instagram' => $empresa->instagram ?? '—',
+                    'facebook' => $empresa->facebook ?? '—',
+                    'website' => $empresa->website,
+                    'email' => $empresa->email_comercial ?? '—',
                 ];
 
             } else {
