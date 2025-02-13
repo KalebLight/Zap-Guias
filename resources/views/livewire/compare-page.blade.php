@@ -251,7 +251,7 @@
                                                                     $websiteUrl = strpos($item['website'], 'http') === 0 ? $item['website'] : 'https://' . $item['website'];
                                                                 @endphp
                                                                 <a href="{{ $websiteUrl }}" target="_blank" class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center cursor-pointer underline" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                                    nada nao
+                                                                    {{ $item['website']}}
                                                                 </a>
                                             @else
                                                 <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
