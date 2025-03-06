@@ -125,6 +125,90 @@
                                                         </td>
                             @endforeach
                         </tr>
+
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Instagram:</td>
+                            @foreach ($compareData as $item)
+                                                        @php
+                                                            $instagramUsername = $item['instagram'] ?? '—';
+                                                            $instagramUsernameShow = '@' . $item['instagram'] ?? '—';
+                                                            $instagramUrl = ($instagramUsername !== '—') ? 'https://www.instagram.com/' . $instagramUsername : null;
+                                                        @endphp
+
+                                                        <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                                            @if ($instagramUrl)
+                                                                <a href="{{ $instagramUrl }}" target="_blank" class="text-primary underline">
+                                                                    {{ $instagramUsernameShow }}
+                                                                </a>
+                                                            @else
+                                                                {{ $instagramUsername }}
+                                                            @endif
+                                                        </td>
+                            @endforeach
+                        </tr>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Facebook:</td>
+                            @foreach ($compareData as $item)
+                                                        @php
+                                                            $facebookValue = $item['facebook'] ?? '—';
+                                                            $facebookUrl = (!empty($facebookValue) && $facebookValue !== '—') ? (strpos($facebookValue, 'facebook.com') !== false ? $facebookValue : 'https://www.facebook.com/' . $facebookValue) : null;
+                                                        @endphp
+
+                                                        <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                                            @if ($facebookUrl)
+                                                                <a href="{{ $facebookUrl }}" target="_blank" class="text-primary underline">
+                                                                    /{{ str_replace('https://www.facebook.com/', '', $facebookValue) }}
+                                                                </a>
+                                                            @else
+                                                                {{ $facebookValue === '' ? '—' : $facebookValue }}
+                                                            @endif
+                                                        </td>
+                            @endforeach
+                        </tr>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Site:</td>
+                            @foreach ($compareData as $item)
+                                                        @php
+                                                            $websiteValue = $item['website'] ?? '—';
+                                                            $websiteUrl = ($websiteValue !== '—' && !empty($websiteValue)) ? (strpos($websiteValue, 'http') === 0 ? $websiteValue : 'https://' . $websiteValue) : null;
+                                                        @endphp
+
+                                                        <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                                            @if ($websiteUrl)
+                                                                <a href="{{ $websiteUrl }}" target="_blank" class="text-primary underline">
+                                                                    {{ $websiteValue }}
+                                                                </a>
+                                                            @else
+                                                                {{ empty($websiteValue) ? '—' : $websiteValue }}
+                                                            @endif
+                                                        </td>
+                            @endforeach
+                        </tr>
+
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">E-Mail:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    {{ $item['email'] ?? '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <!-- INFORMAÇÕES EMPRESARIAIS -->
+                <div class="flex flex-row">
+                    <div class="w-[150px] flex-shrink-0">
+                        <h4 class="text-primary font-medium underline text-right">Informações</h4>
+                        <h4 class="text-primary font-medium leading-none underline text-right">Empresariais</h4>
+                    </div>
+
+                </div>
+                <table class="w-full table-auto">
+                    <tbody>
+
+                        </tr>
                     </tbody>
                 </table>
             </div>
