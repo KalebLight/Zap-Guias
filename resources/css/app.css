@@ -112,3 +112,15 @@
         ); /* 5 colunas em telas maiores que 1280px */
     }
 }
+
+.compare-cel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.compare-cel-label {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+}
