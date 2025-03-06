@@ -282,11 +282,15 @@ function formataFormasDePagamento(array $array): array
 
 function formataNumeroTelefone($numero)
 {
-
-  if ($numero == '') {
+  if (empty($numero)) {
     return '—';
   }
+
   $numeroLimpo = preg_replace('/[^0-9]/', '', $numero);
+
+  if (strlen($numeroLimpo) < 11) {
+    return $numero;
+  }
 
   return "+55 (" . substr($numeroLimpo, 2, 2) . ") " . substr($numeroLimpo, 4, 5) . "-" . substr($numeroLimpo, 9, 4);
 }

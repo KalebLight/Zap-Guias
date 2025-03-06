@@ -1,282 +1,132 @@
-<div class="w-full">
-    <div class="w-full border-t border-primary pt-2">
+<div class="w-full flex justify-center">
+    <div class="w-[90%] border-t border-primary pt-2">
         <div class="mt-5">
-            <div class="flex flex-row">
-                <div>
-                    <h4 class="text-primary font-medium underline text-right">Informações</h4>
-                    <h4 class="text-primary font-medium leading-none underline text-right">Básicas</h4>
-                </div>
-                <div class="border-b border-primary w-full border-dashed border-width-2 border-dasharray-2-1"></div>
-            </div>
-            <div class="w-full">
-                @php
-                    $rowIndex = 0; 
-                @endphp
 
-                <!-- Linha Bio -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Bio:</div>
-                    <div class="w-fit flex gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['bio'] ?? '—' }}
-                            </div>
-                        @endforeach
+            <!-- INFORMAÇÕES BÁSICAS  -->
+            <div class="w-full h-full overflow-x-auto">
+                <div class="flex flex-row">
+                    <div class="w-[150px] flex-shrink-0">
+                        <h4 class="text-primary font-medium underline text-right">Informações</h4>
+                        <h4 class="text-primary font-medium leading-none underline text-right">Básicas</h4>
                     </div>
-                </div>
-                @php $rowIndex++; @endphp
 
-                <!-- Linha Tipo -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Tipo:</div>
-                    <div class="w-fit flex gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['model_type'] }}
-                            </div>
-                        @endforeach
+                </div>
+                <table class="w-full table-auto">
+                    <tbody>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Bio:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary bg-buttonPrimary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center  border-t border-primary border-dashed border-width-2 border-dasharray-2-1 compare-cel">
+                                    {{ $item['bio'] ?? '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Tipo:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3  flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    {{ $item['model_type'] }}
+                                </td>
+                            @endforeach
+                        </tr>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Cidade:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3 bg-buttonPrimary flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    {{ $item['cidade'] ?? '—'  }}
+                                </td>
+                            @endforeach
+                        </tr>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Idiomas Falados:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    {{ $item['idiomas'] ?? '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- INFORMAÇÕES ADICIONAIS -->
+                <div class="flex flex-row">
+                    <div class="w-[150px] flex-shrink-0">
+                        <h4 class="text-primary font-medium underline text-right">Informações</h4>
+                        <h4 class="text-primary font-medium leading-none underline text-right">Adicionais</h4>
                     </div>
+
                 </div>
-                @php $rowIndex++; @endphp
+                <table class="w-full table-auto">
+                    <tbody>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Preço:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary bg-buttonPrimary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center  border-t border-primary border-dashed border-width-2 border-dasharray-2-1 compare-cel">
+                                    {{ $item['preco'] ?? '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
 
-                <!-- Linha Cidade do Endereço -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Cidade do Endereço:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['cidade'] ?? '—' }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Funcionamento:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3  flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    {{ $item['funcionamento'] ?? '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
 
-                <!-- Linha Atividade -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Atividade:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['atividade'] ?? '—' }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-                <!-- Linha Idiomas Falados -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Idiomas Falados:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto  {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['idiomas'] ?? '—' }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- INFORMAÇÕES ADICIONAIS -->
-        <div class="mt-5">
-            <div class="flex flex-row">
-                <div>
-                    <h4 class="text-primary font-medium underline text-right">Informações</h4>
-                    <h4 class="text-primary font-medium leading-none underline text-right">Adicionais</h4>
-                </div>
-                <div class="border-b border-primary w-full border-dashed border-width-2 border-dasharray-2-1"></div>
-            </div>
-            <div class="w-full">
-                @php
-                    $rowIndex = 0; // Contador para alternar as cores das linhas
-                @endphp
-
-                <!-- Linha de Preço -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Preço:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['preco'] ?? '—' }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-                <!-- Linha Formas de Pagamento -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Formas de Pagamento:</div>
-                    <div class="flex w-fit gap-2 py-2 {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                {{ $item['formas_de_pagamento'] ?? '—' }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-                <!-- Linha Funcionamento -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Funcionamento:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-
-                                {{ $item['funcionamento'] ?? '—' }}
-
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Formas de Pagamento:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary bg-buttonPrimary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    {{ $item['formas_de_pagamento'] ?? '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
+                    </tbody>
+                </table>
 
                 <!-- CONTATO -->
+                <div class="flex flex-row">
+                    <div class="w-[150px] flex-shrink-0">
+                        <h4 class="text-primary font-medium underline text-right">Contato</h4>
 
-            </div>
-        </div>
-
-
-        <!-- CONTATO -->
-
-        <div class="mt-5">
-            <div class="flex flex-row">
-                <div>
-                    <h4 class="text-primary font-medium underline text-right">Contato</h4>
-
-                </div>
-                <div class="border-b border-primary w-full border-dashed border-width-2 border-dasharray-2-1"></div>
-            </div>
-            <div class="w-full">
-                @php
-                    $rowIndex = 0; // Contador para alternar as cores das linhas
-                @endphp
-
-                <!-- Linha Telefone -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Telefone:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-
-                                {{ !empty($item['telefone']) ? $item['telefone'] : '—' }}
-
-                            </div>
-                        @endforeach
                     </div>
+
                 </div>
-                @php $rowIndex++; @endphp
+                <table class="w-full table-auto">
+                    <tbody>
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Telefone:</td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center border-t border-primary border-dashed border-width-2 border-dasharray-2-1 compare-cel">
+                                    {{ !empty($item['telefone']) ? $item['telefone'] : '—' }}
+                                </td>
+                            @endforeach
+                        </tr>
 
-                <!-- Linha Whatsapp -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Whatsapp:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                                                @php
-                                                    $whatsappLink = !empty($item['whatsapp']) ? 'https://wa.me/' . $item['whatsapp'] : null;
-                                                @endphp
+                        <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Whatsapp:</td>
+                            @foreach ($compareData as $item)
+                                                        <td class="text-primary bg-buttonPrimary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                                            @php
+                                                                $numeroFormatado = formataNumeroTelefone($item['whatsapp']);
+                                                                $whatsappLink = ($numeroFormatado !== '—') ? 'https://wa.me/' . preg_replace('/[^0-9]/', '', $item['whatsapp']) : null;
+                                                            @endphp
 
-                                                @if ($whatsappLink)
-                                                    <a href="{{ $whatsappLink }}" target="_blank" class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center cursor-pointer underline" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ formataNumeroTelefone($item['whatsapp']) }}
-                                                    </a>
-                                                @else
-                                                    <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ formataNumeroTelefone($item['whatsapp']) }}
-                                                    </div>
-                                                @endif
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-                <!-- Linha Instagram -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Instagram:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                                                @php
-                                                    $instagramUrl = !empty($item['instagram']) ? 'https://www.instagram.com/' . $item['instagram'] : null;
-                                                @endphp
-                                                @if ($instagramUrl)
-                                                    <a href="{{ $instagramUrl }}" target="_blank" class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center cursor-pointer underline" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ !empty($item['instagram']) ? $item['instagram'] : '—' }}
-                                                    </a>
-                                                @else
-                                                    <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ !empty($item['instagram']) ? $item['instagram'] : '—' }}
-                                                    </div>
-                                                @endif
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-
-                <!-- Linha Facebook -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Facebook:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                                                @php
-                                                    $facebookUrl = !empty($item['facebook']) ? 'https://www.facebook.com/' . $item['facebook'] : null;
-                                                @endphp
-                                                @if ($facebookUrl)
-                                                    <a href="{{ $facebookUrl }}" target="_blank" class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center cursor-pointer underline" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ !empty($item['facebook']) ? $item['facebook'] : '—' }}
-                                                    </a>
-                                                @else
-                                                    <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                        {{ !empty($item['facebook']) ? $item['facebook'] : '—' }}
-                                                    </div>
-                                                @endif
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-                <!-- Linha Site -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">Site:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                                            @if (!empty($item['website']))
-                                                                @php
-                                                                    $websiteUrl = strpos($item['website'], 'http') === 0 ? $item['website'] : 'https://' . $item['website'];
-                                                                @endphp
-                                                                <a href="{{ $websiteUrl }}" target="_blank" class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center cursor-pointer underline" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                                    {{ $item['website']}}
+                                                            @if ($whatsappLink)
+                                                                <a href="{{ $whatsappLink }}" target="_blank" class="text-primary underline">
+                                                                    {{ $numeroFormatado }}
                                                                 </a>
-                                            @else
-                                                <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                                                    —
-                                                </div>
-                                            @endif
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
-
-                <!-- Linha E-mail -->
-                <div class="w-full flex justify-center relative">
-                    <div class="text-primary px-3 py-2 absolute left-8">E-mail:</div>
-                    <div class="flex w-fit gap-2 py-2 mx-auto {{ $rowIndex % 2 === 0 ? 'bg-buttonPrimary' : 'bg-white' }}">
-                        @foreach ($compareData as $item)
-                            <div class="text-primary px-3 2xl:w-[266px] lg:w-[208px] w-[180px] text-ellipsis text-center" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-
-                                {{ $item['email'] ?? '—' }}
-
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                @php $rowIndex++; @endphp
+                                                            @else
+                                                                {{ $numeroFormatado }}
+                                                            @endif
+                                                        </td>
+                            @endforeach
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
