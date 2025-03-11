@@ -198,11 +198,15 @@
                 </table>
 
                 <!-- INFORMAÇÕES EMPRESARIAIS -->
-                <div class="flex flex-row">
-                    <div class="w-[150px] flex-shrink-0">
+                <div class="flex flex-row w-[150px] justify-end">
+
+
+                    <img src="{{ asset('images/check-icon.svg') }}" alt="" class="w-9">
+                    <div class="flex flex-col ml-2">
                         <h4 class="text-primary font-medium underline text-right">Informações</h4>
                         <h4 class="text-primary font-medium leading-none underline text-right">Empresariais</h4>
                     </div>
+
 
                 </div>
                 <table class="w-full table-auto">
