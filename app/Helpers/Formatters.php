@@ -30,6 +30,7 @@ function formatSpecificData(array $data): array
     'quantidade_de_embarcacoes' => 'Quantidade de Embarcações',
     'quantidade_de_cruzeiro_maritmo' => 'Quantidade de Cruzeiros Marítmos',
     'quantidade_de_cruzeiro_fluvial' => 'Quantidade de Cruzeiros Fluviais',
+    'area_total_do_empreendimento' => 'Área Total do Empreendimento m²',
   ];
 
   $formattedData = [];
@@ -40,6 +41,7 @@ function formatSpecificData(array $data): array
 
   return $formattedData;
 }
+
 
 function getEspecialidade($class)
 {
@@ -108,6 +110,7 @@ function formatLabels(array $keys): array
     'quantidade_de_embarcacoes' => 'Quantidade de Embarcações',
     'quantidade_de_cruzeiro_maritmo' => 'Quantidade de Cruzeiros Marítmos',
     'quantidade_de_cruzeiro_fluvial' => 'Quantidade de Cruzeiros Fluviais',
+    'area_total_do_empreendimento' => 'Área Total do Empreendimento',
   ];
 
   return array_map(fn($key) => $map[$key] ?? ucfirst(str_replace('_', ' ', $key)), $keys);
