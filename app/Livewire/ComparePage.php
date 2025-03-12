@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Helpers\CompanyHelper;
 use App\Models\Servico;
 use Livewire\Component;
+use App\Helpers\Formatters; // Adicione esta linha para importar o namespace
 
 class ComparePage extends Component
 {
@@ -32,9 +33,11 @@ class ComparePage extends Component
                     'facebook' => $empresa->facebook ?? '—',
                     'website' => $empresa->website,
                     'email' => $empresa->email_comercial ?? '—',
+                    'dados_especificos' => json_decode($empresa->dados_especificos, true) ?? [],
                 ];
 
             } else {
+
                 return [
                     'bio' => $item['bio'] ?? '—',
                     'model_type' => CompanyHelper::getCompanyType(class_basename($item)),
@@ -48,6 +51,7 @@ class ComparePage extends Component
                     'facebook' => $item['facebook'] ?? '—',
                     'website' => $item['website'],
                     'email' => $item['email_comercial'] ?? '—',
+                    'dados_especificos' => json_decode($item['dados_especificos'], true) ?? [],
                 ];
             }
         })->toArray();
@@ -55,10 +59,8 @@ class ComparePage extends Component
         $this->compareData = $formattedData;
     }
 
-
     private function formatarIdiomas($idiomasJson)
     {
-
         $idiomas = json_decode($idiomasJson, true, 512, JSON_UNESCAPED_UNICODE);
         if (empty($idiomas)) {
             return '—';
@@ -72,12 +74,6 @@ class ComparePage extends Component
 
         return implode('; ', $idiomas);
     }
-
-
-
-
-
-
 
     public function render()
     {

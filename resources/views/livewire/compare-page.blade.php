@@ -154,7 +154,7 @@
                                                             $facebookUrl = (!empty($facebookValue) && $facebookValue !== '—') ? (strpos($facebookValue, 'facebook.com') !== false ? $facebookValue : 'https://www.facebook.com/' . $facebookValue) : null;
                                                         @endphp
 
-                                                        <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                                        <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel bg-buttonPrimary">
                                                             @if ($facebookUrl)
                                                                 <a href="{{ $facebookUrl }}" target="_blank" class="text-primary underline">
                                                                     /{{ str_replace('https://www.facebook.com/', '', $facebookValue) }}
@@ -188,7 +188,7 @@
                         <tr class="flex">
                             <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">E-Mail:</td>
                             @foreach ($compareData as $item)
-                                <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel bg-buttonPrimary">
                                     {{ $item['email'] ?? '—' }}
                                 </td>
                             @endforeach
@@ -199,22 +199,48 @@
 
                 <!-- INFORMAÇÕES EMPRESARIAIS -->
                 <div class="flex flex-row w-[150px] justify-end">
-
-
                     <img src="{{ asset('images/check-icon.svg') }}" alt="" class="w-9">
                     <div class="flex flex-col ml-2">
                         <h4 class="text-primary font-medium underline text-right">Informações</h4>
                         <h4 class="text-primary font-medium leading-none underline text-right">Empresariais</h4>
                     </div>
-
-
                 </div>
                 <table class="w-full table-auto">
                     <tbody>
+                        @php
+                            $allKeys = [];
+                            foreach ($compareData as $item) {
+                                if (!empty($item['dados_especificos'])) {
+                                    $allKeys = array_merge($allKeys, array_keys($item['dados_especificos']));
+                                }
+                            }
+                            $allKeys = array_unique($allKeys);
+                            $formattedKeys = formatLabels($allKeys);
+                            $rowColor = true;
+                        @endphp
 
-                        </tr>
+                        @if (!empty($allKeys))
+                                            @foreach ($allKeys as $index => $key)
+                                                                <tr class="flex">
+                                                                    <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">{{ $formattedKeys[$index] }}:</td>
+                                                                    @foreach ($compareData as $item)
+                                                                        <td class="text-primary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel {{ $rowColor ? 'bg-buttonPrimary' : '' }}">
+                                                                            {{ $item['dados_especificos'][$key] ?? '—' }}
+                                                                        </td>
+                                                                    @endforeach
+                                                                </tr>
+                                                                @php
+                                                                    $rowColor = !$rowColor;
+                                                                @endphp
+                                            @endforeach
+                        @else
+                            <tr class="flex">
+                                <td class="text-primary px-3 py-2 w-full text-center">Nenhum dado empresarial para comparar.</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
