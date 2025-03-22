@@ -41,7 +41,7 @@ class ComparePage extends Component
             } else {
 
                 return [
-                    'item' => $item,
+                    'itemObj' => $item,
                     'bio' => $item['bio'] ?? '—',
                     'isService' => false,
                     'model_type_company' => CompanyHelper::getCompanyType(class_basename($item)),
