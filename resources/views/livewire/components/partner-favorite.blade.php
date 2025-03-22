@@ -5,11 +5,6 @@ use Livewire\Volt\Component;
 new class extends Component {
   public $partner;
 
-
-  public function mount()
-  {
-
-  }
 }; ?>
 <a href="{{ route('partner.profile', ['slug' => $partner->slug]) }}">
 

@@ -14,6 +14,19 @@
                 <table class="w-full table-auto">
                     <tbody>
                         <tr class="flex">
+                            <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label"></td>
+                            @foreach ($compareData as $item)
+                                <td class="text-primary px-3  flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
+                                    @if ($item['isService'])
+                                        <livewire:components.service-favorite :service="$item['itemObj']" />
+                                    @else
+                                        <livewire:components.partner-favorite :partner="$item['itemObj']" />
+
+                                    @endif
+                                </td>
+                            @endforeach
+                        </tr>
+                        <tr class="flex">
                             <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Bio:</td>
                             @foreach ($compareData as $item)
                                 <td class="text-primary bg-buttonPrimary px-3 flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center  border-t border-primary border-dashed border-width-2 border-dasharray-2-1 compare-cel">
@@ -25,7 +38,7 @@
                             <td class="text-primary px-3 py-2 w-[150px] flex-shrink-0 compare-cel-label">Tipo:</td>
                             @foreach ($compareData as $item)
                                 <td class="text-primary px-3  flex-1 2xl:w-[266px] lg:w-[208px] w-[180px] text-center compare-cel">
-                                    {{ $item['model_type'] }}
+                                    {{ $item['model_type_company'] }}
                                 </td>
                             @endforeach
                         </tr>

@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Helpers\CompanyHelper;
 use App\Models\Servico;
 use Livewire\Component;
-use App\Helpers\Formatters; // Adicione esta linha para importar o namespace
+
 
 class ComparePage extends Component
 {
@@ -20,8 +20,10 @@ class ComparePage extends Component
                 $empresa = Servico::find($item['id'])->empresa;
 
                 return [
+                    'itemObj' => $item,
                     'bio' => $empresa->bio ?? '—',
-                    'model_type' => 'Serviço de ' . CompanyHelper::getCompanyType(class_basename($empresa)),
+                    'isService' => true,
+                    'model_type_company' => 'Serviço de ' . CompanyHelper::getCompanyType(class_basename($empresa)),
                     'cidade' => $empresa->municipio ?? '—',
                     'idiomas' => $this->formatarIdiomas($empresa->idiomas),
                     'preco' => 'R$ ' . $item->preco,
@@ -39,8 +41,10 @@ class ComparePage extends Component
             } else {
 
                 return [
+                    'item' => $item,
                     'bio' => $item['bio'] ?? '—',
-                    'model_type' => CompanyHelper::getCompanyType(class_basename($item)),
+                    'isService' => false,
+                    'model_type_company' => CompanyHelper::getCompanyType(class_basename($item)),
                     'cidade' => $item['municipio'] ?? '—',
                     'idiomas' => $this->formatarIdiomas($item['idiomas']),
                     'formas_de_pagamento' => implode(', ', formataFormasDePagamento(array_filter(json_decode($item['formas_de_pagamento'], true) ?? []))),
